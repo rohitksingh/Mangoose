@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    android:id="@+id/parent_frame"
+    >
+    <com.omdb.rohksin.omdb.CustomViews.adjusting_movie_card
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="40dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.omdb.rohksin.omdb.CustomViews.adjusting_image
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blurry"
+                />
+            <include layout="@layout/movie_detail_pane"/>
+        </LinearLayout>
+    </com.omdb.rohksin.omdb.CustomViews.adjusting_movie_card>
+    <include layout="@layout/rating_pane"/>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem"
+        android:textColor="#ffffff"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="5"
+        />
+</LinearLayout>
