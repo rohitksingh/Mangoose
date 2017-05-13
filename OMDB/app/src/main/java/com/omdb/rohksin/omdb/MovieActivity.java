@@ -25,7 +25,7 @@ public class MovieActivity extends AppCompatActivity{
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.movie_intro_card);
+        setContentView(R.layout.movie_cord_layout);
         frame = (FrameLayout)findViewById(R.id.frameLayout);
         ImageView imageView = (ImageView)findViewById(R.id.image);
 

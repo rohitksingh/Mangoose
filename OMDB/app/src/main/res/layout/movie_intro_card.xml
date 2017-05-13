@@ -30,7 +30,7 @@
         android:id="@+id/desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lorem"
+        android:text="@string/loren"
         android:textColor="#ffffff"
         android:scrollHorizontally="true"
         android:ellipsize="end"
