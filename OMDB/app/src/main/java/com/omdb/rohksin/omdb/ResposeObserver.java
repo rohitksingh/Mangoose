@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.omdb.rohksin.omdb.ObjectMaps.MovieResponse;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -23,7 +24,7 @@ public class ResposeObserver extends BroadcastReceiver{
     }
 
     @Override
-    public void onReceive(Context context ,Intent intent)
+    public void onReceive(final Context context ,Intent intent)
     {
         if(intent.getAction().equals(MainActivity.RESPONSE_RECEIVED)) {
             // do something
@@ -33,11 +34,21 @@ public class ResposeObserver extends BroadcastReceiver{
             ImageView posterThumbnail = (ImageView) parent.findViewById(R.id.moviePosterThumbnail);
             Movie movie = MainActivity.movie;
 
-            Log.d("Rohit","movieThumb"+movie.getPosterThumbnail()+"");
+            //Log.d("Rohit","movieThumb"+movie.getPosterThumbnail()+"");
 
             Picasso.with(context)
-                    .load(movie.getPosterThumbnail())
+                    .load(MovieResponse.getPoster())
                     .into(posterThumbnail);
+
+            posterThumbnail.setOnClickListener(new View.OnClickListener()
+            {
+
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context,MovieActivity.class);
+                    context.startActivity(i);
+                }
+            });
         }
 
     }

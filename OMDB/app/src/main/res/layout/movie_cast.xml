@@ -9,6 +9,7 @@
     android:foreground="?android:attr/selectableItemBackground"
     >
 <LinearLayout
+    android:id="@+id/movie_cast"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

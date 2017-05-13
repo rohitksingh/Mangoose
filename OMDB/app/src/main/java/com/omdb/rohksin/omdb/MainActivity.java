@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.omdb.rohksin.omdb.ObjectMaps.MovieResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,13 +131,37 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response)
                 {
 
-                    movie = new Movie();
+                    //movie = new Movie();
                     JSONObject object = response;
 
+                    Log.d("Res",object.toString());
+
                     try {
-                        movie.setName((String) response.get("Title"));
+                       /* movie.setName((String) response.get("Title"));
                         movie.setReleaseYear((String) response.get("Year"));
                         movie.setPosterThumbnail((String) response.get("Poster"));
+                        */
+                        MovieResponse.setTitle((String)response.get("Title"));
+                        MovieResponse.setYear((String) response.get("Year"));
+                        MovieResponse.setPoster((String) response.get("Poster"));
+                        MovieResponse.setReleasedDate((String)response.get("Released"));
+                        MovieResponse.setGenre((String)response.get("Genre"));
+                        MovieResponse.setRated((String)response.get("Rated"));
+                        MovieResponse.setRuntime((String)response.get("Runtime"));
+                        MovieResponse.setImdbRating((String)response.get("imdbRating"));
+                        MovieResponse.setDirector((String)response.get("Director"));
+                        MovieResponse.setWriter((String)response.get("Writer"));
+                        MovieResponse.setProduction((String)response.get("Production"));
+                        MovieResponse.setBoxoffice((String)response.get("BoxOffice"));
+                        MovieResponse.setWebsite((String)response.get("Website"));
+                        MovieResponse.setAwards((String)response.get("Awards"));
+                        MovieResponse.setCountry((String)response.get("Country"));
+                        MovieResponse.setLanguages((String)response.get("Language"));
+                        MovieResponse.setFullPlot((String)response.get("Plot"));
+
+                        //MovieResponse.setRatings();
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
