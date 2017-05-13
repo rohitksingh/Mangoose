@@ -17,6 +17,8 @@ import com.squareup.picasso.Picasso;
 public class ResposeObserver extends BroadcastReceiver{
 
     View parent;
+    public final static String RESPONSE ="com.omdb.rohksin.omdb.RESPONSE";
+    private MovieResponse response;
 
     public ResposeObserver(View parent)
     {
@@ -35,9 +37,10 @@ public class ResposeObserver extends BroadcastReceiver{
             Movie movie = MainActivity.movie;
 
             //Log.d("Rohit","movieThumb"+movie.getPosterThumbnail()+"");
+            this.response = (MovieResponse)intent.getSerializableExtra("bak");
 
             Picasso.with(context)
-                    .load(MovieResponse.getPoster())
+                    .load(response.getPoster())
                     .into(posterThumbnail);
 
             posterThumbnail.setOnClickListener(new View.OnClickListener()
@@ -46,6 +49,7 @@ public class ResposeObserver extends BroadcastReceiver{
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(context,MovieActivity.class);
+                    i.putExtra(RESPONSE,response);
                     context.startActivity(i);
                 }
             });

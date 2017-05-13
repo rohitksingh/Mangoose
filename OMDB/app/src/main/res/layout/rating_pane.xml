@@ -16,6 +16,6 @@
     <include layout="@layout/rating_tab"/>
     <include layout="@layout/rating_tab"/>
     <include layout="@layout/rating_tab"/>
-    <include layout="@layout/rating_tab"/>
+
 </LinearLayout>
 </android.support.v7.widget.CardView>

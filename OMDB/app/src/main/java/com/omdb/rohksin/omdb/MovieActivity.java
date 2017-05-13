@@ -67,24 +67,26 @@ public class MovieActivity extends AppCompatActivity{
         boxOffice =(TextView)records.findViewById(R.id.boxoffice);
         website =(TextView)records.findViewById(R.id.website);
 
+        MovieResponse response = (MovieResponse)getIntent().getSerializableExtra(ResposeObserver.RESPONSE);
+
         Picasso.with(MovieActivity.this)
-                .load(MovieResponse.getPoster())
+                .load(response.getPoster())
                 .into(moviePoster);
 
-        String movieNDate = MovieResponse.getTitle()+ (MovieResponse.getYear()!=null ? "("+MovieResponse.getYear()+")" : "");
+        String movieNDate = response.getTitle()+ (response.getYear()!=null ? "("+response.getYear()+")" : "");
         title.setTitle(movieNDate);
-        moviePlot.setText(MovieResponse.getFullPlot());
-        director.setText(MovieResponse.getDirector());
-        writer.setText(MovieResponse.getWriter());
-        production.setText(MovieResponse.getProduction());
+        moviePlot.setText(response.getFullPlot());
+        director.setText(response.getDirector());
+        writer.setText(response.getWriter());
+        production.setText(response.getProduction());
 
-        genre.setText(MovieResponse.getGenre());
-        runtime.setText(MovieResponse.getRuntime());
-        releaseDate.setText(MovieResponse.getReleasedDate());
+        genre.setText(response.getGenre());
+        runtime.setText(response.getRuntime());
+        releaseDate.setText(response.getReleasedDate());
 
-        awards.setText(MovieResponse.getAwards());
-        boxOffice.setText(MovieResponse.getBoxoffice());
-        website.setText(MovieResponse.getWebsite());
+        awards.setText(response.getAwards());
+        boxOffice.setText(response.getBoxoffice());
+        website.setText(response.getWebsite());
 
     }
 }

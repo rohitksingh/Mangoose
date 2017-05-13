@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private JsonObjectRequest request;
     private RequestQueue requestQueue;
     public static Movie movie;
+    private MovieResponse movieResponse;
 
     public static final String RESPONSE_RECEIVED ="com.omdb.rohksin.omdb.Response";
 
@@ -46,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(RESPONSE_RECEIVED);
         View v = (View)findViewById(R.id.parent);
+        Log.d("Response","reg");
         registerReceiver(new ResposeObserver(v), filter);
+        Log.d("Response", "after reg");
 
         //desc = (TextView)findViewById(R.id.description);
         search = (EditText)findViewById(R.id.search);
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
 
+                Log.d("Response", "Search");
                 Search searchMovie =new Search(search.getText()+"");
                 searchMovie.formUrl();
                 searchMovie.makeRequest();
@@ -141,23 +145,28 @@ public class MainActivity extends AppCompatActivity {
                         movie.setReleaseYear((String) response.get("Year"));
                         movie.setPosterThumbnail((String) response.get("Poster"));
                         */
-                        MovieResponse.setTitle((String)response.get("Title"));
-                        MovieResponse.setYear((String) response.get("Year"));
-                        MovieResponse.setPoster((String) response.get("Poster"));
-                        MovieResponse.setReleasedDate((String)response.get("Released"));
-                        MovieResponse.setGenre((String)response.get("Genre"));
-                        MovieResponse.setRated((String)response.get("Rated"));
-                        MovieResponse.setRuntime((String)response.get("Runtime"));
-                        MovieResponse.setImdbRating((String)response.get("imdbRating"));
-                        MovieResponse.setDirector((String)response.get("Director"));
-                        MovieResponse.setWriter((String)response.get("Writer"));
-                        MovieResponse.setProduction((String)response.get("Production"));
-                        MovieResponse.setBoxoffice((String)response.get("BoxOffice"));
-                        MovieResponse.setWebsite((String)response.get("Website"));
-                        MovieResponse.setAwards((String)response.get("Awards"));
-                        MovieResponse.setCountry((String)response.get("Country"));
-                        MovieResponse.setLanguages((String)response.get("Language"));
-                        MovieResponse.setFullPlot((String)response.get("Plot"));
+
+                        Log.d("Response","json res rec");
+                        movieResponse = new MovieResponse();
+
+                        Log.d("Response","mres obj created");
+                        movieResponse.setTitle((String) response.get("Title"));
+                        movieResponse.setYear((String) response.get("Year"));
+                        movieResponse.setPoster((String) response.get("Poster"));
+                        movieResponse.setReleasedDate((String) response.get("Released"));
+                        movieResponse.setGenre((String) response.get("Genre"));
+                        movieResponse.setRated((String) response.get("Rated"));
+                        movieResponse.setRuntime((String) response.get("Runtime"));
+                        movieResponse.setImdbRating((String) response.get("imdbRating"));
+                        movieResponse.setDirector((String) response.get("Director"));
+                        movieResponse.setWriter((String) response.get("Writer"));
+                        movieResponse.setProduction((String) response.get("Production"));
+                        movieResponse.setBoxoffice((String) response.get("BoxOffice"));
+                        movieResponse.setWebsite((String) response.get("Website"));
+                        movieResponse.setAwards((String) response.get("Awards"));
+                        movieResponse.setCountry((String) response.get("Country"));
+                        movieResponse.setLanguages((String) response.get("Language"));
+                        movieResponse.setFullPlot((String) response.get("Plot"));
 
                         //MovieResponse.setRatings();
 
@@ -166,7 +175,12 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     finally {
-                        sendBroadcast(new Intent().setAction(RESPONSE_RECEIVED));
+                        Log.d("Response","inside finally");
+                        Intent i = new Intent();
+                        i.setAction(RESPONSE_RECEIVED);
+                        Log.d("Response", "mres is null? "+(movieResponse==null));
+                        i.putExtra("bak",movieResponse);
+                        sendBroadcast(i);
                     }
 
                 }

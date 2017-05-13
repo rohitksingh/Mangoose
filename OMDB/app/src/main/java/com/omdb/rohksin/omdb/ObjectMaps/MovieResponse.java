@@ -1,191 +1,196 @@
 package com.omdb.rohksin.omdb.ObjectMaps;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Created by Illuminati on 5/13/2017.
  */
-public class MovieResponse {
+public class MovieResponse implements Serializable{
 
-    private static String title;
-    private static String year;
-    private static String type;
-    private static String releasedDate;
-    private static String genre;
-    private static String rated;
-    private static String runtime;
-    private static String director;
-    private static String writer;
-    private static String[] actors;
-    private static String poster;
-    private static String imdbRating;
-    private static Map<String,String> ratings;
-    private static String awards;
-    private static String boxoffice;
-    private static String production;
-    private static String fullPlot;
-    private static String website;
-    private static String country;
-    private static String languages;
+    private String title;
+    private  String year;
+    private  String type;
+    private  String releasedDate;
+    private  String genre;
+    private  String rated;
+    private  String runtime;
+    private  String director;
+    private  String writer;
+    private  String[] actors;
+    private  String poster;
+    private  String imdbRating;
+    private  Map<String,String> ratings;
 
-    public static String getTitle() {
-        return title;
-    }
-
-    public static void setTitle(String title) {
-        MovieResponse.title = title;
-    }
-
-    public static String getYear() {
-        return year;
-    }
-
-    public static void setYear(String year) {
-        MovieResponse.year = year;
-    }
-
-    public static String getType() {
-        return type;
-    }
-
-    public static void setType(String type) {
-        MovieResponse.type = type;
-    }
-
-    public static String getReleasedDate() {
-        return releasedDate;
-    }
-
-    public static void setReleasedDate(String releasedDate) {
-        MovieResponse.releasedDate = releasedDate;
-    }
-
-    public static String getGenre() {
-        return genre;
-    }
-
-    public static void setGenre(String genre) {
-        MovieResponse.genre = genre;
-    }
-
-    public static String getRated() {
-        return rated;
-    }
-
-    public static void setRated(String rated) {
-        MovieResponse.rated = rated;
-    }
-
-    public static String getRuntime() {
-        return runtime;
-    }
-
-    public static void setRuntime(String runtime) {
-        MovieResponse.runtime = runtime;
-    }
-
-    public static String getDirector() {
-        return director;
-    }
-
-    public static void setDirector(String director) {
-        MovieResponse.director = director;
-    }
-
-    public static String getWriter() {
-        return writer;
-    }
-
-    public static void setWriter(String writer) {
-        MovieResponse.writer = writer;
-    }
-
-    public static String[] getActors() {
-        return actors;
-    }
-
-    public static void setActors(String[] actors) {
-        MovieResponse.actors = actors;
-    }
-
-    public static String getPoster() {
-        return poster;
-    }
-
-    public static void setPoster(String poster) {
-        MovieResponse.poster = poster;
-    }
-
-    public static Map<String, String> getRatings() {
-        return ratings;
-    }
-
-    public static void setRatings(Map<String, String> ratings) {
-        MovieResponse.ratings = ratings;
-    }
-
-    public static String getAwards() {
+    public String getAwards() {
         return awards;
     }
 
-    public static void setAwards(String awards) {
-        MovieResponse.awards = awards;
+    public void setAwards(String awards) {
+        this.awards = awards;
     }
 
-    public static String getBoxoffice() {
-        return boxoffice;
+    public String getTitle() {
+        return title;
     }
 
-    public static void setBoxoffice(String boxoffice) {
-        MovieResponse.boxoffice = boxoffice;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public static String getProduction() {
-        return production;
+    public String getYear() {
+        return year;
     }
 
-    public static void setProduction(String production) {
-        MovieResponse.production = production;
+    public void setYear(String year) {
+        this.year = year;
     }
 
-    public static String getFullPlot() {
-        return fullPlot;
+    public String getType() {
+        return type;
     }
 
-    public static void setFullPlot(String fullPlot) {
-        MovieResponse.fullPlot = fullPlot;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public static String getWebsite() {
-        return website;
+    public String getReleasedDate() {
+        return releasedDate;
     }
 
-    public static void setWebsite(String website) {
-        MovieResponse.website = website;
+    public void setReleasedDate(String releasedDate) {
+        this.releasedDate = releasedDate;
     }
 
-    public static String getCountry() {
-        return country;
+    public String getGenre() {
+        return genre;
     }
 
-    public static String getImdbRating() {
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getRated() {
+        return rated;
+    }
+
+    public void setRated(String rated) {
+        this.rated = rated;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public String[] getActors() {
+        return actors;
+    }
+
+    public void setActors(String[] actors) {
+        this.actors = actors;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getImdbRating() {
         return imdbRating;
     }
 
-    public static void setImdbRating(String imdbRating) {
-        MovieResponse.imdbRating = imdbRating;
+    public void setImdbRating(String imdbRating) {
+        this.imdbRating = imdbRating;
     }
 
-    public static void setCountry(String country) {
-        MovieResponse.country = country;
-
+    public Map<String, String> getRatings() {
+        return ratings;
     }
 
-    public static String getLanguages() {
+    public void setRatings(Map<String, String> ratings) {
+        this.ratings = ratings;
+    }
+
+    public String getBoxoffice() {
+        return boxoffice;
+    }
+
+    public void setBoxoffice(String boxoffice) {
+        this.boxoffice = boxoffice;
+    }
+
+    public String getProduction() {
+        return production;
+    }
+
+    public void setProduction(String production) {
+        this.production = production;
+    }
+
+    public String getFullPlot() {
+        return fullPlot;
+    }
+
+    public void setFullPlot(String fullPlot) {
+        this.fullPlot = fullPlot;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLanguages() {
         return languages;
     }
 
-    public static void setLanguages(String languages) {
-        MovieResponse.languages = languages;
+    public void setLanguages(String languages) {
+        this.languages = languages;
     }
+
+    private  String awards;
+    private  String boxoffice;
+    private  String production;
+    private  String fullPlot;
+    private  String website;
+    private  String country;
+    private  String languages;
+
+
 }
