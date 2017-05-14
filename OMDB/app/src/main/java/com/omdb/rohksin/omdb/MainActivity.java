@@ -23,8 +23,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.omdb.ObjectMaps.MovieResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         public void formUrl()
         {
             String properSearchText = searchText.replace(" ","%20");
-            endPoint = "http://www.omdbapi.com/?t="+properSearchText;
+            endPoint = "http://www.omdbapi.com/?t="+properSearchText+"&plot=full";
 
         }
 
@@ -149,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Response","json res rec");
                         movieResponse = new MovieResponse();
 
-                        Log.d("Response","mres obj created");
+                        Log.d("Response", "mres obj created");
                         movieResponse.setTitle((String) response.get("Title"));
                         movieResponse.setYear((String) response.get("Year"));
                         movieResponse.setPoster((String) response.get("Poster"));
@@ -167,6 +173,32 @@ public class MainActivity extends AppCompatActivity {
                         movieResponse.setCountry((String) response.get("Country"));
                         movieResponse.setLanguages((String) response.get("Language"));
                         movieResponse.setFullPlot((String) response.get("Plot"));
+
+
+                        JSONArray jsonArray = (JSONArray)response.get("Ratings");
+                        Log.d("Rohit", "jsonArray" + (jsonArray == null));
+
+                        Map<String,String> ratingMap = new LinkedHashMap<String, String>();
+
+                        for(int i=0;i<jsonArray.length();i++)
+                        {
+                            JSONObject jsonObject = (JSONObject)jsonArray.get(i);
+                            ratingMap.put((String)jsonObject.get("Source"),(String)jsonObject.get("Value"));
+                        }
+
+                        movieResponse.setRatings(ratingMap);
+
+                        //ArrayList<String> actors= getAll((String)response.get("Actors"));
+                        movieResponse.setActors((String)response.get("Actors"));
+
+
+
+
+
+
+
+
+
 
                         //MovieResponse.setRatings();
 
@@ -194,6 +226,8 @@ public class MainActivity extends AppCompatActivity {
             requestQueue.add(request);
 
         }
+
+
 
 
     }

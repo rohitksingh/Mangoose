@@ -3,6 +3,7 @@ package com.omdb.rohksin.omdb.ObjectMaps;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -19,7 +20,7 @@ public class MovieResponse implements Serializable{
     private  String runtime;
     private  String director;
     private  String writer;
-    private  String[] actors;
+    private  String actors;
     private  String poster;
     private  String imdbRating;
     private  Map<String,String> ratings;
@@ -104,11 +105,11 @@ public class MovieResponse implements Serializable{
         this.writer = writer;
     }
 
-    public String[] getActors() {
+    public String getActors() {
         return actors;
     }
 
-    public void setActors(String[] actors) {
+    public void setActors(String actors) {
         this.actors = actors;
     }
 
