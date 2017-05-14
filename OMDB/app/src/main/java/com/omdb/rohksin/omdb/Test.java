@@ -3,6 +3,8 @@ package com.omdb.rohksin.omdb;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,13 +24,13 @@ public class Test extends AppCompatActivity {
         super.onCreate(savedInstanceStste);
         setContentView(R.layout.test);
 
-        LinearLayout test = (LinearLayout)findViewById(R.id.parentTest);
+        LinearLayout test = (LinearLayout)findViewById(R.id.rating_pane);
 
         inflater = (LayoutInflater) Test.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
-        LinearLayout tab1 = provideTab("8.4");
-        LinearLayout tab2 = provideTab("9.4");
+        CardView tab1 = provideTab("8.4");
+        CardView tab2 = provideTab("9.4");
 
 
         test.addView(tab1);
@@ -36,14 +38,15 @@ public class Test extends AppCompatActivity {
 
     }
 
-    public LinearLayout provideTab(String rating)
+    public CardView provideTab(String rating)
     {
-        LinearLayout tabs = (LinearLayout)inflater.inflate(R.layout.rating_tab,null);
-
-        ImageView imageView = (ImageView)tabs.findViewById(R.id.rating_com_icon);
-        TextView textView = (TextView)tabs.findViewById(R.id.rating_score);
+        //LinearLayout tabs = (LinearLayout)inflater.inflate(R.layout.rating_tab,null);
+        CardView cardView = (CardView)inflater.inflate(R.layout.rating_tab,null);
+        LinearLayout linearLayout = (LinearLayout)cardView.findViewById(R.id.rating_tab);
+        ImageView imageView = (ImageView)linearLayout.findViewById(R.id.rating_com_icon);
+        TextView textView = (TextView)linearLayout.findViewById(R.id.rating_score);
         imageView.setImageResource(R.drawable.imdb);
         textView.setText(rating);
-        return tabs;
+        return cardView;
     }
 }

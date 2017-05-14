@@ -1,9 +1,11 @@
 package com.omdb.rohksin.omdb;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -58,6 +60,10 @@ public class MovieActivity extends AppCompatActivity{
 
     LayoutInflater inflater;
 
+    private Typeface robotoregular;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -67,8 +73,12 @@ public class MovieActivity extends AppCompatActivity{
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.movie_cord_layout);
 
+        robotoregular = Typeface.createFromAsset(getAssets(),  "fonts/Roboto-Regular.ttf");
+
         moviePoster = (ImageView)findViewById(R.id.moviePoster);
         title =(CollapsingToolbarLayout)findViewById(R.id.title);
+
+
         moviePlot =(TextView)findViewById(R.id.movie_plot);
 
         non_actors =(LinearLayout)findViewById(R.id.brains);
@@ -93,33 +103,6 @@ public class MovieActivity extends AppCompatActivity{
 
 
          inflater = (LayoutInflater) MovieActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        /*LinearLayout parent = (LinearLayout)findViewById(R.id.rating_pane);
-        //parent.setGravity(Gravity.);
-        parent.setOrientation(LinearLayout.HORIZONTAL);
-        rating_tab = (LinearLayout)inflater.inflate(R.layout.rating_tab,null);
-
-         rating_tab.setGravity(Gravity.RIGHT);
-         ImageView rating_com_icon = (ImageView)rating_tab.findViewById(R.id.rating_com_icon);
-         TextView ratingScore = (TextView)rating_tab.findViewById(R.id.rating_score);
-         rating_com_icon.setImageResource(R.drawable.rottentomatoes);
-         ratingScore.setText("8.6");
-
-        LinearLayout rating_tab1 = (LinearLayout)inflater.inflate(R.layout.rating_tab,null);
-        rating_tab1.setGravity(Gravity.LEFT);
-
-
-        ImageView rating_com_icon1 = (ImageView)rating_tab1.findViewById(R.id.rating_com_icon);
-        TextView ratingScore1 = (TextView)rating_tab.findViewById(R.id.rating_score);
-        rating_com_icon.setImageResource(R.drawable.metacritic);
-        ratingScore.setText("74");
-
-
-        parent.addView(rating_tab,0);
-        parent.addView(rating_tab1,1);
-        //inflater.inflate(R.layout.rating_tab, parent);
-
-      */
-
 
 
         MovieResponse response = (MovieResponse)getIntent().getSerializableExtra(ResposeObserver.RESPONSE);
@@ -129,8 +112,15 @@ public class MovieActivity extends AppCompatActivity{
                 .into(moviePoster);
 
         String movieNDate = response.getTitle()+ (response.getYear()!=null ? "("+response.getYear()+")" : "");
+        title.setExpandedTitleTypeface(robotoregular);
         title.setTitle(movieNDate);
+
+
+
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/Roboto-Thin.ttf");
+        moviePlot.setTypeface(custom_font);
         moviePlot.setText(response.getFullPlot());
+
         director.setText("Director: "+ getAllInOne(response.getDirector()));
         writer.setText("Writers:"+ getAllInOne(response.getWriter()));
         production.setText(response.getProduction());
@@ -143,8 +133,6 @@ public class MovieActivity extends AppCompatActivity{
         boxOffice.setText(response.getBoxoffice());
         website.setText(response.getWebsite());
 
-        LinearLayout tab1 = getRatingTab(R.drawable.rottentomatoes,8.6+"");
-        LinearLayout tab2 = getRatingTab(R.drawable.imdb,74+"%");
 
         buildRatingPane(response.getRatings());
         buildActorSection(response.getActors());
@@ -185,6 +173,7 @@ public class MovieActivity extends AppCompatActivity{
     public LinearLayout getRatingTab(int drawable,String rating)
     {
         LinearLayout tab = (LinearLayout)inflater.inflate(R.layout.rating_tab,null);
+
         ImageView imageView = (ImageView)tab.findViewById(R.id.rating_com_icon);
         TextView textView = (TextView)tab.findViewById(R.id.rating_score);
         imageView.setImageResource(drawable);
@@ -200,6 +189,7 @@ public class MovieActivity extends AppCompatActivity{
          for(int i=0;i<actors.size();i++) {
 
              TextView textView = (TextView) inflater.inflate(R.layout.text, null);
+             textView.setTypeface(robotoregular);
              textView.setText(actors.get(i));
              movie_cast.addView(textView);
          }
