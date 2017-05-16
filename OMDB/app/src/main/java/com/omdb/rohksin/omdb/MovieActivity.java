@@ -63,6 +63,9 @@ public class MovieActivity extends AppCompatActivity{
     private Typeface robotoregular;
 
 
+    LinearLayout movietestLayout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -99,7 +102,9 @@ public class MovieActivity extends AppCompatActivity{
         rating_pane = (LinearLayout)findViewById(R.id.rating_pane);
 
         movie_cast = (LinearLayout)findViewById(R.id.movie_cast);
-        //rating_tab = (LinearLayout)findViewById(R.id.rating_tab);
+
+        //movietestLayout = (LinearLayout)findViewById(R.id.test);
+        rating_tab = (LinearLayout)findViewById(R.id.rating_tab);
 
 
          inflater = (LayoutInflater) MovieActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -151,33 +156,57 @@ public class MovieActivity extends AppCompatActivity{
             String name = iterator.next();
             String value = rating.get(name);
 
+            Log.d("Rating","Rating ==="+name+" "+value);
             int drawable = 0;
             if(name.equals("Internet Movie Database"))
             {
+                Log.d("Rohit","1");
                drawable = R.drawable.imdb;
+                //getRatingTab(drawable,value);
             }
             else if(name.equals("Rotten Tomatoes"))
             {
-               drawable = R.drawable.rottentomatoes;
+                Log.d("Rohit","2");
+                drawable = R.drawable.rottentomatoes;
+               // getRatingTab(drawable,value);
             }
             else{
-               drawable = R.drawable.metacritic;
+                Log.d("Rohit","3");
+                drawable = R.drawable.metacritic;
+                //getRatingTab(drawable,value);
             }
 
-            Log.d("Rohit",name+""+value);
+            Log.d("Rohit",name+""+value+" "+drawable);
 
-            rating_pane.addView(getRatingTab(drawable,value));
+            LinearLayout tab=getRatingTab(drawable,value);
+
+            rating_pane.addView(tab);
+
+
+
         }
     }
 
     public LinearLayout getRatingTab(int drawable,String rating)
     {
-        LinearLayout tab = (LinearLayout)inflater.inflate(R.layout.rating_tab,null);
+        Log.d("Rating","Inside");
+       LinearLayout tab = (LinearLayout)inflater.inflate(R.layout.rating_tab,rating_pane,false);
 
         ImageView imageView = (ImageView)tab.findViewById(R.id.rating_com_icon);
         TextView textView = (TextView)tab.findViewById(R.id.rating_score);
         imageView.setImageResource(drawable);
         textView.setText(rating);
+
+        //LinearLayout cardView = (LinearLayout)inflater.inflate(R.layout.test_image, movietestLayout,false);
+
+
+        /*LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        cardView.setLayoutParams(params);
+        */
+
+        //ImageView imageView = (ImageView)tab.findViewById(R.id.testImage);
+        //imageView.setImageResource(drawable);
+
         return tab;
     }
 

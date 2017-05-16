@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class Test extends AppCompatActivity {
 
     private  LayoutInflater inflater;
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceStste)
@@ -24,29 +25,27 @@ public class Test extends AppCompatActivity {
         super.onCreate(savedInstanceStste);
         setContentView(R.layout.test);
 
-        LinearLayout test = (LinearLayout)findViewById(R.id.rating_pane);
-
         inflater = (LayoutInflater) Test.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+         layout = (LinearLayout)findViewById(R.id.test);
 
+        LinearLayout tab = provideTab(R.drawable.rottentomatoes);
+        LinearLayout tab1 = provideTab(R.drawable.rottentomatoes);
+        LinearLayout tab2 = provideTab(R.drawable.imdb);
 
-        CardView tab1 = provideTab("8.4");
-        CardView tab2 = provideTab("9.4");
-
-
-        test.addView(tab1);
-        test.addView(tab2);
+        layout.addView(tab);
+        layout.addView(tab1);
+        layout.addView(tab2);
 
     }
 
-    public CardView provideTab(String rating)
+    public LinearLayout provideTab(int id)
     {
-        //LinearLayout tabs = (LinearLayout)inflater.inflate(R.layout.rating_tab,null);
-        CardView cardView = (CardView)inflater.inflate(R.layout.rating_tab,null);
-        LinearLayout linearLayout = (LinearLayout)cardView.findViewById(R.id.rating_tab);
-        ImageView imageView = (ImageView)linearLayout.findViewById(R.id.rating_com_icon);
-        TextView textView = (TextView)linearLayout.findViewById(R.id.rating_score);
-        imageView.setImageResource(R.drawable.imdb);
-        textView.setText(rating);
+
+        LinearLayout cardView = (LinearLayout)inflater.inflate(R.layout.test_image,layout,false);
+
+        ImageView imageView = (ImageView)cardView.findViewById(R.id.testImage);
+        imageView.setImageResource(id);
+
         return cardView;
     }
 }

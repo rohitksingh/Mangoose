@@ -27,8 +27,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Test">
 
+        <activity android:name=".Test">
 
         </activity>
     </application>
