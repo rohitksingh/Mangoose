@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:elevation="16dp"
-    android:layout_margin="6dp"
     android:clickable="true"
     android:focusable="true"
+    card_view:cardBackgroundColor="#D81B60"
     android:foreground="?android:attr/selectableItemBackground"
+    style="@style/DetailCards"
     >
     <LinearLayout
         android:id="@+id/brains"
@@ -14,6 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         >
         <TextView
             android:id="@+id/writer"
@@ -21,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="Christopher Nolan"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:layout_margin="4dp"
             />
         <TextView
@@ -30,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Director Christopher Nolan"
             android:textSize="20dp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:layout_margin="4dp"
             />
         <TextView

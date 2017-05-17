@@ -5,7 +5,7 @@
     android:id="@+id/actorname"
     android:text="Leonardo DiCaprio"
     android:textSize="20dp"
-    android:textColor="#000000"
+    android:textColor="#ffffff"
     android:layout_margin="4dp"
     >
 </TextView>

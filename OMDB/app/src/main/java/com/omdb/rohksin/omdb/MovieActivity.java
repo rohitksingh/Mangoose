@@ -107,7 +107,7 @@ public class MovieActivity extends AppCompatActivity{
         rating_tab = (LinearLayout)findViewById(R.id.rating_tab);
 
 
-         inflater = (LayoutInflater) MovieActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) MovieActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
         MovieResponse response = (MovieResponse)getIntent().getSerializableExtra(ResposeObserver.RESPONSE);
@@ -161,14 +161,14 @@ public class MovieActivity extends AppCompatActivity{
             if(name.equals("Internet Movie Database"))
             {
                 Log.d("Rohit","1");
-               drawable = R.drawable.imdb;
+                drawable = R.drawable.imdb;
                 //getRatingTab(drawable,value);
             }
             else if(name.equals("Rotten Tomatoes"))
             {
                 Log.d("Rohit","2");
                 drawable = R.drawable.rottentomatoes;
-               // getRatingTab(drawable,value);
+                // getRatingTab(drawable,value);
             }
             else{
                 Log.d("Rohit","3");
@@ -190,7 +190,7 @@ public class MovieActivity extends AppCompatActivity{
     public LinearLayout getRatingTab(int drawable,String rating)
     {
         Log.d("Rating","Inside");
-       LinearLayout tab = (LinearLayout)inflater.inflate(R.layout.rating_tab,rating_pane,false);
+        LinearLayout tab = (LinearLayout)inflater.inflate(R.layout.rating_tab,rating_pane,false);
 
         ImageView imageView = (ImageView)tab.findViewById(R.id.rating_com_icon);
         TextView textView = (TextView)tab.findViewById(R.id.rating_score);
@@ -215,13 +215,13 @@ public class MovieActivity extends AppCompatActivity{
 
         ArrayList<String> actors = getAll(actorsString);
 
-         for(int i=0;i<actors.size();i++) {
+        for(int i=0;i<actors.size();i++) {
 
-             TextView textView = (TextView) inflater.inflate(R.layout.text, null);
-             textView.setTypeface(robotoregular);
-             textView.setText(actors.get(i));
-             movie_cast.addView(textView);
-         }
+            TextView textView = (TextView) inflater.inflate(R.layout.text, null);
+            textView.setTypeface(robotoregular);
+            textView.setText(actors.get(i));
+            movie_cast.addView(textView);
+        }
 
 
     }
