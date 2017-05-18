@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.omdb.rohksin.omdb.ObjectMaps.MovieResponse;
@@ -149,12 +150,25 @@ public class MovieActivity extends AppCompatActivity{
         boxOffice.setText(response.getBoxoffice());
         website.setText(response.getWebsite());
 
-
         buildRatingPane(response.getRatings());
         buildActorSection(response.getActors());
 
+        buildTitleSection(R.id.rating_card, "Ratings", R.drawable.rating);
+        buildTitleSection(R.id.movie_cast_card,"Actors",R.drawable.actors);
+        buildTitleSection(R.id.non_actor_card,"Brain",R.drawable.non_actors);
+        buildTitleSection(R.id.record_Card,"Box Office",R.drawable.awards);
+
     }
 
+    public void buildTitleSection(int id,String sectionTitle,int imageId)
+    {
+        CardView cardView = (CardView)findViewById(id);
+        RelativeLayout section = (RelativeLayout)cardView.findViewById(R.id.titleAndImage);
+        ImageView sectionImage = (ImageView)section.findViewById(R.id.sectionImage);
+        TextView textView =(TextView)section.findViewById(R.id.sectionTitle);
+        sectionImage.setImageResource(imageId);
+        textView.setText(sectionTitle);
+    }
 
     public void buildRatingPane(Map<String,String> rating)
     {
@@ -244,7 +258,7 @@ public class MovieActivity extends AppCompatActivity{
 
         while (tokenizer.hasMoreTokens())
         {
-            buffer.append(tokenizer.nextToken()+"\n");
+            buffer.append(tokenizer.nextToken() + "\n");
         }
 
         Log.d("Rohit",new String(buffer));

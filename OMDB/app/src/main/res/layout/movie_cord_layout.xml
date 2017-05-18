@@ -75,7 +75,12 @@
             <include layout="@layout/records"
 
                 />
-
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#ffffff"
+                >
             <TextView
                 android:clickable="true"
                 android:focusable="true"
@@ -85,9 +90,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:lineSpacingExtra="8dp"
-                android:text="@string/loren"
                 android:padding="@dimen/activity_horizontal_margin"
                 />
+            </LinearLayout>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         public void formUrl()
         {
             String properSearchText = searchText.replace(" ","%20");
-            endPoint = "http://www.omdbapi.com/?t="+properSearchText+"&plot=full";
+            endPoint = "http://www.omdbapi.com/?t="+properSearchText;//+"&plot=full";
 
         }
 
