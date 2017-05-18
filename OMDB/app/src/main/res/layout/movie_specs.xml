@@ -6,7 +6,7 @@
     android:layout_marginBottom="10dp"
     android:clickable="true"
     android:focusable="true"
-    card_view:cardBackgroundColor="#D81B60"
+    card_view:cardBackgroundColor="#656D78"
     android:foreground="?android:attr/selectableItemBackground"
     >
     <LinearLayout
