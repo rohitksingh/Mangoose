@@ -4,8 +4,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/actorname"
     android:text="Leonardo DiCaprio"
-    android:textSize="20dp"
-    android:textColor="#ffffff"
-    android:layout_margin="4dp"
+    style="@style/TextContent"
     >
 </TextView>

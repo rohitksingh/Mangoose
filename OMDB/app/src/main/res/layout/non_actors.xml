@@ -14,42 +14,45 @@
         android:background="#967ADC"
         style="@style/OverlayStyle"
         />
-    <LinearLayout
-        android:id="@+id/brains"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        >
-        <TextView
-            android:id="@+id/writer"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Christopher Nolan"
-            android:textSize="20sp"
-            android:textColor="#ffffff"
-            android:layout_margin="4dp"
-            />
-        <TextView
-            android:id="@+id/director"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Director Christopher Nolan"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:layout_margin="4dp"
-            />
-        <TextView
-            android:id="@+id/production"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Warner Bros. Pictures"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:layout_margin="4dp"
-            />
-    </LinearLayout>
+            android:orientation="vertical"
+            >
+            <include layout="@layout/title"
+                android:id="@+id/titleAndImage"/>
+            <LinearLayout
+                android:id="@+id/brains"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                >
+                <TextView
+                    android:id="@+id/writer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Christopher Nolan"
+                    style="@style/TextContent"
+                    />
+                <TextView
+                    android:id="@+id/director"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Director Christopher Nolan"
+                    style="@style/TextContent"
+                    />
+                <TextView
+                    android:id="@+id/production"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Warner Bros. Pictures"
+                    style="@style/TextContent"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
     </FrameLayout>
 </android.support.v7.widget.CardView>
