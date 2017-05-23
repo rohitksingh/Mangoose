@@ -20,6 +20,7 @@ public class SimpleMovieQuery implements QueryBuilder {
     @Override
     public String formUrl() {
 
+        text = text.replace(" ","%20");
         String endpount = AppConstants.BASE_URL+"search/movie?api_key="+AppConstants.TMDB_KEY+"&query="+text;
         return endpount;
     }

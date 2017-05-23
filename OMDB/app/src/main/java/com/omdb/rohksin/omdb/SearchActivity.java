@@ -1,5 +1,6 @@
 package com.omdb.rohksin.omdb;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -98,6 +100,10 @@ public class SearchActivity extends AppCompatActivity{
                           Send a Volley Request
 
                      */
+
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(search.getWindowToken(),
+                            InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
                     QueryBuilder builder = new SimpleMovieQuery(search.getText()+"");
                     String endpoint = builder.formUrl();
