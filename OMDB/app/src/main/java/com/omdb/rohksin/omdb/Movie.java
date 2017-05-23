@@ -1,16 +1,17 @@
 package com.omdb.rohksin.omdb;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Created by Illuminati on 5/7/2017.
  */
-public class Movie {
+public class Movie implements Serializable{
 
     private String name;
     private String releaseYear;
     private String PosterThumbnail;
-    private Map<String,String> rating;
+
 
     public String getName() {
         return name;

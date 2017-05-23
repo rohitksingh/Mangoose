@@ -9,7 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main" tools:context=".MainActivity">
+    tools:showIn="@layout/activity_main" tools:context=".MainActivity"
+    android:background="@drawable/blurry"
+    >
     <EditText
         android:id="@+id/search"
         android:layout_width="match_parent"
@@ -19,6 +21,8 @@
         android:textStyle="bold"
         android:textSize="30dp"
         android:gravity="center"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         />
 
     <ImageView
