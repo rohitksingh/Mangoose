@@ -26,8 +26,6 @@ public class HalfHomeImage extends ImageView{
     {
         super.onMeasure(a,b);
         setMeasuredDimension(getMeasuredWidth() / 2, getMeasuredHeight() / 2);
-
-
     }
 
 

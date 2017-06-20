@@ -11,7 +11,15 @@ public class Movie implements Serializable{
     private String name;
     private String releaseYear;
     private String PosterThumbnail;
+    private String movieId;
 
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
 
     public String getName() {
         return name;

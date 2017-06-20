@@ -22,7 +22,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
-
         <activity android:name=".Test">
         </activity>
         <activity android:name=".SearchActivity"
@@ -34,6 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".BlankActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity android:name=".AllImageActivity"/>
     </application>
 
 </manifest>

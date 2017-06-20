@@ -74,7 +74,8 @@ public class MovieRequest {
                         Movie movie = new Movie();
                         movie.setName((String) movieObject.get("title"));
                         movie.setReleaseYear((String) movieObject.get("release_date"));
-                        movie.setPosterThumbnail( (movieObject.get("poster_path")).toString());
+                        movie.setPosterThumbnail((movieObject.get("poster_path")).toString());
+                        movie.setMovieId(((Integer)movieObject.get("id"))+"");
                         movies.add(movie);
 
                         //nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg
@@ -105,12 +106,8 @@ public class MovieRequest {
                     i.setAction(MainActivity.RESPONSE_RECEIVED);
                     //Log.d("Response", "mres is null? "+(movieResponse==null));
                     //i.putExtra("bak", movies);
-
                     i.putExtra("movieResponse",searchResponse);
-
-
                     context.sendBroadcast(i);
-
                 }
 
             }
