@@ -70,7 +70,7 @@ public class ImageLandingListAdapter extends RecyclerView.Adapter<ImageLandingLi
 
         public ImageHolder(View itemView) {
             super(itemView);
-            landingImage = (ImageView)itemView.findViewById(R.id.landingImage);
+            landingImage = (ImageView)itemView.findViewById(R.id.landing_image);
         }
     }
 }

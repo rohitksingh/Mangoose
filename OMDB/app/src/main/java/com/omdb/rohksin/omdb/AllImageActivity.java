@@ -2,11 +2,14 @@ package com.omdb.rohksin.omdb;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.omdb.rohksin.omdb.Adaters.ImageLandingListAdapter;
+import com.omdb.rohksin.omdb.Adaters.ListAdaper;
 import com.omdb.rohksin.omdb.Adaters.RvAdapter;
 
 import java.util.ArrayList;
@@ -21,16 +24,17 @@ public class AllImageActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstaceState)
     {
         super.onCreate(savedInstaceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.image_landing_layout);
 
         List<String> moviesList = getIntent().getStringArrayListExtra(BlankActivity.MOVIE_LIST);
-        /*RecyclerView recyclerImageView = (RecyclerView)findViewById(R.id.image_list_landing);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        ImageLandingListAdapter adapter = new ImageLandingListAdapter(moviesList,this);
+        RecyclerView recyclerImageView = (RecyclerView)findViewById(R.id.image_list_landing);
+        GridLayoutManager llm = new GridLayoutManager(this,2);
+        ListAdaper adapter = new ListAdaper(moviesList,this);
         recyclerImageView.setLayoutManager(llm);
         recyclerImageView.setAdapter(adapter);
-        */
-        Toast.makeText(this,"kjdksjd",Toast.LENGTH_LONG);
+
+        //Toast.makeText(this,"kjdksjd",Toast.LENGTH_LONG);
 
     }
 }

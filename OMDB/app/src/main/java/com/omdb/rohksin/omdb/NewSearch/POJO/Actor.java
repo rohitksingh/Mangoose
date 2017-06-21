@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Illuminati on 6/17/2017.
  */
-public class Actor implements Serializable{
+public class Actor extends Object implements Serializable{
 
     private String name;
     private String id;

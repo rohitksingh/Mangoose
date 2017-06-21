@@ -53,6 +53,7 @@
              android:layout_gravity="bottom|right"
              >
              <TextView
+                 android:id="@+id/viewMoreText"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="View More"

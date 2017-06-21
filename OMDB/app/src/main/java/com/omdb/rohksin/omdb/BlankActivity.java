@@ -33,6 +33,7 @@ import com.omdb.rohksin.omdb.NewSearch.Receiver.DetailMovieReceiver;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.omdb.QueryBuilder.SerializableObject;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -293,8 +294,21 @@ public class BlankActivity extends AppCompatActivity {
                     .load(MovieUtils.imageURL(actor3.getProfileImage()))
                     .into(actorImage3);
             Picasso.with(context);
-            actorName3.setText(actor3.getName()+"\nAs");
+            actorName3.setText(actor3.getName() + "\nAs");
             charaterName3.setText(actor3.getCharacterName());
+
+            TextView view = (TextView)layout.findViewById(R.id.viewMoreText);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(BlankActivity.this,AllActorsActivity.class);
+                    List<Actor> actors = movie.getActors();
+                    SerializableObject serializableObject = new SerializableObject(actors);
+                    i.putExtra(BlankActivity.MOVIE_LIST, serializableObject);
+                    startActivity(i);
+                }
+            });
+
 
 
         }

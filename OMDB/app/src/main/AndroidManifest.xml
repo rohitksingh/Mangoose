@@ -29,14 +29,16 @@
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".BlankActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name=".AllImageActivity"/>
+        <activity android:name=".AllImageActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity android:name=".AllActorsActivity"/>
     </application>
 
 </manifest>
