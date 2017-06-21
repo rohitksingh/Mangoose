@@ -17,6 +17,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Illuminati on 6/21/2017.
  */
@@ -64,14 +66,14 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
 
     public class CrewViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView crewImage;
+        private CircleImageView crewImage;
         private TextView crewName;
         private TextView roleName;
 
         public CrewViewHolder(View itemView) {
             super(itemView);
             //mediaImage = (ImageView)itemView.findViewById(R.id.MediaImage);
-            crewImage = (ImageView)itemView.findViewById(R.id.crewImage);
+            crewImage = (CircleImageView)itemView.findViewById(R.id.crewImage);
             crewName =(TextView)itemView.findViewById(R.id.crewName);
             roleName =(TextView)itemView.findViewById(R.id.crewRole);
 

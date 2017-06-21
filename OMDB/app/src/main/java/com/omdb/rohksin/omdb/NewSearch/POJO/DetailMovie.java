@@ -19,6 +19,7 @@ public class DetailMovie implements Serializable{
     private String runTime;
     private String overView;
     private String homePage;
+    private String voteAgerage;
     private ArrayList<String> images;
     private ArrayList<Video> videos;
     private ArrayList<Genre> genres;
@@ -160,6 +161,14 @@ public class DetailMovie implements Serializable{
 
     public void setRunTime(String runTime) {
         this.runTime = runTime;
+    }
+
+    public String getVoteAgerage() {
+        return voteAgerage;
+    }
+
+    public void setVoteAgerage(String voteAgerage) {
+        this.voteAgerage = voteAgerage;
     }
 
 }

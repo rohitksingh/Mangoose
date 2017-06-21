@@ -45,6 +45,7 @@ public class DetailMovieMapper implements ResponseMapper{
             movie.setPosterPath(movieResponse.get("poster_path").toString());
             movie.setBackDropImage(movieResponse.get("backdrop_path").toString());
             movie.setOverView((String)movieResponse.get("overview"));
+            movie.setVoteAgerage((movieResponse.getInt("vote_average")*10)+"% ");
 
             ArrayList<String> imageList = MovieUtils.getAllImages(movieResponse.get("images"));
             ArrayList<Video> videos = MovieUtils.getAllVideos(movieResponse.get("videos"));
@@ -53,11 +54,6 @@ public class DetailMovieMapper implements ResponseMapper{
 
             ArrayList<Actor> actors = MovieUtils.getAllActors(jsonObject.getJSONArray("cast"));
             ArrayList<Crew> crews = MovieUtils.getAllCrews(jsonObject.getJSONArray("crew"));
-
-
-
-
-
 
 
             movie.setImages(imageList);

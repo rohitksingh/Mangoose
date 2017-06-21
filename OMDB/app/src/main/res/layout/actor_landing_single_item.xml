@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="100dp">
-    <ImageView
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:layout_marginBottom="0.2dp"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/actorImage"
-        android:layout_width="60dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/actor3"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
         />
     <TextView
         android:id="@+id/actorName"
+        android:layout_toRightOf="@id/actorImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="HEROekjkjdkjkdj \nsdsdlljljljljljljljljljljljljljljljoooooooooooooooooooooooooo"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:gravity="center"
         />
     <TextView
         android:id="@+id/characterName"
+        android:layout_toRightOf="@id/actorImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="( HERO )"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:gravity="center"
         />
 
 </RelativeLayout>

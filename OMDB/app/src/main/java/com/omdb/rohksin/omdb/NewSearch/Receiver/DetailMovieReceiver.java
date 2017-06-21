@@ -7,6 +7,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.omdb.rohksin.omdb.BlankActivity;
 import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
@@ -14,6 +15,8 @@ import com.omdb.rohksin.omdb.NewSearch.POJO.Video;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.omdb.R;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Illuminati on 6/17/2017.
@@ -43,6 +46,10 @@ public class DetailMovieReceiver extends BroadcastReceiver {
 
 
             String imgSrc = MovieUtils.imageURL(movie.getBackDropImage());
+
+            TextView rating =(TextView)layout.findViewById(R.id.rating);
+            Log.d("hghgh",movie.getVoteAgerage());
+            rating.setText(movie.getVoteAgerage());
 
             Picasso.with(context)
                     .load(imgSrc)

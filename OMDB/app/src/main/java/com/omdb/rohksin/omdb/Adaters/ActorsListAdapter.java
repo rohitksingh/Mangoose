@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Illuminati on 6/21/2017.
  */
@@ -46,8 +48,8 @@ public void onBindViewHolder(ActorViewHolder holder, int position) {
 
         Log.d("ImagePICASSO", actor.toString());
 
-        holder.actorName.setText(actor.getName() + "\n As");
-        holder.characterName.setText(actor.getCharacterName());
+        holder.actorName.setText(actor.getName());
+        holder.characterName.setText("( "+actor.getCharacterName()+" )");
 
 
     Picasso.with(context)
@@ -64,14 +66,14 @@ public int getItemCount() {
 
 public class ActorViewHolder extends RecyclerView.ViewHolder{
 
-    private ImageView actorImage;
+    private CircleImageView actorImage;
     private TextView actorName;
     private TextView characterName;
 
     public ActorViewHolder(View itemView) {
         super(itemView);
         //mediaImage = (ImageView)itemView.findViewById(R.id.MediaImage);
-        actorImage = (ImageView)itemView.findViewById(R.id.actorImage);
+        actorImage = (CircleImageView)itemView.findViewById(R.id.actorImage);
         actorName =(TextView)itemView.findViewById(R.id.actorName);
         characterName =(TextView)itemView.findViewById(R.id.characterName);
 
