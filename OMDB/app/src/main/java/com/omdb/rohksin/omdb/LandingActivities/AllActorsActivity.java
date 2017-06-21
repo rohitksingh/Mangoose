@@ -1,4 +1,4 @@
-package com.omdb.rohksin.omdb;
+package com.omdb.rohksin.omdb.LandingActivities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.omdb.rohksin.omdb.Adaters.ActorsListAdapter;
+import com.omdb.rohksin.omdb.BlankActivity;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
-import com.omdb.rohksin.omdb.QueryBuilder.SerializableObject;
+import com.omdb.rohksin.omdb.SerializableCarriers.SerializableObject;
 import com.omdb.rohksin.omdb.R;
 
 import java.util.List;
@@ -23,7 +24,6 @@ public class AllActorsActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_landing_layout);
-
         SerializableObject object = (SerializableObject)getIntent().getSerializableExtra(BlankActivity.MOVIE_LIST);
         List<Actor> actorList = object.getObjectList();
 
@@ -33,8 +33,5 @@ public class AllActorsActivity extends AppCompatActivity {
         Log.d("LIST EMPTY",(actorList==null)+"");
         ActorsListAdapter adapter = new ActorsListAdapter(actorList,this);
         allActorRecyclerView.setAdapter(adapter);
-
-
-
     }
 }

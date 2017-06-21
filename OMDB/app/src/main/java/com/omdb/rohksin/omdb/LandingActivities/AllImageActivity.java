@@ -1,4 +1,4 @@
-package com.omdb.rohksin.omdb;
+package com.omdb.rohksin.omdb.LandingActivities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.omdb.rohksin.omdb.Adaters.ImageLandingListAdapter;
 import com.omdb.rohksin.omdb.Adaters.ListAdaper;
 import com.omdb.rohksin.omdb.Adaters.RvAdapter;
+import com.omdb.rohksin.omdb.BlankActivity;
+import com.omdb.rohksin.omdb.R;
 
 import java.util.ArrayList;
 import java.util.List;

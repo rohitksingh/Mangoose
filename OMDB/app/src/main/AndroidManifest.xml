@@ -35,10 +35,11 @@
         <activity android:name=".BlankActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name=".AllImageActivity"
+        <activity android:name=".LandingActivities.AllImageActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name=".AllActorsActivity"/>
+        <activity android:name=".LandingActivities.AllActorsActivity"/>
+        <activity android:name=".LandingActivities.AllCrewActivity"/>
     </application>
 
 </manifest>

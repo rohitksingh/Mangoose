@@ -1,6 +1,5 @@
 package com.omdb.rohksin.omdb;
 
-import android.app.admin.DeviceAdminReceiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,22 +23,23 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.omdb.rohksin.omdb.LandingActivities.AllActorsActivity;
+import com.omdb.rohksin.omdb.LandingActivities.AllCrewActivity;
+import com.omdb.rohksin.omdb.LandingActivities.AllImageActivity;
 import com.omdb.rohksin.omdb.NewSearch.EndPoint.EndPoint;
 import com.omdb.rohksin.omdb.NewSearch.EndPoint.Impl.MovieDetailURL;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Crew;
 import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
-import com.omdb.rohksin.omdb.NewSearch.Receiver.DetailMovieReceiver;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
-import com.omdb.rohksin.omdb.QueryBuilder.SerializableObject;
+import com.omdb.rohksin.omdb.SerializableCarriers.SerializableCrewList;
+import com.omdb.rohksin.omdb.SerializableCarriers.SerializableObject;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -357,6 +357,20 @@ public class BlankActivity extends AppCompatActivity {
 
             crewName3.setText(crew3.getName());
             crewRole3.setText(crew3.getJob());
+
+            TextView textView = (TextView)layout.findViewById(R.id.viewMoreText);
+            textView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    Intent i = new Intent(BlankActivity.this, AllCrewActivity.class);
+                    SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
+                    i.putExtra(BlankActivity.MOVIE_LIST,serializableCrewList);
+                    startActivity(i);
+
+                }
+            });
 
         }
 

@@ -1,4 +1,4 @@
-package com.omdb.rohksin.omdb.QueryBuilder;
+package com.omdb.rohksin.omdb.SerializableCarriers;
 
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 
