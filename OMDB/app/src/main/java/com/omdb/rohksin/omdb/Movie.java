@@ -12,6 +12,7 @@ public class Movie implements Serializable{
     private String releaseYear;
     private String PosterThumbnail;
     private String movieId;
+    private String overview;
 
     public String getMovieId() {
         return movieId;
@@ -45,7 +46,11 @@ public class Movie implements Serializable{
         PosterThumbnail = posterThumbnail;
     }
 
+    public String getOverview() {
+        return overview;
+    }
 
-
-
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
 }

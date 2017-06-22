@@ -50,6 +50,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
         final String movieId = list.get(position).getMovieId();
         holder.title.setText(list.get(position).getName());
         holder.releaseYear.setText(list.get(position).getReleaseYear());
+        holder.overView.setText(list.get(position).getOverview());
 
 
         String thumb = list.get(position).getPosterThumbnail();
@@ -82,12 +83,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
         ImageView posterThumbnail;
         TextView title;
         TextView releaseYear;
+        TextView overView;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
             posterThumbnail = (ImageView)itemView.findViewById(R.id.posterThumbnail);
             title = (TextView)itemView.findViewById(R.id.title);
             releaseYear = (TextView)itemView.findViewById(R.id.release_date);
+            overView = (TextView)itemView.findViewById(R.id.overview);
         }
     }
 }

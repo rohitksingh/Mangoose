@@ -75,8 +75,13 @@ public class MovieRequest {
                         movie.setName((String) movieObject.get("title"));
                         movie.setReleaseYear((String) movieObject.get("release_date"));
                         movie.setPosterThumbnail((movieObject.get("poster_path")).toString());
-                        movie.setMovieId(((Integer)movieObject.get("id"))+"");
+                        movie.setMovieId(((Integer) movieObject.get("id")) + "");
+                        String overView = movieObject.getString("overview");
+                        if(overView!=null)
+                        movie.setOverview(overView);
+
                         movies.add(movie);
+
 
                         //nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg
                     }
