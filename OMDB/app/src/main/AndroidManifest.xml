@@ -40,6 +40,8 @@
             />
         <activity android:name=".LandingActivities.AllActorsActivity"/>
         <activity android:name=".LandingActivities.AllCrewActivity"/>
+        <activity android:name=".PeopleDetailActivity"/>
+
     </application>
 
 </manifest>

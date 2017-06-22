@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.omdb.rohksin.omdb.Adaters.ActorsListAdapter;
 import com.omdb.rohksin.omdb.LandingActivities.AllActorsActivity;
 import com.omdb.rohksin.omdb.LandingActivities.AllCrewActivity;
 import com.omdb.rohksin.omdb.LandingActivities.AllImageActivity;
@@ -257,6 +258,8 @@ public class BlankActivity extends AppCompatActivity {
             CardView actorCard2 = (CardView)layout1.findViewById(R.id.actor2);
             CardView actorCard3 = (CardView)layout1.findViewById(R.id.actor3);
 
+
+
             LinearLayout actorHolder1 = (LinearLayout)actorCard1.findViewById(R.id.actorHolder);
             ImageView actorImage1 = (ImageView)actorHolder1.findViewById(R.id.actorImage);
             TextView actorName1 =(TextView)actorHolder1.findViewById(R.id.actorName);
@@ -273,7 +276,7 @@ public class BlankActivity extends AppCompatActivity {
             TextView charaterName3 =(TextView)actorHolder3.findViewById(R.id.characterName);
 
 
-            Actor actor1 = top3Actors.get(0);
+            final Actor actor1 = top3Actors.get(0);
             Picasso.with(context)
                     .load(MovieUtils.imageURL(actor1.getProfileImage()))
                     .into(actorImage1);
@@ -281,7 +284,7 @@ public class BlankActivity extends AppCompatActivity {
             actorName1.setText(actor1.getName()+"\nAs");
             charaterName1.setText(actor1.getCharacterName());
 
-            Actor actor2 = top3Actors.get(1);
+            final Actor actor2 = top3Actors.get(1);
             Picasso.with(context)
                     .load(MovieUtils.imageURL(actor2.getProfileImage()))
                     .into(actorImage2);
@@ -289,13 +292,42 @@ public class BlankActivity extends AppCompatActivity {
             actorName2.setText(actor2.getName()+"\nAs");
             charaterName2.setText(actor2.getCharacterName());
 
-            Actor actor3 = top3Actors.get(2);
+            final Actor actor3 = top3Actors.get(2);
             Picasso.with(context)
                     .load(MovieUtils.imageURL(actor3.getProfileImage()))
                     .into(actorImage3);
             Picasso.with(context);
             actorName3.setText(actor3.getName() + "\nAs");
             charaterName3.setText(actor3.getCharacterName());
+
+
+            actorCard1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(BlankActivity.this,PeopleDetailActivity.class);
+                    i.putExtra(ActorsListAdapter.ACTOR_ID,actor1.getId());
+                    startActivity(i);
+                }
+            });
+            actorCard2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(BlankActivity.this,PeopleDetailActivity.class);
+                    i.putExtra(ActorsListAdapter.ACTOR_ID,actor2.getId());
+                    startActivity(i);
+                }
+            });
+            actorCard3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(BlankActivity.this,PeopleDetailActivity.class);
+                    i.putExtra(ActorsListAdapter.ACTOR_ID,actor3.getId());
+                    startActivity(i);
+                }
+            });
+
+
+
 
             TextView view = (TextView)layout.findViewById(R.id.viewMoreText);
             view.setOnClickListener(new View.OnClickListener() {

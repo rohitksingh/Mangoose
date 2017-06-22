@@ -1,6 +1,7 @@
 package com.omdb.rohksin.omdb.Adaters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.omdb.PeopleDetailActivity;
 import com.omdb.rohksin.omdb.R;
 import com.squareup.picasso.Picasso;
 
@@ -24,8 +26,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ActorsListAdapter  extends RecyclerView.Adapter<ActorsListAdapter.ActorViewHolder> {
 
 
-        List<Actor> list;
-        Context context;
+        public static final String ACTOR_ID = "com.omdb.rohksin.omdb.Adaters.ActorsListAdapter.ACTOR_ID";
+        private List<Actor> list;
+        private Context context;
 
         public ActorsListAdapter(List<Actor> list, Context context) {
         this.list = list;
@@ -44,13 +47,21 @@ public ActorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 @Override
 public void onBindViewHolder(ActorViewHolder holder, int position) {
 
-        Actor actor = list.get(position);
+        final Actor actor = list.get(position);
 
         Log.d("ImagePICASSO", actor.toString());
 
         holder.actorName.setText(actor.getName());
         holder.characterName.setText("( "+actor.getCharacterName()+" )");
 
+        holder.actorName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, PeopleDetailActivity.class);
+                i.putExtra(ACTOR_ID,actor.getId());
+                context.startActivity(i);
+            }
+        });
 
     Picasso.with(context)
         .load(MovieUtils.imageURL(actor.getProfileImage()))
