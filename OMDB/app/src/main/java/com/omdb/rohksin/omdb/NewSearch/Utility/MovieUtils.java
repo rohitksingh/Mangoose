@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Crew;
+import com.omdb.rohksin.omdb.NewSearch.POJO.Genre;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Video;
 
 import org.json.JSONArray;
@@ -11,6 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by Illuminati on 6/17/2017.
