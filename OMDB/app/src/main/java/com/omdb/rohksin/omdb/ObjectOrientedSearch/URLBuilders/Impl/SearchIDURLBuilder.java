@@ -1,0 +1,30 @@
+package com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl;
+
+import android.os.Parcelable;
+
+import com.omdb.rohksin.omdb.Constants.Config;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
+
+/**
+ * Created by Illuminati on 6/24/2017.
+ */
+public  abstract class SearchIDURLBuilder implements URLBuilder {
+
+
+    @Override
+    public String bulidURL() {
+        return getBaseURL() + getSpecific() + getSeachTerm() +getAPIKEY() + getQueryParams();
+    }
+
+    @Override
+    public String getBaseURL() {
+        return Config.BASE_URL;
+    }
+
+    @Override
+    public String getAPIKEY() {
+        return "api_key="+ Config.MAIN_API_KEY;
+    }
+
+
+}

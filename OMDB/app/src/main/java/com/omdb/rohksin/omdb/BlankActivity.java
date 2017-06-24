@@ -35,6 +35,8 @@ import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.SeachMovieIDURLBuilder;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
 import com.omdb.rohksin.omdb.SerializableCarriers.SerializableCrewList;
 import com.omdb.rohksin.omdb.SerializableCarriers.SerializableObject;
 import com.squareup.picasso.Picasso;
@@ -70,8 +72,14 @@ public class BlankActivity extends AppCompatActivity {
 
         CoordinatorLayout parent = (CoordinatorLayout)findViewById(R.id.parent);
         layout = (CollapsingToolbarLayout)findViewById(R.id.title);
-        EndPoint endPoint = new MovieDetailURL();
-        String end = endPoint.buildEndPoint(movieId);
+        //EndPoint endPoint = new MovieDetailURL();
+        //String end = endPoint.buildEndPoint(movieId);
+
+        URLBuilder urlBuilder = new SeachMovieIDURLBuilder(movieId);
+        String end = urlBuilder.bulidURL();
+        Log.d("OBJECT ",end);
+
+
 
         BroadcastReceiver receiver = new DetailMovieReceiver();
         IntentFilter filter = new IntentFilter();

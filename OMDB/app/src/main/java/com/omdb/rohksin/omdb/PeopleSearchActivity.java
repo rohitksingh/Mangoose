@@ -1,52 +1,50 @@
 package com.omdb.rohksin.omdb;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.content.Intent;
+        import android.content.IntentFilter;
+        import android.os.Bundle;
+        import android.support.design.widget.FloatingActionButton;
+        import android.support.design.widget.Snackbar;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.LinearLayoutManager;
+        import android.support.v7.widget.RecyclerView;
+        import android.support.v7.widget.Toolbar;
+        import android.util.Log;
+        import android.view.KeyEvent;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.view.WindowManager;
+        import android.view.inputmethod.EditorInfo;
+        import android.view.inputmethod.InputMethodManager;
+        import android.widget.EditText;
+        import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.omdb.rohksin.omdb.Adaters.RvAdapter;
-import com.omdb.rohksin.omdb.NetworkRequests.MovieRequest;
-import com.omdb.rohksin.omdb.ObjectMaps.MovieResponse;
-import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.SearchMovieNameURLBuilder;
-import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
-import com.omdb.rohksin.omdb.QueryBuilder.Impl.SimpleMovieQuery;
-import com.omdb.rohksin.omdb.QueryBuilder.QueryBuilder;
+        import com.android.volley.Request;
+        import com.android.volley.RequestQueue;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.JsonObjectRequest;
+        import com.android.volley.toolbox.Volley;
+        import com.omdb.rohksin.omdb.Adaters.RvAdapter;
+        import com.omdb.rohksin.omdb.NetworkRequests.MovieRequest;
+        import com.omdb.rohksin.omdb.ObjectMaps.MovieResponse;
+        import com.omdb.rohksin.omdb.QueryBuilder.Impl.SimpleMovieQuery;
+        import com.omdb.rohksin.omdb.QueryBuilder.QueryBuilder;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
+        import org.w3c.dom.Text;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+        import java.util.LinkedHashMap;
+        import java.util.Map;
 
 /**
  * Created by Illuminati on 5/22/2017.
  */
-public class SearchActivity extends AppCompatActivity{
+public class PeopleSearchActivity extends AppCompatActivity {
 
 
     private EditText search;
@@ -92,9 +90,9 @@ public class SearchActivity extends AppCompatActivity{
                 if(actionId== EditorInfo.IME_ACTION_SEARCH)
                 {
                     Log.d("Response", "Search");
-                   // Search searchMovie =new Search(search.getText()+"");
-                   //// searchMovie.formUrl();
-                   // searchMovie.makeRequest();
+                    // Search searchMovie =new Search(search.getText()+"");
+                    //// searchMovie.formUrl();
+                    // searchMovie.makeRequest();
 
                     /*
                           Pass text
@@ -107,17 +105,14 @@ public class SearchActivity extends AppCompatActivity{
                     imm.hideSoftInputFromWindow(search.getWindowToken(),
                             InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-                    //QueryBuilder builder = new SimpleMovieQuery(search.getText()+"");
-                    //String endpoint = builder.formUrl();
-                    URLBuilder urlBuilder = new SearchMovieNameURLBuilder(search.getText()+"");
-                    String endpoint = urlBuilder.bulidURL();
-
+                    QueryBuilder builder = new SimpleMovieQuery(search.getText()+"");
+                    String endpoint = builder.formUrl();
                     Log.d("endpoint", endpoint);
-                    new MovieRequest(endpoint,SearchActivity.this).makeRequest();
+                    new MovieRequest(endpoint,PeopleSearchActivity.this).makeRequest();
 
                     Log.d("MovieRes","Should be at end");
-                   // RvAdapter adapter = new RvAdapter(data.getData());
-                   // moviesRecyclerView.setAdapter(adapter);
+                    // RvAdapter adapter = new RvAdapter(data.getData());
+                    // moviesRecyclerView.setAdapter(adapter);
 
 
 

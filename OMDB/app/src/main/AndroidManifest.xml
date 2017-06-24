@@ -40,7 +40,9 @@
             />
         <activity android:name=".LandingActivities.AllActorsActivity"/>
         <activity android:name=".LandingActivities.AllCrewActivity"/>
-        <activity android:name=".PeopleDetailActivity"/>
+        <activity android:name=".PeopleDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
     </application>
 
