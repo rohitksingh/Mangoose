@@ -1,7 +1,5 @@
 package com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl;
 
-import android.os.Parcelable;
-
 import com.omdb.rohksin.omdb.Constants.Config;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
 
@@ -25,6 +23,5 @@ public  abstract class SearchIDURLBuilder implements URLBuilder {
     public String getAPIKEY() {
         return "api_key="+ Config.MAIN_API_KEY;
     }
-
 
 }

@@ -4,11 +4,14 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:elevation="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     >
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/overview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#ffffff"
         android:orientation="vertical"
         >
@@ -16,29 +19,107 @@
             android:id="@+id/sectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ABOUT"
-            android:textSize="25dp"
+            android:text="Info"
+            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             />
-        <include layout="@layout/key_value_about"
-            android:id="@+id/release_date"
-            />
-        <include layout="@layout/key_value_about"
+           <TextView
+               android:id="@+id/release_date"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/sectionTitle"
+               android:text="26/11/2009"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="10dp"
+               android:textSize="15dp"
+               />
+        <TextView
             android:id="@+id/runtime"
-            />
-        <include layout="@layout/key_value_about"
-            android:id="@+id/original_language"
-            />
-        <include layout="@layout/key_value_about"
-            android:id="@+id/website"
-            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="141 mins"
+            android:layout_alignBaseline="@id/release_date"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/original_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi"
+            android:textAllCaps="true"
+            android:background="@android:color/holo_red_light"
+            android:textColor="#ffffff"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            />
+        <LinearLayout
+            android:id="@+id/genres"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/release_date"
+            >
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thriller"
+                android:textAllCaps="true"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_alignBaseline="@id/release_date"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/genreq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thriller"
+                android:textAllCaps="true"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_alignBaseline="@id/release_date"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/genressd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Horrer"
+                android:textAllCaps="true"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_alignBaseline="@id/release_date"
+                android:layout_centerVertical="true"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/genres"
+            android:text="www.something.com"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             />
 
-
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
 

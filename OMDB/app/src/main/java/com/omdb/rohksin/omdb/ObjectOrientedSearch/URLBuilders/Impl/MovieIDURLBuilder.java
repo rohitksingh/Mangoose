@@ -3,11 +3,11 @@ package com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl;
 /**
  * Created by Illuminati on 6/24/2017.
  */
-public class SeachMovieIDURLBuilder extends SearchIDURLBuilder{
+public class MovieIDURLBuilder extends SearchIDURLBuilder{
 
     private String seachTerm;
 
-    public SeachMovieIDURLBuilder(String searchTerm)
+    public MovieIDURLBuilder(String searchTerm)
     {
         this.seachTerm = searchTerm;
     }

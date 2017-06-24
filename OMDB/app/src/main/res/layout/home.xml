@@ -3,14 +3,8 @@
     android:id="@+id/homePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/half_page"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_alignParentTop="true"
-        />
-    <include layout="@layout/half_page"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_alignParentBottom="true"
-        />
+   <TextView
+       android:id="@+id/responseCheck"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
 </RelativeLayout>

@@ -13,86 +13,52 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.omdb.CustomViews.HalfHomeImage;
 import com.omdb.rohksin.omdb.CustomViews.HalfHomePage;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.PeopleNameURLBuilder;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
+import com.omdb.rohksin.omdb.QueryBuilder.QueryBuilder;
+
+import org.json.JSONObject;
 
 /**
  * Created by Illuminati on 5/14/2017.
  */
 public class Test extends AppCompatActivity {
 
-    private  LayoutInflater inflater;
-    LinearLayout layout;
-
+    private TextView responseText;
     @Override
-    protected void onCreate(Bundle savedInstanceStste)
-    {
+    protected void onCreate(Bundle savedInstanceStste) {
         super.onCreate(savedInstanceStste);
-
-       // inflater = (LayoutInflater) Test.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-       // createHome();
-
         setContentView(R.layout.home);
+        responseText = (TextView)findViewById(R.id.responseCheck);
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        URLBuilder builder = new PeopleNameURLBuilder("Sunny Leone");
+        String endPoint = builder.bulidURL();
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, endPoint, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                responseText.setText(response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        queue.add(request);
 
 
-
-        //Log.d("Dim", layout.getWidth() + " " + layout.getHeight());
-
-
-
-        //LinearLayout HomePage = (LinearLayout)findViewById(R.id.)
-
-
-
-        /*
-        inflater = (LayoutInflater) Test.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-         layout = (LinearLayout)findViewById(R.id.test);
-
-        LinearLayout tab = provideTab(R.drawable.rottentomatoes);
-        LinearLayout tab1 = provideTab(R.drawable.rottentomatoes);
-        LinearLayout tab2 = provideTab(R.drawable.imdb);
-
-        layout.addView(tab);
-        layout.addView(tab1);
-        layout.addView(tab2);
-*/
-    }
-
-    public ImageView getImage(ViewGroup parent)
-    {
-        HalfHomeImage image = (HalfHomeImage)inflater.inflate(R.layout.half_image,parent,false);
-        return  image;
-    }
-
-
-    public LinearLayout getHalfHomePage(ViewGroup parent)
-    {
-        HalfHomePage homePage = (HalfHomePage)inflater.inflate(R.layout.half_page,parent,false);
-        ImageView imageView1 = getImage(homePage);
-        ImageView imageView2 = getImage(homePage);
-        homePage.addView(imageView1);
-        homePage.addView(imageView2);
-        return null;
-    }
-
-    public void createHome()
-    {
-        LinearLayout home = (LinearLayout) findViewById(R.id.homePage);
-        LinearLayout first = getHalfHomePage(home);
-        LinearLayout second = getHalfHomePage(home);
-        home.addView(first);
-        home.addView(second);
-    }
-
-    public LinearLayout provideTab(int id)
-    {
-
-        LinearLayout cardView = (LinearLayout)inflater.inflate(R.layout.test_image,layout,false);
-
-        ImageView imageView = (ImageView)cardView.findViewById(R.id.testImage);
-        imageView.setImageResource(id);
-
-        return cardView;
     }
 }
+
+

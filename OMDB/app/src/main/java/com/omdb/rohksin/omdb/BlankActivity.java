@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.transition.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -35,7 +37,8 @@ import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
-import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.SeachMovieIDURLBuilder;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.MovieIDURLBuilder;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.MovieIDURLBuilder;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
 import com.omdb.rohksin.omdb.SerializableCarriers.SerializableCrewList;
 import com.omdb.rohksin.omdb.SerializableCarriers.SerializableObject;
@@ -57,7 +60,7 @@ public class BlankActivity extends AppCompatActivity {
     public static String MOVIE_LIST ="com.omdb.rohksin.omdb.BlankActivity.MovieList";
 
     private CollapsingToolbarLayout layout;
-    private LinearLayout top3Actors;
+    //private LinearLayout top3Actors;
 
     @Override
     protected void onCreate(Bundle saveBundleInstance)
@@ -75,7 +78,7 @@ public class BlankActivity extends AppCompatActivity {
         //EndPoint endPoint = new MovieDetailURL();
         //String end = endPoint.buildEndPoint(movieId);
 
-        URLBuilder urlBuilder = new SeachMovieIDURLBuilder(movieId);
+        URLBuilder urlBuilder = new MovieIDURLBuilder(movieId);
         String end = urlBuilder.bulidURL();
         Log.d("OBJECT ",end);
 
@@ -161,7 +164,7 @@ public class BlankActivity extends AppCompatActivity {
 
                 ImageView imageView = (ImageView)findViewById(R.id.moviePoster);
                 ImageView poster = (ImageView)layout.findViewById(R.id.moviePosterThumbnail);
-                top3Actors = (LinearLayout)findViewById(R.id.top3Actors);
+                //top3Actors = (LinearLayout)findViewById(R.id.top3Actors);
 
                 String imgSrc = MovieUtils.imageHighURL(movie.getBackDropImage());
                 String imgSrc1 = MovieUtils.imageURL(movie.getPosterPath());
@@ -199,7 +202,7 @@ public class BlankActivity extends AppCompatActivity {
                     if (scrollRange + verticalOffset == 0) {
                         layout.setTitle(title);
                         isShow = true;
-                    } else if(isShow) {
+                    } else if (isShow) {
                         layout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
                         isShow = false;
                     }
@@ -229,20 +232,24 @@ public class BlankActivity extends AppCompatActivity {
 
             ArrayList<String> images = movie.getImages();
 
-            String imgsrc1 = MovieUtils.imageHighURL(images.get(0));
-            String imgsrc2 = MovieUtils.imageHighURL(images.get(1));
-            String imgsrc3 = MovieUtils.imageHighURL(images.get(2));
+            if(images.size()>2) {
+                String imgsrc1 = MovieUtils.imageHighURL(images.get(0));
+                String imgsrc2 = MovieUtils.imageHighURL(images.get(1));
+                String imgsrc3 = MovieUtils.imageHighURL(images.get(2));
 
-            Picasso.with(context)
-                    .load(imgsrc1)
-                    .into(image1);
-            Picasso.with(context)
-                    .load(imgsrc2)
-                    .into(image2);
-            Picasso.with(context)
-                    .load(imgsrc3)
-                    .into(image3);
-
+                Picasso.with(context)
+                        .load(imgsrc1)
+                        .into(image1);
+                Picasso.with(context)
+                        .load(imgsrc2)
+                        .into(image2);
+                Picasso.with(context)
+                        .load(imgsrc3)
+                        .into(image3);
+            }
+            else {
+                top3Images.setVisibility(View.GONE);
+            }
             TextView viewMore = (TextView)top3Images.findViewById(R.id.viewMore);
             viewMore.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -257,99 +264,110 @@ public class BlankActivity extends AppCompatActivity {
 
         public void createActorsSection()
         {
-            ArrayList<Actor> top3Actors = movie.getActors();
+            final List<Actor> actors = movie.getActors();
 
-            LinearLayout layout = (LinearLayout)findViewById(R.id.top3Actors);
-            LinearLayout layout1 = (LinearLayout)layout.findViewById(R.id.movie_cast);
+            CardView layout = (CardView)findViewById(R.id.top3Actors);
 
-            CardView actorCard1 = (CardView)layout1.findViewById(R.id.actor1);
-            CardView actorCard2 = (CardView)layout1.findViewById(R.id.actor2);
-            CardView actorCard3 = (CardView)layout1.findViewById(R.id.actor3);
+            if(actors.size()>2) {
+                LinearLayout layout1 = (LinearLayout) layout.findViewById(R.id.movie_cast);
 
-
-
-            LinearLayout actorHolder1 = (LinearLayout)actorCard1.findViewById(R.id.actorHolder);
-            ImageView actorImage1 = (ImageView)actorHolder1.findViewById(R.id.actorImage);
-            TextView actorName1 =(TextView)actorHolder1.findViewById(R.id.actorName);
-            TextView charaterName1 =(TextView)actorHolder1.findViewById(R.id.characterName);
-
-            LinearLayout actorHolder2 = (LinearLayout)actorCard2.findViewById(R.id.actorHolder);
-            ImageView actorImage2 = (ImageView)actorHolder2.findViewById(R.id.actorImage);
-            TextView actorName2 =(TextView)actorHolder2.findViewById(R.id.actorName);
-            TextView charaterName2 =(TextView)actorHolder2.findViewById(R.id.characterName);
-
-            LinearLayout actorHolder3 = (LinearLayout)actorCard3.findViewById(R.id.actorHolder);
-            ImageView actorImage3 = (ImageView)actorHolder3.findViewById(R.id.actorImage);
-            TextView actorName3 =(TextView)actorHolder3.findViewById(R.id.actorName);
-            TextView charaterName3 =(TextView)actorHolder3.findViewById(R.id.characterName);
+                LinearLayout actorCard1 = (LinearLayout) layout1.findViewById(R.id.actor1);
+                LinearLayout actorCard2 = (LinearLayout) layout1.findViewById(R.id.actor2);
+                LinearLayout actorCard3 = (LinearLayout) layout1.findViewById(R.id.actor3);
 
 
-            final Actor actor1 = top3Actors.get(0);
-            Picasso.with(context)
-                    .load(MovieUtils.imageURL(actor1.getProfileImage()))
-                    .into(actorImage1);
-            Picasso.with(context);
-            actorName1.setText(actor1.getName()+"\nAs");
-            charaterName1.setText(actor1.getCharacterName());
+                //LinearLayout actorHolder1 = (LinearLayout)actorCard1.findViewById(R.id.actorHolder);
+                ImageView actorImage1 = (ImageView) actorCard1.findViewById(R.id.actorImage);
+                TextView actorName1 = (TextView) actorCard1.findViewById(R.id.actorName);
+                TextView charaterName1 = (TextView) actorCard1.findViewById(R.id.characterName);
 
-            final Actor actor2 = top3Actors.get(1);
-            Picasso.with(context)
-                    .load(MovieUtils.imageURL(actor2.getProfileImage()))
-                    .into(actorImage2);
-            Picasso.with(context);
-            actorName2.setText(actor2.getName()+"\nAs");
-            charaterName2.setText(actor2.getCharacterName());
+                //LinearLayout actorHolder2 = (LinearLayout)actorCard2.findViewById(R.id.actorHolder);
+                ImageView actorImage2 = (ImageView) actorCard2.findViewById(R.id.actorImage);
+                TextView actorName2 = (TextView) actorCard2.findViewById(R.id.actorName);
+                TextView charaterName2 = (TextView) actorCard2.findViewById(R.id.characterName);
 
-            final Actor actor3 = top3Actors.get(2);
-            Picasso.with(context)
-                    .load(MovieUtils.imageURL(actor3.getProfileImage()))
-                    .into(actorImage3);
-            Picasso.with(context);
-            actorName3.setText(actor3.getName() + "\nAs");
-            charaterName3.setText(actor3.getCharacterName());
+                // LinearLayout actorHolder3 = (LinearLayout)actorCard3.findViewById(R.id.actorHolder);
+                ImageView actorImage3 = (ImageView) actorCard3.findViewById(R.id.actorImage);
+                TextView actorName3 = (TextView) actorCard3.findViewById(R.id.actorName);
+                TextView charaterName3 = (TextView) actorCard3.findViewById(R.id.characterName);
 
 
-            actorCard1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(BlankActivity.this,PeopleDetailActivity.class);
-                    i.putExtra(ActorsListAdapter.ACTOR_ID,actor1.getId());
-                    startActivity(i);
+                final Actor actor1 = actors.get(0);
+                Picasso.with(context)
+                        .load(MovieUtils.imageURL(actor1.getProfileImage()))
+                        .into(actorImage1);
+                Picasso.with(context);
+                actorName1.setText(actor1.getName());
+                charaterName1.setText(actor1.getCharacterName());
+
+                final Actor actor2 = actors.get(1);
+                Picasso.with(context)
+                        .load(MovieUtils.imageURL(actor2.getProfileImage()))
+                        .into(actorImage2);
+                Picasso.with(context);
+                actorName2.setText(actor2.getName());
+                charaterName2.setText(actor2.getCharacterName());
+
+                final Actor actor3 = actors.get(2);
+                Picasso.with(context)
+                        .load(MovieUtils.imageURL(actor3.getProfileImage()))
+                        .into(actorImage3);
+                Picasso.with(context);
+                actorName3.setText(actor3.getName());
+                charaterName3.setText(actor3.getCharacterName());
+
+
+                actorCard1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(BlankActivity.this, PeopleDetailActivity.class);
+                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.getId());
+                        startActivity(i);
+                    }
+                });
+                actorCard2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(BlankActivity.this, PeopleDetailActivity.class);
+                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor2.getId());
+                        startActivity(i);
+                    }
+                });
+
+                actorCard3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(BlankActivity.this, PeopleDetailActivity.class);
+                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor3.getId());
+                        startActivity(i);
+                    }
+                });
+
+
+                TextView view = (TextView) layout.findViewById(R.id.viewMoreText);
+
+                if (actors.size() < 3) {
+                    view.setVisibility(View.GONE);
+                } else {
+
+                    view.setText("View " + (actors.size() - 3) + " +");
+
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(BlankActivity.this, AllActorsActivity.class);
+                            SerializableObject serializableObject = new SerializableObject(actors);
+                            i.putExtra(BlankActivity.MOVIE_LIST, serializableObject);
+                            startActivity(i);
+                        }
+                    });
+
                 }
-            });
-            actorCard2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(BlankActivity.this,PeopleDetailActivity.class);
-                    i.putExtra(ActorsListAdapter.ACTOR_ID,actor2.getId());
-                    startActivity(i);
-                }
-            });
-            actorCard3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(BlankActivity.this,PeopleDetailActivity.class);
-                    i.putExtra(ActorsListAdapter.ACTOR_ID,actor3.getId());
-                    startActivity(i);
-                }
-            });
 
-
-
-
-            TextView view = (TextView)layout.findViewById(R.id.viewMoreText);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(BlankActivity.this,AllActorsActivity.class);
-                    List<Actor> actors = movie.getActors();
-                    SerializableObject serializableObject = new SerializableObject(actors);
-                    i.putExtra(BlankActivity.MOVIE_LIST, serializableObject);
-                    startActivity(i);
-                }
-            });
-
-
+            }
+            else {
+                layout.setVisibility(View.GONE);
+            }
 
         }
 
@@ -359,58 +377,66 @@ public class BlankActivity extends AppCompatActivity {
             ArrayList<Crew> crews = movie.getCrews();
 
             LinearLayout layout = (LinearLayout)findViewById(R.id.top3crew);
-            CardView crewCard1 = (CardView)layout.findViewById(R.id.crewCard1);
-            ImageView crewImage1=(ImageView)crewCard1.findViewById(R.id.crewImage);
-            TextView crewName1 = (TextView)crewCard1.findViewById(R.id.crewName);
-            TextView crewRole1 = (TextView)crewCard1.findViewById(R.id.crewRole);
 
-            CardView crewCard2 = (CardView)layout.findViewById(R.id.crewCard2);
-            ImageView crewImage2=(ImageView)crewCard2.findViewById(R.id.crewImage);
-            TextView crewName2 = (TextView)crewCard2.findViewById(R.id.crewName);
-            TextView crewRole2 = (TextView)crewCard2.findViewById(R.id.crewRole);
+            if(crews.size()>2) {
+                CardView crewCard1 = (CardView) layout.findViewById(R.id.crewCard1);
+                ImageView crewImage1 = (ImageView) crewCard1.findViewById(R.id.crewImage);
+                TextView crewName1 = (TextView) crewCard1.findViewById(R.id.crewName);
+                TextView crewRole1 = (TextView) crewCard1.findViewById(R.id.crewRole);
 
-            CardView crewCard3 = (CardView)layout.findViewById(R.id.crewCard3);
-            ImageView crewImage3=(ImageView)crewCard3.findViewById(R.id.crewImage);
-            TextView crewName3 = (TextView)crewCard3.findViewById(R.id.crewName);
-            TextView crewRole3 = (TextView)crewCard3.findViewById(R.id.crewRole);
+                CardView crewCard2 = (CardView) layout.findViewById(R.id.crewCard2);
+                ImageView crewImage2 = (ImageView) crewCard2.findViewById(R.id.crewImage);
+                TextView crewName2 = (TextView) crewCard2.findViewById(R.id.crewName);
+                TextView crewRole2 = (TextView) crewCard2.findViewById(R.id.crewRole);
 
-            Crew crew1 = crews.get(0);
-            Picasso.with(context)
-                    .load(MovieUtils.imageURL(crew1.getProfileImage()))
-                    .into(crewImage1);
+                CardView crewCard3 = (CardView) layout.findViewById(R.id.crewCard3);
+                ImageView crewImage3 = (ImageView) crewCard3.findViewById(R.id.crewImage);
+                TextView crewName3 = (TextView) crewCard3.findViewById(R.id.crewName);
+                TextView crewRole3 = (TextView) crewCard3.findViewById(R.id.crewRole);
 
-            crewName1.setText(crew1.getName());
-            crewRole1.setText(crew1.getJob());
+                Crew crew1 = crews.get(0);
+                Picasso.with(context)
+                        .load(MovieUtils.imageURL(crew1.getProfileImage()))
+                        .into(crewImage1);
 
-            Crew crew2 = crews.get(1);
-            Picasso.with(context)
-                    .load(MovieUtils.imageURL(crew2.getProfileImage()))
-                    .into(crewImage2);
+                crewName1.setText(crew1.getName());
+                crewRole1.setText(crew1.getJob());
 
-            crewName2.setText(crew2.getName());
-            crewRole2.setText(crew2.getJob());
+                Crew crew2 = crews.get(1);
+                Picasso.with(context)
+                        .load(MovieUtils.imageURL(crew2.getProfileImage()))
+                        .into(crewImage2);
 
-            Crew crew3 = crews.get(2);
-            Picasso.with(context)
-                    .load(MovieUtils.imageURL(crew3.getProfileImage()))
-                    .into(crewImage3);
+                crewName2.setText(crew2.getName());
+                crewRole2.setText(crew2.getJob());
 
-            crewName3.setText(crew3.getName());
-            crewRole3.setText(crew3.getJob());
+                Crew crew3 = crews.get(2);
+                Picasso.with(context)
+                        .load(MovieUtils.imageURL(crew3.getProfileImage()))
+                        .into(crewImage3);
 
-            TextView textView = (TextView)layout.findViewById(R.id.viewMoreText);
-            textView.setOnClickListener(new View.OnClickListener() {
+                crewName3.setText(crew3.getName());
+                crewRole3.setText(crew3.getJob());
 
-                @Override
-                public void onClick(View v) {
+                TextView textView = (TextView) layout.findViewById(R.id.viewMoreText);
+                textView.setOnClickListener(new View.OnClickListener() {
 
-                    Intent i = new Intent(BlankActivity.this, AllCrewActivity.class);
-                    SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
-                    i.putExtra(BlankActivity.MOVIE_LIST,serializableCrewList);
-                    startActivity(i);
+                    @Override
+                    public void onClick(View v) {
 
-                }
-            });
+                        Intent i = new Intent(BlankActivity.this, AllCrewActivity.class);
+                        SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
+                        i.putExtra(BlankActivity.MOVIE_LIST, serializableCrewList);
+                        startActivity(i);
+
+                    }
+                });
+
+            }
+            else
+            {
+                layout.setVisibility(View.GONE);
+            }
 
         }
 
@@ -418,30 +444,17 @@ public class BlankActivity extends AppCompatActivity {
         {
             CardView aboutSectionCard = (CardView)findViewById(R.id.aboutSection);
 
-            LinearLayout releaseDate = (LinearLayout)aboutSectionCard.findViewById(R.id.release_date);
-            TextView key1 = (TextView)releaseDate.findViewById(R.id.key);
-            TextView value1 = (TextView)releaseDate.findViewById(R.id.value);
-            key1.setText("Release Date");
-            value1.setText(movie.getRelaseDate());
+            TextView releaseDate = (TextView)aboutSectionCard.findViewById(R.id.release_date);
+            releaseDate.setText(movie.getRelaseDate());
 
-            LinearLayout runtime = (LinearLayout)aboutSectionCard.findViewById(R.id.runtime);
-            TextView key2 = (TextView)runtime.findViewById(R.id.key);
-            TextView value2 = (TextView)runtime.findViewById(R.id.value);
-            key2.setText("Runtime");
-            value2.setText(movie.getRunTime()+" mins");
+            TextView runtime = (TextView)aboutSectionCard.findViewById(R.id.runtime);
+            runtime.setText(movie.getRunTime()+" mins");
 
-            LinearLayout language = (LinearLayout)aboutSectionCard.findViewById(R.id.original_language);
-            TextView key3 = (TextView)language.findViewById(R.id.key);
-            TextView value3 = (TextView)language.findViewById(R.id.value);
-            value3.setAllCaps(true);
-            key3.setText("Original Language");
-            value3.setText(movie.getOriginalLanguage());
+            TextView language = (TextView)aboutSectionCard.findViewById(R.id.original_language);
+            language.setText(movie.getOriginalLanguage());
 
-            LinearLayout website = (LinearLayout)aboutSectionCard.findViewById(R.id.website);
-            TextView key4 = (TextView)website.findViewById(R.id.key);
-            TextView value4 = (TextView)website.findViewById(R.id.value);
-            key4.setText("Website");
-            value4.setText(movie.getHomePage());
+            TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
+            website.setText(movie.getHomePage());
 
         }
 

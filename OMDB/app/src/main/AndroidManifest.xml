@@ -22,8 +22,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
-        <activity android:name=".Test">
-        </activity>
         <activity android:name=".SearchActivity"
             android:theme="@style/AppTheme.NoActionBar"
             >
@@ -32,6 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity android:name=".BlankActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
@@ -43,6 +43,10 @@
         <activity android:name=".PeopleDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
+
+        <activity android:name=".Test">
+
+            </activity>
 
     </application>
 

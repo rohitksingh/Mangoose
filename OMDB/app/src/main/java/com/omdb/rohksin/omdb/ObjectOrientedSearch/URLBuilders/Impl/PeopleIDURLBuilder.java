@@ -3,11 +3,11 @@ package com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl;
 /**
  * Created by Illuminati on 6/24/2017.
  */
-public class SearchPeopleIdURLBuilder extends SearchIDURLBuilder {
+public class PeopleIDURLBuilder extends SearchIDURLBuilder {
 
     private String people_id;
 
-    public SearchPeopleIdURLBuilder(String people_id)
+    public PeopleIDURLBuilder(String people_id)
     {
         this.people_id = people_id;
     }

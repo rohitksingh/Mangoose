@@ -1,6 +1,5 @@
 package com.omdb.rohksin.omdb;
 
-import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,15 +19,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.omdb.Adaters.ActorsListAdapter;
-import com.omdb.rohksin.omdb.NewSearch.EndPoint.EndPoint;
-import com.omdb.rohksin.omdb.NewSearch.EndPoint.Impl.ActorDetailURL;
 import com.omdb.rohksin.omdb.NewSearch.POJO.ActorDetail;
-import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.ActorDetailMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
-import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.SearchPeopleIdURLBuilder;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.PeopleIDURLBuilder;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
 import com.squareup.picasso.Picasso;
 
@@ -65,7 +61,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
         //EndPoint endPoint = new ActorDetailURL();
         //String endPointURL =  endPoint.buildEndPoint(people_id);
-        URLBuilder urlBuilder = new SearchPeopleIdURLBuilder(people_id);
+        URLBuilder urlBuilder = new PeopleIDURLBuilder(people_id);
         String endPointURL = urlBuilder.bulidURL();
         Log.d("PEOPLE_URL", endPointURL);
 

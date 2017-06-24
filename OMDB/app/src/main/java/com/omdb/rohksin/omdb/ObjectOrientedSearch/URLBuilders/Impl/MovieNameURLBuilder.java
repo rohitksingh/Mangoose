@@ -5,11 +5,11 @@ import com.omdb.rohksin.omdb.Search;
 /**
  * Created by Illuminati on 6/24/2017.
  */
-public class SearchMovieNameURLBuilder extends SearchNameURLBuilder {
+public class MovieNameURLBuilder extends SearchNameURLBuilder {
 
     private String searchTerm;
 
-    public SearchMovieNameURLBuilder(String searchTerm)
+    public MovieNameURLBuilder(String searchTerm)
     {
         this.searchTerm = searchTerm;
     }
