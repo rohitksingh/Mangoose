@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.omdb.rohksin.omdb.Movie;
+import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
 import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.PeopleListMap;
@@ -13,6 +15,9 @@ import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.PeopleNameURL
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
 
 import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Illuminati on 6/25/2017.
@@ -44,8 +49,10 @@ public class PeopleSearch extends Search {
 
         Log.d("RESPONSE","3"+(object==null));
         try {
+            Log.d("POINTER","1");
             responseMapper.mapResponse(object);
-            Log.d("AAMIR",responseMapper.objectMapped()+"");
+            Log.d("POINTER", "2");
+            Log.d("POINTER",responseMapper.objectMapped()+"");
             return responseMapper.objectMapped();
         }
         catch (JSONException e)
@@ -60,8 +67,9 @@ public class PeopleSearch extends Search {
         Intent i = new Intent();
         i.setAction(Search.SEARCH_FINISHED);
         i.putExtra("PEOPLE SEARCH", "PEOPLE");
-        PeopleDetail map = (PeopleDetail)o;
-        i.putExtra(Search.RESULT,map);
+        ArrayList<PeopleDetail> peopleDetails = (ArrayList<PeopleDetail>)o;
+       // PeopleDetail map = (PeopleDetail)o;
+        i.putExtra(Search.RESULT, peopleDetails);
         Log.d("ORIENTED", "BROADCAST SENT");
         context.sendBroadcast(i);
 

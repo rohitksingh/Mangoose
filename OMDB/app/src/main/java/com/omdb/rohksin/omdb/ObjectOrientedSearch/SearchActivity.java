@@ -7,15 +7,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.Receivers.PeopleListReceiver;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
@@ -31,6 +34,9 @@ public class SearchActivity extends AppCompatActivity {
     private EditText seachEditText;
     private TextView responseObjserver;
     private int SearchType =3;
+    //public View parent;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,10 +52,9 @@ public class SearchActivity extends AppCompatActivity {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Search.SEARCH_FINISHED);
-
-        BroadcastReceiver receiver = new OrientedReceiver();
+        View parent = (View)findViewById(R.id.seachLayout);
+        BroadcastReceiver receiver =  new PeopleListReceiver(parent);  //new OrientedReceiver();
         registerReceiver(receiver,filter);
-
 
         seachEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -72,7 +77,6 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
 
 
