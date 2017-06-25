@@ -75,23 +75,12 @@ public class SearchActivity extends AppCompatActivity{
                 if(actionId== EditorInfo.IME_ACTION_SEARCH)
                 {
                     Log.d("Response", "Search");
-                   // Search searchMovie =new Search(search.getText()+"");
-                   //// searchMovie.formUrl();
-                   // searchMovie.makeRequest();
-
-                    /*
-                          Pass text
-                          Make Endpoint
-                          Send a Volley Request
-
-                     */
 
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(search.getWindowToken(),
                             InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-                    //QueryBuilder builder = new SimpleMovieQuery(search.getText()+"");
-                    //String endpoint = builder.formUrl();
+
                     URLBuilder urlBuilder = new MovieNameURLBuilder(search.getText()+"");
                     String endpoint = urlBuilder.bulidURL();
 
@@ -99,11 +88,6 @@ public class SearchActivity extends AppCompatActivity{
                     new MovieRequest(endpoint,SearchActivity.this).makeRequest();
 
                     Log.d("MovieRes","Should be at end");
-                   // RvAdapter adapter = new RvAdapter(data.getData());
-                   // moviesRecyclerView.setAdapter(adapter);
-
-
-
 
                     return true;
                 }

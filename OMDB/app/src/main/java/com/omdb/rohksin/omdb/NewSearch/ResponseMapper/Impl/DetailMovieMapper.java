@@ -60,7 +60,7 @@ public class DetailMovieMapper implements ResponseMapper{
             movie.setVideos(videos);
             movie.setActors(actors);
             movie.setCrews(crews);
-
+            movie.setGenres(MovieUtils.getAllGenres(movieResponse.getJSONArray("genres")));
             Log.d("ACTORS", actors.size() + "ACTOR");
             Log.d("ACTORS", crews.size() + "CREW");
 

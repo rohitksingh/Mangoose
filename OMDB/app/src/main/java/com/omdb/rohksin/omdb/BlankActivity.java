@@ -34,6 +34,7 @@ import com.omdb.rohksin.omdb.NewSearch.EndPoint.Impl.MovieDetailURL;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Crew;
 import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
+import com.omdb.rohksin.omdb.NewSearch.POJO.Genre;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
@@ -136,7 +137,8 @@ public class BlankActivity extends AppCompatActivity {
     public void sendBroadcast(){
         Intent i = new Intent();
         i.setAction(OBJECTMAPPED);
-        i.putExtra("BlankActivityMovie",movie);
+        i.putExtra("BlankActiv" +
+                "ityMovie",movie);
         sendBroadcast(i);
     }
 
@@ -454,7 +456,22 @@ public class BlankActivity extends AppCompatActivity {
             language.setText(movie.getOriginalLanguage());
 
             TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
+
+            /*
+             TODO Genres Integration IN TableLayout
+
+            List<Genre> genres = movie.getGenres();
+            String genall ="";
+            for(int i=0;i<genres.size();i++)
+            {
+                genall = genall+ genres.get(i).getName()+",";
+            }
+            //website.setText(movie.getHomePage());
+            website.setText(genall);
+            */
+
             website.setText(movie.getHomePage());
+
 
         }
 

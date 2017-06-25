@@ -2,6 +2,7 @@ package com.omdb.rohksin.omdb.NewSearch.POJO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Illuminati on 6/17/2017.
@@ -22,7 +23,7 @@ public class DetailMovie implements Serializable{
     private String voteAgerage;
     private ArrayList<String> images;
     private ArrayList<Video> videos;
-    private ArrayList<Genre> genres;
+    private List<Genre> genres;
     private ArrayList<Actor> actors;
     private ArrayList<Crew> crews;
     private ArrayList<Production> productions;
@@ -43,11 +44,11 @@ public class DetailMovie implements Serializable{
         this.videos = videos;
     }
 
-    public ArrayList<Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(ArrayList<Genre> genres) {
+    public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 

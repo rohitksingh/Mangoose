@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -106,9 +107,9 @@ public class MovieUtils {
                 Actor actor = new Actor();
                 JSONObject actorObject = (JSONObject)array.get(i);
 
-                actor.setName((String)actorObject.get("name"));
-                actor.setCharacterName((String)actorObject.get("character"));
-                actor.setProfileImage(actorObject.get("profile_path")+"");
+                actor.setName((String) actorObject.get("name"));
+                actor.setCharacterName((String) actorObject.get("character"));
+                actor.setProfileImage(actorObject.get("profile_path") + "");
                 actor.setId(actorObject.get("id").toString());
 
                 actors.add(actor);
@@ -135,7 +136,7 @@ public class MovieUtils {
                 crew.setName((String)crewObject.get("name"));
                 crew.setId(crewObject.get("id").toString());
                 crew.setJob((String) crewObject.get("job"));
-                crew.setProfileImage(crewObject.get("profile_path")+"");
+                crew.setProfileImage(crewObject.get("profile_path") + "");
 
                 crews.add(crew);
             }
@@ -146,5 +147,28 @@ public class MovieUtils {
         }
 
         return crews;
+    }
+
+    public static List<Genre> getAllGenres(JSONArray jsonArray)
+    {
+        Log.d("ARRAYJSON",(jsonArray==null)+" "+jsonArray.length());
+        List<Genre> genres = new ArrayList<Genre>();
+
+        try{
+            for(int i=0;i<jsonArray.length();i++)
+            {
+                Genre genre = new Genre();
+                JSONObject object = (JSONObject)jsonArray.get(i);
+                genre.setId(object.getInt("id")+"");
+                genre.setName(object.getString("name"));
+                genres.add(genre);
+            }
+        }
+        catch (JSONException e)
+        {
+
+        }
+
+        return genres;
     }
 }

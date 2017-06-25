@@ -10,6 +10,11 @@ public class Genre implements Serializable{
     private String id;
     private String name;
 
+    public Genre()
+    {
+
+    }
+
     public Genre(String name,String id)
     {
         this.name = name;
