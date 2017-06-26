@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.omdb.Adaters.ActorsListAdapter;
 import com.omdb.rohksin.omdb.NewSearch.POJO.ActorDetail;
+import com.omdb.rohksin.omdb.NewSearch.POJO.MovieRole;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.ActorDetailMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
@@ -30,6 +32,8 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -124,6 +128,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 createBioGraphy();
                 createAboutSetion();
                 createMainContent();
+                createAllMovies();
 
             }
         }
@@ -160,6 +165,46 @@ public class PeopleDetailActivity extends AppCompatActivity {
             website.setText(actorDetail.getWebSite());
 
         }
+
+
+        public void createAllMovies()
+        {
+            LinearLayout layout = (LinearLayout)findViewById(R.id.all_movies);
+            ImageView movie1 = (ImageView)layout.findViewById(R.id.image1);
+            ImageView movie2 = (ImageView)layout.findViewById(R.id.image2);
+            ImageView movie3 = (ImageView)layout.findViewById(R.id.image3);
+
+            List<MovieRole> roles = actorDetail.getMovieRoles();
+
+            int upperLimit = 3;
+            if(roles.size()<3)
+                upperLimit = roles.size();
+
+
+            Log.d("SIZE",roles.size()+"");
+            for(int i=0;i<3;i++)
+            {
+                Log.d("POSTERPATHS",roles.get(i).getMovieName()+"");
+                Log.d("POSTERPATHS",roles.get(i).getMoviePosterPath()+"");
+            }
+
+            Picasso.with(context)
+                    .load(MovieUtils.imageURL(roles.get(0).getMoviePosterPath()))
+                    .into(movie1);
+
+            Picasso.with(context)
+                    .load(MovieUtils.imageURL(roles.get(1).getMoviePosterPath()))
+                    .into(movie2);
+
+            Picasso.with(context)
+                    .load(MovieUtils.imageURL(roles.get(2).getMoviePosterPath()))
+                    .into(movie3);
+
+        }
+
+
+
+
 
 
     }

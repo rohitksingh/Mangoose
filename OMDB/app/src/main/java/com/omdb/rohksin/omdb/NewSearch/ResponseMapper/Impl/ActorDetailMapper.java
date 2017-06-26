@@ -1,11 +1,20 @@
 package com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl;
 
+import android.util.Log;
+
+import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.ActorDetail;
+import com.omdb.rohksin.omdb.NewSearch.POJO.Cast;
 import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
+import com.omdb.rohksin.omdb.NewSearch.POJO.MovieRole;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Illuminati on 6/22/2017.
@@ -31,6 +40,27 @@ public class ActorDetailMapper implements ResponseMapper {
         actorDetail.setBiography(jsonObject.getString("biography"));
         actorDetail.setProfileImage(jsonObject.getString("profile_path"));
         actorDetail.setWebSite(jsonObject.getString("homepage"));
+
+        JSONObject movieCredits = jsonObject.getJSONObject("movie_credits");
+        JSONArray movieRoles = movieCredits.getJSONArray("cast");
+
+        List<MovieRole> roles = new ArrayList<MovieRole>();
+        for(int i=0;i<movieRoles.length();i++)
+        {
+            JSONObject movie = movieRoles.getJSONObject(i);
+            MovieRole role = new MovieRole();
+            role.setCharacterName(movie.getString("character"));
+            role.setMovieId(movie.getInt("id") + "");
+            role.setMovieName(movie.getString("title"));
+            role.setReleaseDate(movie.getString("release_date"));
+            role.setMoviePosterPath(movie.getString("poster_path"));
+            roles.add(role);
+
+        }
+        Log.d("TOTALS",roles.size()+"");
+
+        actorDetail.setMovieRoles(roles);
+
 
         //actorDetail.setImages();
         //actorDetail.setMovieRoles();

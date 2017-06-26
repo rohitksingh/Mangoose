@@ -1,6 +1,7 @@
 package com.omdb.rohksin.omdb.NewSearch.POJO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Illuminati on 6/22/2017.
@@ -16,7 +17,7 @@ public class ActorDetail {
     private String profileImage;
     private String gender;
     private String webSite;
-    private ArrayList<MovieRole> movieRoles;
+    private List<MovieRole> movieRoles;
     private ArrayList<String> images;
     private ArrayList<String> taggedImages;
 
@@ -84,11 +85,11 @@ public class ActorDetail {
         this.webSite = webSite;
     }
 
-    public ArrayList<MovieRole> getMovieRoles() {
+    public List<MovieRole> getMovieRoles() {
         return movieRoles;
     }
 
-    public void setMovieRoles(ArrayList<MovieRole> movieRoles) {
+    public void setMovieRoles(List<MovieRole> movieRoles) {
         this.movieRoles = movieRoles;
     }
 
@@ -100,7 +101,7 @@ public class ActorDetail {
         this.images = images;
     }
 
-    public ArrayList<String> getTaggedImages() {
+    public List<String> getTaggedImages() {
         return taggedImages;
     }
 

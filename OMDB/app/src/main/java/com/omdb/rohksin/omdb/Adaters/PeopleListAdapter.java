@@ -37,7 +37,8 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
     @Override
     public PeopleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.people_list_item, parent, false);
+
         PeopleViewHolder pvh = new PeopleViewHolder(view);
         return pvh;
     }

@@ -86,6 +86,9 @@
             <include layout="@layout/overview"
                 android:id="@+id/biography"
                 />
+            <include layout="@layout/all_movies"
+                android:id="@+id/all_movies"
+                />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
