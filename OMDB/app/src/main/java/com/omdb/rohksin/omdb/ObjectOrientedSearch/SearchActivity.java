@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class SearchActivity extends AppCompatActivity {
     private int SearchType =3;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -45,6 +47,15 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.main_search_page);
 
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.searchBox);
+        LinearLayout container =(LinearLayout)layout.findViewById(R.id.edittextContainer);
+
+        container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+            }
+        });
 
 
         seachEditText = (EditText)layout.findViewById(R.id.search_movies);
@@ -56,7 +67,8 @@ public class SearchActivity extends AppCompatActivity {
         filter.addAction(Search.SEARCH_FINISHED);
         View parent = (View)findViewById(R.id.parent);
         BroadcastReceiver receiver =  new SearchListReceiver(parent);
-        registerReceiver(receiver,filter);
+        registerReceiver(receiver, filter);
+
 
         seachEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

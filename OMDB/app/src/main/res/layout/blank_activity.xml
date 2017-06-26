@@ -97,7 +97,9 @@
             <include layout="@layout/top_3_actors"
                 android:id="@+id/top3Actors"
                 />
-            <include layout="@layout/top3crew"/>
+            <include layout="@layout/top3crew"
+                android:id="@+id/top3crew"
+                />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

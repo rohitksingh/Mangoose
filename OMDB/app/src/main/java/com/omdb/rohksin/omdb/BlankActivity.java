@@ -378,20 +378,21 @@ public class BlankActivity extends AppCompatActivity {
 
             ArrayList<Crew> crews = movie.getCrews();
 
-            LinearLayout layout = (LinearLayout)findViewById(R.id.top3crew);
+            CardView layout = (CardView)findViewById(R.id.top3crew);
+
 
             if(crews.size()>2) {
-                CardView crewCard1 = (CardView) layout.findViewById(R.id.crewCard1);
+                LinearLayout crewCard1 = (LinearLayout) layout.findViewById(R.id.crew1);
                 ImageView crewImage1 = (ImageView) crewCard1.findViewById(R.id.crewImage);
                 TextView crewName1 = (TextView) crewCard1.findViewById(R.id.crewName);
                 TextView crewRole1 = (TextView) crewCard1.findViewById(R.id.crewRole);
 
-                CardView crewCard2 = (CardView) layout.findViewById(R.id.crewCard2);
+                LinearLayout crewCard2 = (LinearLayout) layout.findViewById(R.id.crew2);
                 ImageView crewImage2 = (ImageView) crewCard2.findViewById(R.id.crewImage);
                 TextView crewName2 = (TextView) crewCard2.findViewById(R.id.crewName);
                 TextView crewRole2 = (TextView) crewCard2.findViewById(R.id.crewRole);
 
-                CardView crewCard3 = (CardView) layout.findViewById(R.id.crewCard3);
+                LinearLayout crewCard3 = (LinearLayout) layout.findViewById(R.id.crew3);
                 ImageView crewImage3 = (ImageView) crewCard3.findViewById(R.id.crewImage);
                 TextView crewName3 = (TextView) crewCard3.findViewById(R.id.crewName);
                 TextView crewRole3 = (TextView) crewCard3.findViewById(R.id.crewRole);
@@ -421,18 +422,28 @@ public class BlankActivity extends AppCompatActivity {
                 crewRole3.setText(crew3.getJob());
 
                 TextView textView = (TextView) layout.findViewById(R.id.viewMoreText);
-                textView.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
+                if(crews.size()<4)
+                {
+                    textView.setVisibility(View.GONE);
+                }
+                else {
+                    textView.setText("View " + (crews.size() - 3) + " +");
 
-                        Intent i = new Intent(BlankActivity.this, AllCrewActivity.class);
-                        SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
-                        i.putExtra(BlankActivity.MOVIE_LIST, serializableCrewList);
-                        startActivity(i);
 
-                    }
-                });
+                    textView.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent i = new Intent(BlankActivity.this, AllCrewActivity.class);
+                            SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
+                            i.putExtra(BlankActivity.MOVIE_LIST, serializableCrewList);
+                            startActivity(i);
+
+                        }
+                    });
+                }
 
             }
             else
