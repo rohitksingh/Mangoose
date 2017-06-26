@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.Receivers.PeopleListReceiver;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.MovieSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
@@ -35,7 +36,6 @@ public class SearchActivity extends AppCompatActivity {
     private TextView responseObjserver;
     private int SearchType =3;
     //public View parent;
-
 
 
     @Override
@@ -71,6 +71,15 @@ public class SearchActivity extends AppCompatActivity {
                         search = new PeopleSearch(seachEditText.getText() + "");
                         search.search(SearchActivity.this);
                     }
+                    else if(SearchType==3)
+                    {
+                        search = new MovieSearch(seachEditText.getText() +"");
+                        search.search(SearchActivity.this);
+                    }
+                    else
+                    {
+                          /// TODO TV SEARCH
+                    }
 
                     return true;
                 }
@@ -102,23 +111,6 @@ public class SearchActivity extends AppCompatActivity {
                 SearchType = 2;
             }
         });
-    }
-
-
-    private class OrientedReceiver extends BroadcastReceiver{
-
-        @Override
-        public void onReceive(Context context,Intent i)
-        {
-            if(i.getAction().equalsIgnoreCase(Search.SEARCH_FINISHED))
-            {
-
-                PeopleDetail peopleDetail = (PeopleDetail)i.getSerializableExtra(Search.RESULT);
-                Toast.makeText(context,"Success"+peopleDetail.getName(),Toast.LENGTH_LONG).show();
-                responseObjserver.setText(peopleDetail.getName());
-
-            }
-        }
     }
 
 }
