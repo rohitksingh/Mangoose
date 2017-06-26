@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.Receivers.SearchListReceiver;
@@ -18,6 +21,8 @@ import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.TVShowSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
+
+import java.util.LinkedHashMap;
 
 /**
  * Created by Illuminati on 6/25/2017.
@@ -35,16 +40,21 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seach_page_layout);
+        //setContentView(R.layout.seach_page_layout);
 
-        seachEditText = (EditText)findViewById(R.id.search_movies);
-        peopleButton = (TextView)findViewById(R.id.personSearch);
-        moviesButton = (TextView)findViewById(R.id.movieSearch);
+        setContentView(R.layout.main_search_page);
+
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.searchBox);
+
+
+        seachEditText = (EditText)layout.findViewById(R.id.search_movies);
+        peopleButton = (TextView)layout.findViewById(R.id.personSearch);
+        moviesButton = (TextView)layout.findViewById(R.id.movieSearch);
         TvShow = (TextView)findViewById(R.id.TVShowSearch);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Search.SEARCH_FINISHED);
-        View parent = (View)findViewById(R.id.seachLayout);
+        View parent = (View)findViewById(R.id.parent);
         BroadcastReceiver receiver =  new SearchListReceiver(parent);
         registerReceiver(receiver,filter);
 
