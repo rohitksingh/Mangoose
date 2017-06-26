@@ -21,6 +21,7 @@ import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.Receivers.PeopleListReceiver;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.MovieSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.TVShowSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
 
@@ -78,7 +79,8 @@ public class SearchActivity extends AppCompatActivity {
                     }
                     else
                     {
-                          /// TODO TV SEARCH
+                        search = new TVShowSearch(seachEditText.getText() +"");
+                        search.search(SearchActivity.this);
                     }
 
                     return true;

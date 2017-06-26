@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.omdb.rohksin.omdb.Adaters.PeopleListAdapter;
 import com.omdb.rohksin.omdb.Adaters.RvAdapter;
+import com.omdb.rohksin.omdb.Adaters.TVShowListAdapter;
 import com.omdb.rohksin.omdb.Movie;
 import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
+import com.omdb.rohksin.omdb.NewSearch.POJO.TvShow;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
 
@@ -55,7 +57,7 @@ public class PeopleListReceiver extends BroadcastReceiver {
                 PeopleListAdapter adapter = new PeopleListAdapter(peopleDetails, context);
                 recyclerView.setAdapter(adapter);
             }
-            else
+            else if(intent.getStringExtra("PEOPLE SEARCH").equalsIgnoreCase("MOVIE"))
             {
                 Toast.makeText(context,"MOVIE Search",Toast.LENGTH_LONG).show();
 
@@ -71,6 +73,20 @@ public class PeopleListReceiver extends BroadcastReceiver {
                 RvAdapter adapter = new RvAdapter(movieList,context);
                 recyclerView.setAdapter(adapter);
 
+            }
+            else
+            {
+                Toast.makeText(context,"TV SHOW Search",Toast.LENGTH_LONG).show();
+
+                ArrayList<TvShow> tvShowsList = (ArrayList<TvShow>) intent.getSerializableExtra(Search.RESULT);
+                Toast.makeText(context, "Success" + (tvShowsList.size()), Toast.LENGTH_LONG).show();
+
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                //PeopleListAdapter adapter = new PeopleListAdapter(movieList, context);
+                TVShowListAdapter adapter = new TVShowListAdapter(tvShowsList,context);
+                recyclerView.setAdapter(adapter);
             }
 
 
