@@ -1,7 +1,5 @@
 package com.omdb.rohksin.omdb.NewSearch.ResponseMapper;
 
-import android.content.Context;
-
 import org.json.JSONException;
 
 /**

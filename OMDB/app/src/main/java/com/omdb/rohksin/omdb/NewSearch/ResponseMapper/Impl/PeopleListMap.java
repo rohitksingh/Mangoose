@@ -18,19 +18,14 @@ import java.util.List;
  */
 public class PeopleListMap implements ResponseMapper {
 
-    //private PeopleDetail peopleDetail;
     private ArrayList<PeopleDetail> peopleDetails;
 
     @Override
     public void mapResponse(Object object) throws JSONException {
 
-        Log.d("OBJECT",(object==null)+"1");
-
         JSONObject jsonObject = (JSONObject)object;
 
         JSONArray peoplelist = jsonObject.getJSONArray("results");
-
-        Log.d("PEOPLELIST",peoplelist.length()+"");
 
         peopleDetails = new ArrayList<PeopleDetail>();
 
@@ -42,8 +37,6 @@ public class PeopleListMap implements ResponseMapper {
             detail.setName(actor.getString("name"));
             detail.setId(actor.getInt("id") + "");
             detail.setPeofileImage(actor.getString("profile_path"));
-
-            Log.d("ACTORS DETAL",detail.getName());
             JSONArray knownfor = actor.getJSONArray("known_for");
 
             int top3 = 3;
@@ -51,7 +44,8 @@ public class PeopleListMap implements ResponseMapper {
             top3 = knownfor.length();
 
             List<Movie> movies = new ArrayList<Movie>();
-/*
+
+/*          TODO INTEGRATE KNOWN FOR
             for(int j=0;j<top3;j++)
             {
                 Log.d("ACTORS DETAL",);

@@ -1,24 +1,18 @@
 package com.omdb.rohksin.omdb.ObjectOrientedSearch;
 
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
-import com.omdb.rohksin.omdb.ObjectOrientedSearch.Receivers.PeopleListReceiver;
+import com.omdb.rohksin.omdb.ObjectOrientedSearch.Receivers.SearchListReceiver;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.MovieSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.TVShowSearch;
@@ -34,9 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     private TextView moviesButton;
     private TextView TvShow;
     private EditText seachEditText;
-    private TextView responseObjserver;
     private int SearchType =3;
-    //public View parent;
 
 
     @Override
@@ -49,12 +41,11 @@ public class SearchActivity extends AppCompatActivity {
         peopleButton = (TextView)findViewById(R.id.personSearch);
         moviesButton = (TextView)findViewById(R.id.movieSearch);
         TvShow = (TextView)findViewById(R.id.TVShowSearch);
-        responseObjserver = (TextView)findViewById(R.id.responseObjserver);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Search.SEARCH_FINISHED);
         View parent = (View)findViewById(R.id.seachLayout);
-        BroadcastReceiver receiver =  new PeopleListReceiver(parent);  //new OrientedReceiver();
+        BroadcastReceiver receiver =  new SearchListReceiver(parent);
         registerReceiver(receiver,filter);
 
         seachEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -88,9 +79,6 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
 
         peopleButton.setOnClickListener(new View.OnClickListener() {
             @Override

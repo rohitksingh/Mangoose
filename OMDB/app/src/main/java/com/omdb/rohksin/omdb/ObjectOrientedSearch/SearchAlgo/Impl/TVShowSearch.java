@@ -56,7 +56,7 @@ public class TVShowSearch extends Search{
 
         Intent i = new Intent();
         i.setAction(Search.SEARCH_FINISHED);
-        i.putExtra("PEOPLE SEARCH", "TVSHOW");
+        i.putExtra(Search.SEARCH_TYPE, "TVSHOW");
         ArrayList<TvShow> tvShows = (ArrayList<TvShow>)o;
         // PeopleDetail map = (PeopleDetail)o;
         i.putExtra(Search.RESULT, tvShows);
