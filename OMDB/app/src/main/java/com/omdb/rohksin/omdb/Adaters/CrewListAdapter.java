@@ -49,7 +49,7 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
 
         Log.d("ImagePICASSO", crew.toString());
 
-        holder.crewName.setText(crew.getName() + "\n As");
+        holder.crewName.setText(crew.getName());
         holder.roleName.setText(crew.getJob());
 
 

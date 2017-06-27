@@ -3,6 +3,7 @@ package com.omdb.rohksin.omdb.ObjectOrientedSearch;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,9 +33,12 @@ public class SearchActivity extends AppCompatActivity {
 
     private TextView peopleButton;
     private TextView moviesButton;
-    private TextView TvShow;
+    private TextView TvShowButton;
     private EditText seachEditText;
     private int SearchType =3;
+
+    private int ACTIVE = Color.WHITE;
+    private int INACTIVE = Color.LTGRAY;
 
 
 
@@ -61,7 +65,11 @@ public class SearchActivity extends AppCompatActivity {
         seachEditText = (EditText)layout.findViewById(R.id.search_movies);
         peopleButton = (TextView)layout.findViewById(R.id.personSearch);
         moviesButton = (TextView)layout.findViewById(R.id.movieSearch);
-        TvShow = (TextView)findViewById(R.id.TVShowSearch);
+        TvShowButton = (TextView)findViewById(R.id.TVShowSearch);
+
+        seachEditText.setHintTextColor(Color.BLACK);
+
+        defalutSearchType();
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Search.SEARCH_FINISHED);
@@ -105,24 +113,59 @@ public class SearchActivity extends AppCompatActivity {
         peopleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                seachEditText.setHint("PEOPLE");
+                seachEditText.setHint("Search People");
                 SearchType = 1;
+                indicateSearchType(SearchType);
             }
         });
         moviesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                seachEditText.setHint("MOVIES");
+                seachEditText.setHint("Search Movies");
                 SearchType = 3;
+                indicateSearchType(SearchType);
             }
         });
-        TvShow.setOnClickListener(new View.OnClickListener() {
+        TvShowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                seachEditText.setHint("TV SHOW");
+                seachEditText.setHint("Search Tv Shows");
                 SearchType = 2;
+                indicateSearchType(SearchType);
             }
         });
+    }
+
+    public void defalutSearchType()
+    {
+        seachEditText.setHint("Search Movies");
+        SearchType = 3;
+        peopleButton.setTextColor(INACTIVE);
+        TvShowButton.setTextColor(INACTIVE);
+        moviesButton.setTextColor(ACTIVE);
+
+    }
+
+    public void indicateSearchType(int SearchType)
+    {
+        if(SearchType==1)
+        {
+            peopleButton.setTextColor(ACTIVE);
+            TvShowButton.setTextColor(INACTIVE);
+            moviesButton.setTextColor(INACTIVE);
+
+        }else if(SearchType==2)
+        {
+            peopleButton.setTextColor(INACTIVE);
+            TvShowButton.setTextColor(ACTIVE);
+            moviesButton.setTextColor(INACTIVE);
+        }
+        else
+        {
+            peopleButton.setTextColor(INACTIVE);
+            TvShowButton.setTextColor(INACTIVE);
+            moviesButton.setTextColor(ACTIVE);
+        }
     }
 
 }

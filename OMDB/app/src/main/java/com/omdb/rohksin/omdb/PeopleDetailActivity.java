@@ -182,20 +182,18 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
 
             Log.d("SIZE",roles.size()+"");
-            for(int i=0;i<3;i++)
-            {
-                Log.d("POSTERPATHS",roles.get(i).getMovieName()+"");
-                Log.d("POSTERPATHS",roles.get(i).getMoviePosterPath()+"");
-            }
 
+            if(roles.size()>0)
             Picasso.with(context)
                     .load(MovieUtils.imageURL(roles.get(0).getMoviePosterPath()))
                     .into(movie1);
 
+            if(roles.size()>1)
             Picasso.with(context)
                     .load(MovieUtils.imageURL(roles.get(1).getMoviePosterPath()))
                     .into(movie2);
 
+            if(roles.size()>2)
             Picasso.with(context)
                     .load(MovieUtils.imageURL(roles.get(2).getMoviePosterPath()))
                     .into(movie3);

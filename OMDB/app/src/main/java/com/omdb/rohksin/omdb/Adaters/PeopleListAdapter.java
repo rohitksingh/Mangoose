@@ -11,14 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.omdb.rohksin.omdb.BlankActivity;
-import com.omdb.rohksin.omdb.Movie;
 import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.omdb.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Illuminati on 6/25/2017.
