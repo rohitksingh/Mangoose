@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.omdb.rohksin.omdb.BlankActivity;
 import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.omdb.PeopleDetailActivity;
 import com.omdb.rohksin.omdb.R;
 import com.squareup.picasso.Picasso;
 
@@ -60,8 +61,8 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, BlankActivity.class);
-                i.putExtra("blankActivityText", movieId);
+                Intent i = new Intent(context, PeopleDetailActivity.class);
+                i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
                 context.startActivity(i);
             }
         });
