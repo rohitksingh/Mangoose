@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="190dp"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:layout_marginBottom="3dp"
     android:focusable="true"
@@ -22,58 +22,76 @@
             android:layout_marginRight="10dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            />
 
+            />
+        <LinearLayout
+            android:id="@+id/timeline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title">
         <TextView
             android:id="@+id/birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="kjkj"
+            android:text="15/08/1945"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_below="@id/title"
+            android:background="@android:color/holo_red_light"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:gravity="center"
             />
 
         <TextView
             android:id="@+id/deathdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About"
+            android:text="12/11/2008"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_below="@id/birthday"
+            android:layout_alignBaseline="@id/birthday"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/holo_red_light"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:gravity="center"
             />
-
+        </LinearLayout>
         <TextView
             android:id="@+id/birthplace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About"
+            android:text="San Jose"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_below="@id/deathdate"
+            android:layout_below="@id/timeline"
+            android:textColor="#000000"
+
             />
 
         <TextView
             android:id="@+id/website"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About"
+            android:text="www.something.com"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize="20dp"
-            android:textStyle="bold"
             android:layout_below="@id/birthplace"
+            android:textColor="@android:color/holo_blue_light"
+
             />
 
     </RelativeLayout>

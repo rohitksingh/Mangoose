@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -59,8 +60,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
         backDrop = (ImageView)findViewById(R.id.backDrop);
         profileImage =(CircleImageView)findViewById(R.id.profileImage);
-
-
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(ActorDetailMapper.ObjectMapped);
@@ -145,6 +144,14 @@ public class PeopleDetailActivity extends AppCompatActivity {
             Picasso.with(context)
                     .load(MovieUtils.imageURL(actorDetail.getProfileImage()))
                     .into(profileImage);
+
+            profileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MovieUtils.previewImage(PeopleDetailActivity.this, actorDetail.getProfileImage());
+                }
+            });
+
         }
 
         public void createBioGraphy()
@@ -166,9 +173,22 @@ public class PeopleDetailActivity extends AppCompatActivity {
             TextView website = (TextView)findViewById(R.id.website);
 
             birthday.setText(actorDetail.getBirthday());
+
+            if(actorDetail.getDeathday()!=null)
             deathdate.setText(actorDetail.getDeathday());
+            else {
+                deathdate.setText(actorDetail.getDeathday());
+            }
             birthplace.setText(actorDetail.getBirthPlace());
-            website.setText(actorDetail.getWebSite());
+
+            Log.d("WEBSITE", actorDetail.getWebSite());
+            if(actorDetail.getWebSite()!=null) {
+                website.setText(actorDetail.getWebSite());
+            }
+            else{
+                website.setVisibility(View.GONE);
+            }
+
 
         }
 
@@ -322,11 +342,17 @@ public class PeopleDetailActivity extends AppCompatActivity {
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                           /* Intent i = new Intent(.this, AllActorsActivity.class);
-                            SerializableObject serializableObject = new SerializableObject(actors);
-                            i.putExtra(BlankActivity.MOVIE_LIST, serializableObject);
+                            Intent i = new Intent(PeopleDetailActivity.this, ListActivity.class);
+                            ArrayList<MovieRole> roles1 = (ArrayList)roles;
+
+                            Log.d("IS EMPTY ?",(roles1.get(0).getMovieName()+""));
+
+
+                            i.putExtra("allMoviesListActivity",roles1);
+
+                            //i.putExtra(BlankActivity.MOVIE_LIST, roles);
                             startActivity(i);
-                            */
+
                         }
                     });
 

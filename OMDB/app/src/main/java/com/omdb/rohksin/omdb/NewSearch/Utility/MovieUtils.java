@@ -1,11 +1,15 @@
 package com.omdb.rohksin.omdb.NewSearch.Utility;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
+import com.omdb.rohksin.omdb.Constants.Config;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Crew;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Genre;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Video;
+import com.omdb.rohksin.omdb.PreviewImageActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +25,9 @@ import java.util.Map;
  */
 public class MovieUtils {
 
+
+    public static final String PREVIEW_IMAGE = "com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils.PREVIEW_IMAGE";
+
     public static String imageURL(String name)
     {
         return "http://image.tmdb.org/t/p/w185"+name;
@@ -29,6 +36,13 @@ public class MovieUtils {
     public static String imageHighURL(String name)
     {
         return "http://image.tmdb.org/t/p/w500"+name;
+    }
+
+    public static void previewImage(Context context,String imagePath)
+    {
+        Intent i = new Intent(context, PreviewImageActivity.class);
+        i.putExtra(PREVIEW_IMAGE,imagePath);
+        context.startActivity(i);
     }
 
     public static String videoPath(String name)

@@ -1,9 +1,11 @@
 package com.omdb.rohksin.omdb.NewSearch.POJO;
 
+import java.io.Serializable;
+
 /**
  * Created by Illuminati on 6/22/2017.
  */
-public class MovieRole {
+public class MovieRole implements Serializable{
 
     private String movieName;
     private String characterName;
