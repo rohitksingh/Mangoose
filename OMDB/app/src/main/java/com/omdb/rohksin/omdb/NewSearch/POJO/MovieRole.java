@@ -1,11 +1,15 @@
 package com.omdb.rohksin.omdb.NewSearch.POJO;
 
+import android.util.Log;
+
+import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
+
 import java.io.Serializable;
 
 /**
  * Created by Illuminati on 6/22/2017.
  */
-public class MovieRole implements Serializable{
+public class MovieRole implements Serializable,Comparable<MovieRole>{
 
     private String movieName;
     private String characterName;
@@ -51,5 +55,17 @@ public class MovieRole implements Serializable{
 
     public void setMoviePosterPath(String moviePosterPath) {
         this.moviePosterPath = moviePosterPath;
+    }
+
+    @Override
+    public int compareTo(MovieRole movieRole)
+    {
+        // Sorting In desending order of Date;
+
+            String date1 = MovieUtils.getSortedDate(this.getReleaseDate());
+            String date2 = MovieUtils.getSortedDate(movieRole.getReleaseDate());
+            return date2.compareTo(date1);
+
+
     }
 }

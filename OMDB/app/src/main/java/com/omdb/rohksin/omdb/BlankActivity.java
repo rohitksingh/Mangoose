@@ -458,7 +458,7 @@ public class BlankActivity extends AppCompatActivity {
             CardView aboutSectionCard = (CardView)findViewById(R.id.aboutSection);
 
             TextView releaseDate = (TextView)aboutSectionCard.findViewById(R.id.release_date);
-            releaseDate.setText(movie.getRelaseDate());
+            releaseDate.setText(MovieUtils.getFormattedDate(movie.getRelaseDate()));
 
             TextView runtime = (TextView)aboutSectionCard.findViewById(R.id.runtime);
             runtime.setText(movie.getRunTime()+" mins");

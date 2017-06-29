@@ -12,6 +12,7 @@ import com.omdb.rohksin.omdb.Adaters.ViewAllMoviesAdapter;
 import com.omdb.rohksin.omdb.NewSearch.POJO.MovieRole;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,6 +35,8 @@ public class ListActivity extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(ListActivity.this);
         recyclerView.setLayoutManager(llm);
+
+        Collections.sort(movieRoles);
 
         ViewAllMoviesAdapter adapter = new ViewAllMoviesAdapter(movieRoles,ListActivity.this);
         recyclerView.setAdapter(adapter);

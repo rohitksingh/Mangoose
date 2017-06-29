@@ -15,7 +15,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +30,10 @@ public class MovieUtils {
 
 
     public static final String PREVIEW_IMAGE = "com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils.PREVIEW_IMAGE";
+
+    public static final String JSON_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String OUTPUT_DATE_FORMAT = "d MMM yyyy";
+    public static final String SORTABLE_DATE_FORMAT = "yyyy-MM-dd";
 
     public static String imageURL(String name)
     {
@@ -173,7 +180,7 @@ public class MovieUtils {
             {
                 Genre genre = new Genre();
                 JSONObject object = (JSONObject)jsonArray.get(i);
-                genre.setId(object.getInt("id")+"");
+                genre.setId(object.getInt("id") + "");
                 genre.setName(object.getString("name"));
                 genres.add(genre);
             }
@@ -185,4 +192,45 @@ public class MovieUtils {
 
         return genres;
     }
+
+    public static String getFormattedDate(String fromJson){
+
+        SimpleDateFormat sdf = new SimpleDateFormat(JSON_DATE_FORMAT);
+        Date d=null;
+        try {
+             d = sdf.parse(fromJson);
+        }
+        catch (ParseException e)
+        {
+
+        }
+        sdf = new SimpleDateFormat(OUTPUT_DATE_FORMAT);
+        String ouput = sdf.format(d);
+        return ouput;
+    }
+
+    public static String getSortedDate(String fromJson){
+
+        Log.d("DATE NULL ?", (fromJson==null)+"");
+        if(fromJson==null || fromJson.equalsIgnoreCase("null"))
+        {
+            return "3000";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat(JSON_DATE_FORMAT);
+        Date d=null;
+        try {
+            d = sdf.parse(fromJson);
+            Log.d("SORT",d.toString());
+        }
+        catch (ParseException e)
+        {
+
+        }
+
+        sdf = new SimpleDateFormat(SORTABLE_DATE_FORMAT);
+
+        String ouput = sdf.format(d);
+        return ouput;
+    }
+
 }
