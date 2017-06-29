@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +42,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
     @Override
     public PosterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_poster_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_poster_card, parent, false);
         PosterHolder pvh = new PosterHolder(view);
         return pvh;
     }
@@ -48,6 +51,8 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
     public void onBindViewHolder(PosterHolder holder, int position) {
 
         final MovieRole movieRole= list.get(position);
+
+        setFadeAnimation(holder.itemView);
 
         final String imagePath = movieRole.getMoviePosterPath();
         final String thumb = MovieUtils.imageURL(imagePath);
@@ -97,5 +102,18 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
             characterName = (TextView)itemView.findViewById(R.id.characterName);
 
         }
+    }
+
+
+    private void setScaleAnimation(View view) {
+        ScaleAnimation anim = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setDuration(1000);
+        view.startAnimation(anim);
+    }
+
+    private void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(500);
+        view.startAnimation(anim);
     }
 }
