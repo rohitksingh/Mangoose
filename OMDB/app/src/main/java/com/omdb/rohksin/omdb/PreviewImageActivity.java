@@ -6,6 +6,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.squareup.picasso.Picasso;
 
@@ -14,7 +15,7 @@ import com.squareup.picasso.Picasso;
  */
 public class PreviewImageActivity extends AppCompatActivity{
 
-    private ImageView imageView;
+    private PhotoView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -22,7 +23,7 @@ public class PreviewImageActivity extends AppCompatActivity{
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.preview_image_layout);
         String imagePath = (String )getIntent().getStringExtra(MovieUtils.PREVIEW_IMAGE);
-        imageView = (ImageView)findViewById(R.id.previewImage);
+        imageView = (PhotoView)findViewById(R.id.previewImage);
 
         Picasso.with(this)
                 .load(MovieUtils.imageHighURL(imagePath))
