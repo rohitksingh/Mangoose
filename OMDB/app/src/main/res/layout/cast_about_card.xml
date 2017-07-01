@@ -6,6 +6,7 @@
     android:focusable="true"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    android:visibility="gone"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +29,9 @@
             android:id="@+id/timeline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title">
+            android:layout_below="@id/title"
+            android:gravity="center"
+            >
         <TextView
             android:id="@+id/birthday"
             android:layout_width="wrap_content"
@@ -43,8 +46,8 @@
             android:background="@android:color/holo_red_light"
             android:padding="10dp"
             android:textColor="#ffffff"
-            android:layout_weight="1"
             android:gravity="center"
+            android:visibility="gone"
             />
 
         <TextView
@@ -62,8 +65,8 @@
             android:background="@android:color/holo_red_light"
             android:padding="10dp"
             android:textColor="#ffffff"
-            android:layout_weight="1"
             android:gravity="center"
+            android:visibility="gone"
             />
         </LinearLayout>
         <TextView
@@ -77,7 +80,7 @@
             android:textSize="20dp"
             android:layout_below="@id/timeline"
             android:textColor="#000000"
-
+            android:visibility="gone"
             />
 
         <TextView
@@ -91,7 +94,7 @@
             android:textSize="20dp"
             android:layout_below="@id/birthplace"
             android:textColor="@android:color/holo_blue_light"
-
+            android:visibility="gone"
             />
 
     </RelativeLayout>

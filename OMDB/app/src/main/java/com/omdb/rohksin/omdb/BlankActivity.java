@@ -72,9 +72,7 @@ public class BlankActivity extends AppCompatActivity {
         Intent i = getIntent();
         final String movieId = i.getStringExtra("blankActivityText");
 
-
         //textView.setText(movieId);
-
         CoordinatorLayout parent = (CoordinatorLayout)findViewById(R.id.parent);
         layout = (CollapsingToolbarLayout)findViewById(R.id.title);
         //EndPoint endPoint = new MovieDetailURL();
@@ -217,9 +215,9 @@ public class BlankActivity extends AppCompatActivity {
             CardView overViewCard = (CardView)findViewById(R.id.overview);
             TextView movieName = (TextView)overViewCard.findViewById(R.id.movie_name);
             TextView OverViewText = (TextView)overViewCard.findViewById(R.id.OverViewText);
-
             movieName.setText(movie.getTitle());
             OverViewText.setText(movie.getOverView());
+
         }
 
         public void createImageSection()
@@ -255,8 +253,8 @@ public class BlankActivity extends AppCompatActivity {
             viewMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(BlankActivity.this,AllImageActivity.class);
-                    i.putStringArrayListExtra(MOVIE_LIST,movie.getImages());
+                    Intent i = new Intent(BlankActivity.this, AllImageActivity.class);
+                    i.putStringArrayListExtra(MOVIE_LIST, movie.getImages());
                     startActivity(i);
                 }
             });
@@ -467,6 +465,9 @@ public class BlankActivity extends AppCompatActivity {
 
             TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
 
+            LinearLayout genres = (LinearLayout)aboutSectionCard.findViewById(R.id.genres);
+            buildGenre(genres);
+
             /*
              TODO Genres Integration IN TableLayout
 
@@ -480,9 +481,39 @@ public class BlankActivity extends AppCompatActivity {
             website.setText(genall);
             */
 
-            website.setText(movie.getHomePage());
+            if(!movie.getHomePage().equalsIgnoreCase("")) {
+                website.setText(movie.getHomePage());
+                website.setVisibility(View.VISIBLE);
+
+            }
+
+
 
         }
+
+        public void buildGenre(View v)
+        {
+             TextView genre1 = (TextView)v.findViewById(R.id.genre1);
+            TextView genre2 = (TextView)v.findViewById(R.id.genre2);
+            TextView genre3 = (TextView)v.findViewById(R.id.genre3);
+
+            List<Genre> genres = movie.getGenres();
+            Log.d("GENRES SIZE", genres.size() + "");
+
+            if(genres.size()>0) {
+                genre1.setText(genres.get(0).getName());
+                genre1.setVisibility(View.VISIBLE);
+            }
+            if(genres.size()>1) {
+                genre2.setText(genres.get(1).getName());
+                genre2.setVisibility(View.VISIBLE);
+            }
+            if(genres.size()>2) {
+                genre3.setText(genres.get(2).getName());
+                genre3.setVisibility(View.VISIBLE);
+            }
+        }
+
 
         public void createRatingSection()
         {

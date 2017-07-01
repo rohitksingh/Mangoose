@@ -165,6 +165,18 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 }
             });
 
+            List<MovieRole> roles =actorDetail.getMovieRoles();
+
+            if(roles!=null)
+            {
+                String backDropPth = roles.get(0).getMoviePosterPath();
+                
+                Picasso.with(context)
+                        .load(MovieUtils.imageURL(backDropPth))
+                        .into(backDrop);
+
+            }
+
         }
 
         public void createBioGraphy()
@@ -185,22 +197,28 @@ public class PeopleDetailActivity extends AppCompatActivity {
             TextView birthplace = (TextView)findViewById(R.id.birthplace);
             TextView website = (TextView)findViewById(R.id.website);
 
-            birthday.setText(actorDetail.getBirthday());
-
-            if(actorDetail.getDeathday()!=null)
-            deathdate.setText(actorDetail.getDeathday());
-            else {
-                deathdate.setText(actorDetail.getDeathday());
+            if(!actorDetail.getBirthday().equalsIgnoreCase("null")) {
+                cardView.setVisibility(View.VISIBLE);
+                birthday.setText(MovieUtils.getFormattedDate(actorDetail.getBirthday()));
+                birthday.setVisibility(View.VISIBLE);
             }
-            birthplace.setText(actorDetail.getBirthPlace());
 
-            Log.d("WEBSITE", actorDetail.getWebSite());
-            if(actorDetail.getWebSite()!=null) {
+            if(!actorDetail.getDeathday().equalsIgnoreCase("null")) {
+                deathdate.setText(MovieUtils.getFormattedDate(actorDetail.getDeathday()));
+                deathdate.setVisibility(View.VISIBLE);
+            }
+
+            if(!actorDetail.getBirthPlace().equalsIgnoreCase("null")) {
+                birthplace.setText(actorDetail.getBirthPlace());
+                birthplace.setVisibility(View.VISIBLE);
+            }
+
+
+            if(!actorDetail.getWebSite().equalsIgnoreCase("null")) {
                 website.setText(actorDetail.getWebSite());
-            }
-            else{
                 website.setVisibility(View.GONE);
             }
+
 
 
         }
