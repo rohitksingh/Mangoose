@@ -1,7 +1,10 @@
 package com.omdb.rohksin.omdb.Adaters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +18,7 @@ import com.omdb.rohksin.omdb.BlankActivity;
 import com.omdb.rohksin.omdb.Movie;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.omdb.R;
+import com.omdb.rohksin.omdb.SearchActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -45,12 +49,11 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    public void onBindViewHolder(final MovieViewHolder holder, int position) {
        // holder.personName.setText(list.get(position).getName());
         final String movieId = list.get(position).getMovieId();
         holder.title.setText(list.get(position).getName());
         holder.releaseYear.setText(MovieUtils.getFormattedDate(list.get(position).getReleaseYear()));
-        Log.d("WHAT IS DATE?", (list.get(position).getReleaseYear() == null) + "");
         holder.overView.setText(list.get(position).getOverview());
 
 
@@ -68,7 +71,20 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
 
                 Intent i = new Intent(context, BlankActivity.class);
                 i.putExtra("blankActivityText", movieId);
-                context.startActivity(i);
+
+
+
+                if(Build.VERSION.SDK_INT>20)
+                {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,holder.posterThumbnail,"ImageView");
+
+                context.startActivity(i, options.toBundle());
+                }
+                else
+                {
+
+                }
+
             }
         });
        // holder.posterThumbnail.setImageResource();
@@ -92,6 +108,11 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
             title = (TextView)itemView.findViewById(R.id.title);
             releaseYear = (TextView)itemView.findViewById(R.id.release_date);
             overView = (TextView)itemView.findViewById(R.id.overview);
+
+            if(Build.VERSION.SDK_INT>20) {
+                posterThumbnail.setTransitionName("ImageView");
+                title.setTransitionName("title");
+            }
         }
     }
 }

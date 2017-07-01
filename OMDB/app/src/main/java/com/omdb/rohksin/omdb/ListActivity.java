@@ -1,10 +1,13 @@
 package com.omdb.rohksin.omdb;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
@@ -25,7 +28,10 @@ public class ListActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.list_layout);
+
+        //setAnimation();
 
         ArrayList<MovieRole> movieRoles = (ArrayList<MovieRole>)getIntent().getSerializableExtra("allMoviesListActivity");
 
@@ -40,5 +46,16 @@ public class ListActivity extends AppCompatActivity {
 
         ViewAllMoviesAdapter adapter = new ViewAllMoviesAdapter(movieRoles,ListActivity.this);
         recyclerView.setAdapter(adapter);
+
+
+    }
+
+    public void setAnimation()
+    {
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setDuration(1000);
+            getWindow().setEnterTransition(slide);
+        }
     }
 }

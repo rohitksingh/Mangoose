@@ -1,7 +1,10 @@
 package com.omdb.rohksin.omdb.Adaters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +46,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
     }
 
     @Override
-    public void onBindViewHolder(PeopleViewHolder holder, int position) {
+    public void onBindViewHolder(final PeopleViewHolder holder, int position) {
         // holder.personName.setText(list.get(position).getName());
         final String movieId = list.get(position).getId();
         holder.title.setText(list.get(position).getName());
@@ -57,12 +60,14 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
                 .load(thumb)
                 .into(holder.posterThumbnail);
 
+
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent i = new Intent(context, PeopleDetailActivity.class);
                 i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
+
                 context.startActivity(i);
             }
         });
@@ -84,6 +89,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
             super(itemView);
             posterThumbnail = (ImageView) itemView.findViewById(R.id.posterThumbnail);
             title = (TextView) itemView.findViewById(R.id.title);
+
         }
     }
 

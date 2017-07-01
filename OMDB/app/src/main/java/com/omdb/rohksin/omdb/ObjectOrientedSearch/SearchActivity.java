@@ -4,11 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -47,8 +50,10 @@ public class SearchActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.seach_page_layout);
-
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.main_search_page);
+
+        setAnimation();
 
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.searchBox);
         LinearLayout container =(LinearLayout)layout.findViewById(R.id.edittextContainer);
@@ -165,6 +170,16 @@ public class SearchActivity extends AppCompatActivity {
             peopleButton.setTextColor(INACTIVE);
             TvShowButton.setTextColor(INACTIVE);
             moviesButton.setTextColor(ACTIVE);
+        }
+    }
+
+
+    public void setAnimation()
+    {
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setDuration(2000);
+            getWindow().setEnterTransition(slide);
         }
     }
 

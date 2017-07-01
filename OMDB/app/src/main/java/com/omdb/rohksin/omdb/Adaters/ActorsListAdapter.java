@@ -1,7 +1,10 @@
 package com.omdb.rohksin.omdb.Adaters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +48,7 @@ public ActorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         }
 
 @Override
-public void onBindViewHolder(ActorViewHolder holder, int position) {
+public void onBindViewHolder(final ActorViewHolder holder, int position) {
 
         final Actor actor = list.get(position);
 
@@ -58,8 +61,16 @@ public void onBindViewHolder(ActorViewHolder holder, int position) {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, PeopleDetailActivity.class);
-                i.putExtra(ACTOR_ID,actor.getId());
-                context.startActivity(i);
+                i.putExtra(ACTOR_ID, actor.getId());
+
+
+                if(Build.VERSION.SDK_INT>20) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, holder.actorImage, "ACTOR");
+                    context.startActivity(i,options.toBundle());
+                }
+                else {
+                    context.startActivity(i);
+                }
             }
         });
 
@@ -87,6 +98,9 @@ public class ActorViewHolder extends RecyclerView.ViewHolder{
         actorImage = (CircleImageView)itemView.findViewById(R.id.actorImage);
         actorName =(TextView)itemView.findViewById(R.id.actorName);
         characterName =(TextView)itemView.findViewById(R.id.characterName);
+
+        if(Build.VERSION.SDK_INT>20)
+        actorImage.setTransitionName("ACTOR");
 
     }
 }

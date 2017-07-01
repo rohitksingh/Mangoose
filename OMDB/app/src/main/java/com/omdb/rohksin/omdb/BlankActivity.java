@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -158,7 +159,12 @@ public class BlankActivity extends AppCompatActivity {
                 hideTitle(movie.getTitle());
 
                 ImageView imageView = (ImageView)findViewById(R.id.moviePoster);
+
                 ImageView poster = (ImageView)layout.findViewById(R.id.moviePosterThumbnail);
+
+                if(Build.VERSION.SDK_INT>20) {
+                    poster.setTransitionName("ImageView");
+                }
                 //top3Actors = (LinearLayout)findViewById(R.id.top3Actors);
 
                 String imgSrc = MovieUtils.imageHighURL(movie.getBackDropImage());
