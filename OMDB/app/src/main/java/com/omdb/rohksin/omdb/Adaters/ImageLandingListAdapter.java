@@ -54,6 +54,7 @@ public class ImageLandingListAdapter extends RecyclerView.Adapter<ImageLandingLi
         holder.landingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("ABC","ABC");
                 Toast.makeText(context, "Image Clicked", Toast.LENGTH_SHORT).show();
             }
         });

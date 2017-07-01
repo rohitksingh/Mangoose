@@ -49,7 +49,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
        // holder.personName.setText(list.get(position).getName());
         final String movieId = list.get(position).getMovieId();
         holder.title.setText(list.get(position).getName());
-        holder.releaseYear.setText(list.get(position).getReleaseYear());
+        holder.releaseYear.setText(MovieUtils.getFormattedDate(list.get(position).getReleaseYear()));
+        Log.d("WHAT IS DATE?", (list.get(position).getReleaseYear() == null) + "");
         holder.overView.setText(list.get(position).getOverview());
 
 

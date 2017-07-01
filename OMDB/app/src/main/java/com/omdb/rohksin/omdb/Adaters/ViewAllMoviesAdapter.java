@@ -21,8 +21,6 @@ import com.omdb.rohksin.omdb.PreviewImageActivity;
 import com.omdb.rohksin.omdb.R;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 /**
@@ -62,7 +60,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
                 .into(holder.moviePoster);
 
         holder.movieName.setText(movieRole.getMovieName());
-        holder.releaseDate.setText(movieRole.getReleaseDate());
+        holder.releaseDate.setText(MovieUtils.getFormattedDate(movieRole.getReleaseDate()));
         holder.characterName.setText(movieRole.getCharacterName());
 
         holder.movieName.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +85,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
         return list.size();
     }
 
+
     public class PosterHolder extends RecyclerView.ViewHolder{
 
         ImageView moviePoster;
@@ -102,6 +101,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
             characterName = (TextView)itemView.findViewById(R.id.characterName);
 
         }
+
     }
 
 
@@ -116,4 +116,6 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
         anim.setDuration(500);
         view.startAnimation(anim);
     }
+
+
 }

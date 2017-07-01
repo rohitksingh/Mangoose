@@ -62,6 +62,9 @@
         <activity android:name=".PreviewImageActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
+        <activity android:name=".TVShowDetailActivity"/>
+        <activity android:name=".SeasonDetailActivity"/>
+        <activity android:name=".EpisodeDetailActivity"/>
 
     </application>
 

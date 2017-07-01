@@ -84,7 +84,6 @@ public class BlankActivity extends AppCompatActivity {
         Log.d("OBJECT ",end);
 
 
-
         BroadcastReceiver receiver = new DetailMovieReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(OBJECTMAPPED);
@@ -141,12 +140,6 @@ public class BlankActivity extends AppCompatActivity {
                 "ityMovie",movie);
         sendBroadcast(i);
     }
-
-
-
-
-
-
 
 
     private class DetailMovieReceiver extends BroadcastReceiver
@@ -482,7 +475,6 @@ public class BlankActivity extends AppCompatActivity {
             */
 
             website.setText(movie.getHomePage());
-
 
         }
 

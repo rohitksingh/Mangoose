@@ -195,6 +195,11 @@ public class MovieUtils {
 
     public static String getFormattedDate(String fromJson){
 
+        if(fromJson.length()<5)
+        {
+            return "";
+        }
+
         SimpleDateFormat sdf = new SimpleDateFormat(JSON_DATE_FORMAT);
         Date d=null;
         try {
@@ -214,7 +219,7 @@ public class MovieUtils {
         Log.d("DATE NULL ?", (fromJson==null)+"");
         if(fromJson==null || fromJson.equalsIgnoreCase("null"))
         {
-            return "3000";
+            return "0";
         }
         SimpleDateFormat sdf = new SimpleDateFormat(JSON_DATE_FORMAT);
         Date d=null;

@@ -1,6 +1,7 @@
 package com.omdb.rohksin.omdb.Adaters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,12 +41,23 @@ public class ListAdaper extends RecyclerView.Adapter<ListAdaper.MediaViewHolder>
     @Override
     public void onBindViewHolder(MediaViewHolder holder, int position) {
 
-        String thumb = list.get(position);
+        final String thumb = list.get(position);
         Log.d("ImagePICASSO",thumb);
         Picasso.with(context)
                 .load(MovieUtils.imageURL(thumb))
                 .into(holder.mediaImage);
+
+        holder.mediaImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("","");
+                MovieUtils.previewImage(context,thumb);
+            }
+        });
+
         //holder.mediaImage.setImageResource(R.drawable.actor2);
+
     }
 
     @Override

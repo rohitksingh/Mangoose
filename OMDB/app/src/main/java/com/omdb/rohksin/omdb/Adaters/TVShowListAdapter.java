@@ -20,6 +20,7 @@ import com.omdb.rohksin.omdb.NewSearch.POJO.TvShow;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
+import com.omdb.rohksin.omdb.TVShowDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
         // holder.personName.setText(list.get(position).getName());
         final String movieId = list.get(position).getId();
         holder.title.setText(list.get(position).getName());
-        holder.releaseYear.setText(list.get(position).getAir_date());
+        holder.releaseYear.setText(MovieUtils.getFormattedDate(list.get(position).getAir_date()));
         holder.overView.setText(list.get(position).getOverview());
 
 
@@ -71,8 +72,9 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, BlankActivity.class);
-                i.putExtra("blankActivityText", movieId);
+                Toast.makeText(context,"FOFO",Toast.LENGTH_LONG).show();
+                Intent i = new Intent(context, TVShowDetailActivity.class);
+                i.putExtra("tvshowdetailactivity", movieId);
                 context.startActivity(i);
             }
         });
