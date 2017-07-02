@@ -1,5 +1,6 @@
 package com.omdb.rohksin.omdb;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
@@ -24,6 +25,11 @@ public class PreviewImageActivity extends AppCompatActivity{
         setContentView(R.layout.preview_image_layout);
         String imagePath = (String )getIntent().getStringExtra(MovieUtils.PREVIEW_IMAGE);
         imageView = (PhotoView)findViewById(R.id.previewImage);
+
+        if(Build.VERSION.SDK_INT>20)
+        {
+            imageView.setTransitionName("ImageView");
+        }
 
         Picasso.with(this)
                 .load(MovieUtils.imageHighURL(imagePath))

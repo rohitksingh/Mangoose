@@ -1,9 +1,13 @@
 package com.omdb.rohksin.omdb.LandingActivities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.omdb.rohksin.omdb.Adaters.CrewListAdapter;
 import com.omdb.rohksin.omdb.BlankActivity;
@@ -22,8 +26,8 @@ public class AllCrewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setAnimation();
         setContentView(R.layout.image_landing_layout);
-
         SerializableCrewList serializableCrewList = (SerializableCrewList)getIntent().getSerializableExtra(BlankActivity.MOVIE_LIST);
         List<Crew> crews = serializableCrewList.getObjectList();
 
@@ -33,12 +37,17 @@ public class AllCrewActivity extends AppCompatActivity {
         crewRecyclerView.setLayoutManager(llm);
         crewRecyclerView.setAdapter(adapter);
 
+    }
 
-
-
-
-
-
-
+    public void setAnimation()
+    {
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setDuration(400);
+            slide.setInterpolator(new AccelerateDecelerateInterpolator());
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
+        }
     }
 }

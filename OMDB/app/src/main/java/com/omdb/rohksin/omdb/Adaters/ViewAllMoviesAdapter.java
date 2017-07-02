@@ -1,7 +1,10 @@
 package com.omdb.rohksin.omdb.Adaters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,12 +15,10 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.omdb.rohksin.omdb.BlankActivity;
 import com.omdb.rohksin.omdb.NewSearch.POJO.MovieRole;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
-import com.omdb.rohksin.omdb.PreviewImageActivity;
 import com.omdb.rohksin.omdb.R;
 import com.squareup.picasso.Picasso;
 
@@ -46,7 +47,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
     }
 
     @Override
-    public void onBindViewHolder(PosterHolder holder, int position) {
+    public void onBindViewHolder(final PosterHolder holder, int position) {
 
         final MovieRole movieRole= list.get(position);
 
@@ -68,14 +69,23 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
             public void onClick(View v) {
                 Intent i = new Intent(context, BlankActivity.class);
                 i.putExtra("blankActivityText",movieRole.getMovieId());
-                context.startActivity(i);
+
+                if(Build.VERSION.SDK_INT>20)
+                {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, holder.moviePoster, "ImageView");
+                    context.startActivity(i, options.toBundle());
+                }
+                else {
+                    context.startActivity(i);
+                }
             }
         });
 
         holder.moviePoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MovieUtils.previewImage(context,movieRole.getMoviePosterPath());
+                //MovieUtils.previewImage(context,movieRole.getMoviePosterPath());
+                MovieUtils.previewImageWithAnimation(context,movieRole.getMoviePosterPath(),holder.moviePoster,"ImageView");
             }
         });
     }
@@ -99,7 +109,8 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
             movieName = (TextView)itemView.findViewById(R.id.title);
             releaseDate = (TextView)itemView.findViewById(R.id.release_date);
             characterName = (TextView)itemView.findViewById(R.id.characterName);
-
+            if(Build.VERSION.SDK_INT>20)
+            moviePoster.setTransitionName("ImageView");
         }
 
     }

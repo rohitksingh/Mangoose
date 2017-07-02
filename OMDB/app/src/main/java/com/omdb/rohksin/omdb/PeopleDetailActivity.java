@@ -10,14 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.transition.Fade;
-import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +24,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.omdb.Adaters.ActorsListAdapter;
-import com.omdb.rohksin.omdb.LandingActivities.AllActorsActivity;
-import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.ActorDetail;
 import com.omdb.rohksin.omdb.NewSearch.POJO.MovieRole;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.ActorDetailMapper;
@@ -38,7 +32,6 @@ import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.PeopleIDURLBuilder;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
-import com.omdb.rohksin.omdb.SerializableCarriers.SerializableObject;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -62,7 +55,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.people_detail_activity);
         //setAnimation();
 
@@ -170,7 +162,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
             if(roles!=null)
             {
                 String backDropPth = roles.get(0).getMoviePosterPath();
-                
+
                 Picasso.with(context)
                         .load(MovieUtils.imageURL(backDropPth))
                         .into(backDrop);
@@ -376,37 +368,18 @@ public class PeopleDetailActivity extends AppCompatActivity {
                             Intent i = new Intent(PeopleDetailActivity.this, ListActivity.class);
                             ArrayList<MovieRole> roles1 = (ArrayList)roles;
 
-                            Log.d("IS EMPTY ?", (roles1.get(0).getMovieName() + ""));
-
                             i.putExtra("allMoviesListActivity",roles1);
 
-                            //i.putExtra(BlankActivity.MOVIE_LIST, roles);
-
-                            /*
                             if(Build.VERSION.SDK_INT>20) {
-                                Slide slide = new Slide();
-                                slide.setDuration(4000);
-
-                                getWindow().setExitTransition(slide);
-                                getWindow().setAllowEnterTransitionOverlap(false);
-                                getWindow().setAllowReturnTransitionOverlap(false);
 
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
-
                                 startActivity(i, options.toBundle());
-
-
                             }
                             else {
-
+                                startActivity(i);
                             }
 
-                            */
-
-
-                            startActivity(i);
-                            overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
-
+                            //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                         }
                     });
 
@@ -420,25 +393,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
-
-
-    }
-
-    public void setAnimation()
-    {
-        if(Build.VERSION.SDK_INT>20) {
-            Fade fade = new Fade();
-            fade.setDuration(1000);
-            Slide slide = new Slide();
-            slide.setDuration(1000);
-            getWindow().setExitTransition(slide);
-            getWindow().setEnterTransition(fade);
-
-        }
     }
 
 }

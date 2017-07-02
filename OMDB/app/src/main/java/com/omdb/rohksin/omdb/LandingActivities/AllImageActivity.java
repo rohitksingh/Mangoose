@@ -1,11 +1,14 @@
 package com.omdb.rohksin.omdb.LandingActivities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
 import com.omdb.rohksin.omdb.Adaters.ImageLandingListAdapter;
@@ -27,6 +30,7 @@ public class AllImageActivity extends AppCompatActivity{
     {
         super.onCreate(savedInstaceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setAnimation();
         setContentView(R.layout.image_landing_layout);
 
         List<String> moviesList = getIntent().getStringArrayListExtra(BlankActivity.MOVIE_LIST);
@@ -38,5 +42,16 @@ public class AllImageActivity extends AppCompatActivity{
 
         //Toast.makeText(this,"kjdksjd",Toast.LENGTH_LONG);
 
+    }
+
+    public void setAnimation()
+    {
+        if(Build.VERSION.SDK_INT>20) {
+            Explode explode = new Explode();
+            explode.setDuration(1000);
+            explode.setInterpolator(new DecelerateInterpolator());
+            getWindow().setExitTransition(explode);
+            getWindow().setEnterTransition(explode);
+        }
     }
 }

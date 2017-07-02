@@ -7,8 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
 
 import com.omdb.rohksin.omdb.Adaters.ViewAllMoviesAdapter;
@@ -28,7 +30,7 @@ public class ListActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        setAnimation();
         setContentView(R.layout.list_layout);
 
         //setAnimation();
@@ -54,8 +56,11 @@ public class ListActivity extends AppCompatActivity {
     {
         if(Build.VERSION.SDK_INT>20) {
             Slide slide = new Slide();
-            slide.setDuration(1000);
+            slide.setDuration(500);
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setInterpolator(new AccelerateDecelerateInterpolator());
             getWindow().setEnterTransition(slide);
+            getWindow().setExitTransition(slide);
         }
     }
 }

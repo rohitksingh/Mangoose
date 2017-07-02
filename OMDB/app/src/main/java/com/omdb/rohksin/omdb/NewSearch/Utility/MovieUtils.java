@@ -1,8 +1,12 @@
 package com.omdb.rohksin.omdb.NewSearch.Utility;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
+import android.view.View;
 
 import com.omdb.rohksin.omdb.Constants.Config;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
@@ -48,9 +52,28 @@ public class MovieUtils {
     public static void previewImage(Context context,String imagePath)
     {
         Intent i = new Intent(context, PreviewImageActivity.class);
-        i.putExtra(PREVIEW_IMAGE,imagePath);
+        i.putExtra(PREVIEW_IMAGE, imagePath);
         context.startActivity(i);
+
     }
+
+    /// TODO Merge This function with the above one
+    public static void previewImageWithAnimation(Context context,String imagePath,View view,String sharedElement)
+    {
+        Intent i = new Intent(context, PreviewImageActivity.class);
+        i.putExtra(PREVIEW_IMAGE, imagePath);
+        if(Build.VERSION.SDK_INT>20)
+        {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,view,sharedElement);
+            context.startActivity(i,options.toBundle());
+        }
+        else
+        {
+            context.startActivity(i);
+        }
+
+    }
+
 
     public static String videoPath(String name)
     {

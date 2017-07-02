@@ -1,5 +1,6 @@
 package com.omdb.rohksin.omdb;
 
+import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -255,7 +256,14 @@ public class BlankActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent i = new Intent(BlankActivity.this, AllImageActivity.class);
                     i.putStringArrayListExtra(MOVIE_LIST, movie.getImages());
-                    startActivity(i);
+                    if(Build.VERSION.SDK_INT>20)
+                    {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                        startActivity(i,options.toBundle());
+                    }
+                    else {
+                        startActivity(i);
+                    }
                 }
             });
 
@@ -357,7 +365,14 @@ public class BlankActivity extends AppCompatActivity {
                             Intent i = new Intent(BlankActivity.this, AllActorsActivity.class);
                             SerializableObject serializableObject = new SerializableObject(actors);
                             i.putExtra(BlankActivity.MOVIE_LIST, serializableObject);
-                            startActivity(i);
+                            if(Build.VERSION.SDK_INT>20)
+                            {
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                                startActivity(i,options.toBundle());
+                            }
+                            else {
+                                startActivity(i);
+                            }
                         }
                     });
 
@@ -436,7 +451,14 @@ public class BlankActivity extends AppCompatActivity {
                             Intent i = new Intent(BlankActivity.this, AllCrewActivity.class);
                             SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
                             i.putExtra(BlankActivity.MOVIE_LIST, serializableCrewList);
-                            startActivity(i);
+                            if(Build.VERSION.SDK_INT>20)
+                            {
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                                startActivity(i,options.toBundle());
+                            }
+                            else {
+                                startActivity(i);
+                            }
 
                         }
                     });
