@@ -239,7 +239,7 @@ public class MovieUtils {
 
     public static String getSortedDate(String fromJson){
 
-        Log.d("DATE NULL ?", (fromJson==null)+"");
+        //Log.d("DATE NULL ?", (fromJson==null)+"");
         if(fromJson==null || fromJson.equalsIgnoreCase("null"))
         {
             return "0";
@@ -248,7 +248,6 @@ public class MovieUtils {
         Date d=null;
         try {
             d = sdf.parse(fromJson);
-            Log.d("SORT",d.toString());
         }
         catch (ParseException e)
         {

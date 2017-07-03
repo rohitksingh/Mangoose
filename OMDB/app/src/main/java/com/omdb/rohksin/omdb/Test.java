@@ -49,7 +49,9 @@ public class Test extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceStste) {
         super.onCreate(savedInstanceStste);
         ///setContentView(R.layout.home);  USE THIS TO SEE RESPONSE
+        setContentView(R.layout.people_test);
 
+        /*
         setContentView(R.layout.main_search_page);
         hideTitle("Te");
 
@@ -76,6 +78,7 @@ public class Test extends AppCompatActivity {
             }
         });
 
+*/
 
 
 

@@ -43,9 +43,7 @@
 
         <activity android:name=".Test"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            >
-
+            android:windowSoftInputMode="stateAlwaysVisible">
             </activity>
         <activity android:name=".ObjectOrientedSearch.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar"
@@ -65,6 +63,9 @@
         <activity android:name=".TVShowDetailActivity"/>
         <activity android:name=".SeasonDetailActivity"/>
         <activity android:name=".EpisodeDetailActivity"/>
+        <activity android:name=".FilterMovieActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
     </application>
 

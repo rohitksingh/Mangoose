@@ -37,14 +37,12 @@ public class ListActivity extends AppCompatActivity {
 
         ArrayList<MovieRole> movieRoles = (ArrayList<MovieRole>)getIntent().getSerializableExtra("allMoviesListActivity");
 
-        Log.d("TTTT",(movieRoles==null)+"");
-
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
         LinearLayoutManager llm = new LinearLayoutManager(ListActivity.this);
         recyclerView.setLayoutManager(llm);
 
-        Collections.sort(movieRoles);
+        //Collections.sort(movieRoles);
 
         ViewAllMoviesAdapter adapter = new ViewAllMoviesAdapter(movieRoles,ListActivity.this);
         recyclerView.setAdapter(adapter);
@@ -54,13 +52,15 @@ public class ListActivity extends AppCompatActivity {
 
     public void setAnimation()
     {
-        if(Build.VERSION.SDK_INT>20) {
-            Slide slide = new Slide();
-            slide.setDuration(500);
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setInterpolator(new AccelerateDecelerateInterpolator());
-            getWindow().setEnterTransition(slide);
-            getWindow().setExitTransition(slide);
-        }
+
+            if(Build.VERSION.SDK_INT>20) {
+                Slide slide = new Slide();
+                slide.setSlideEdge(Gravity.LEFT);
+                slide.setDuration(400);
+                slide.setInterpolator(new AccelerateDecelerateInterpolator());
+                getWindow().setExitTransition(slide);
+                getWindow().setEnterTransition(slide);
+            }
+
     }
 }

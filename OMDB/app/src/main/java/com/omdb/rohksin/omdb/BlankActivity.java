@@ -282,7 +282,6 @@ public class BlankActivity extends AppCompatActivity {
                 LinearLayout actorCard2 = (LinearLayout) layout1.findViewById(R.id.actor2);
                 LinearLayout actorCard3 = (LinearLayout) layout1.findViewById(R.id.actor3);
 
-
                 //LinearLayout actorHolder1 = (LinearLayout)actorCard1.findViewById(R.id.actorHolder);
                 ImageView actorImage1 = (ImageView) actorCard1.findViewById(R.id.actorImage);
                 TextView actorName1 = (TextView) actorCard1.findViewById(R.id.actorName);
@@ -485,6 +484,24 @@ public class BlankActivity extends AppCompatActivity {
             TextView language = (TextView)aboutSectionCard.findViewById(R.id.original_language);
             language.setText(movie.getOriginalLanguage());
 
+            // TODO FILTER MOVIE ACTIVITY INTEGRATION
+
+            language.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(BlankActivity.this,FilterMovieActivity.class);
+                    if(Build.VERSION.SDK_INT>20)
+                    {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                        startActivity(i,options.toBundle());
+                    }
+                    else {
+                        startActivity(i);
+                    }
+                }
+            });
+
+
             TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
 
             LinearLayout genres = (LinearLayout)aboutSectionCard.findViewById(R.id.genres);
@@ -515,7 +532,7 @@ public class BlankActivity extends AppCompatActivity {
 
         public void buildGenre(View v)
         {
-             TextView genre1 = (TextView)v.findViewById(R.id.genre1);
+            TextView genre1 = (TextView)v.findViewById(R.id.genre1);
             TextView genre2 = (TextView)v.findViewById(R.id.genre2);
             TextView genre3 = (TextView)v.findViewById(R.id.genre3);
 

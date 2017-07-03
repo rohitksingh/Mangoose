@@ -52,7 +52,6 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
         final MovieRole movieRole= list.get(position);
 
         setFadeAnimation(holder.itemView);
-
         final String imagePath = movieRole.getMoviePosterPath();
         final String thumb = MovieUtils.imageURL(imagePath);
         Log.d("Thumb", thumb);
