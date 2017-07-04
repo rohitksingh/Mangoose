@@ -73,25 +73,15 @@ public class BlankActivity extends AppCompatActivity {
         Intent i = getIntent();
         final String movieId = i.getStringExtra("blankActivityText");
 
-        //textView.setText(movieId);
         CoordinatorLayout parent = (CoordinatorLayout)findViewById(R.id.parent);
         layout = (CollapsingToolbarLayout)findViewById(R.id.title);
-        //EndPoint endPoint = new MovieDetailURL();
-        //String end = endPoint.buildEndPoint(movieId);
 
         URLBuilder urlBuilder = new MovieIDURLBuilder(movieId);
         String end = urlBuilder.bulidURL();
-        Log.d("OBJECT ",end);
-
-
         BroadcastReceiver receiver = new DetailMovieReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(OBJECTMAPPED);
-        Log.d("BR", "0 null" + (movie == null));
         registerReceiver(receiver, filter);
-        Log.d("BR", "00 null" + (movie == null));
-
-        Log.d("ENDOOO",end);
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -217,7 +207,11 @@ public class BlankActivity extends AppCompatActivity {
             TextView movieName = (TextView)overViewCard.findViewById(R.id.movie_name);
             TextView OverViewText = (TextView)overViewCard.findViewById(R.id.OverViewText);
             movieName.setText(movie.getTitle());
-            OverViewText.setText(movie.getOverView());
+            if(!movie.getOverView().equalsIgnoreCase("null")) {
+                overViewCard.setVisibility(View.VISIBLE);
+                OverViewText.setText(movie.getOverView());
+            }
+
 
         }
 
@@ -502,7 +496,7 @@ public class BlankActivity extends AppCompatActivity {
             });
 
 
-            TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
+            final TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
 
             LinearLayout genres = (LinearLayout)aboutSectionCard.findViewById(R.id.genres);
             buildGenre(genres);
@@ -525,6 +519,13 @@ public class BlankActivity extends AppCompatActivity {
                 website.setVisibility(View.VISIBLE);
 
             }
+
+            website.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MovieUtils.openInBrowser(BlankActivity.this,movie.getHomePage());
+                }
+            });
 
 
 

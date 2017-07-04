@@ -1,5 +1,10 @@
 package com.omdb.rohksin.omdb.NewSearch.Utility;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.Browser;
+
 import com.omdb.rohksin.omdb.NewSearch.POJO.Genre;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Language;
 
@@ -43,5 +48,6 @@ public final class FilterUtility {
         map.put(LanguageFilters.TELUGU,new Language("Telugu","te"));
         return map;
     }
+
 
 }

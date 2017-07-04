@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.transition.Slide;
 import android.view.KeyEvent;
@@ -55,7 +56,7 @@ public class SearchActivity extends AppCompatActivity {
 
         setAnimation();
 
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.searchBox);
+        CardView layout = (CardView)findViewById(R.id.searchBox);
         LinearLayout container =(LinearLayout)layout.findViewById(R.id.edittextContainer);
 
         container.setOnClickListener(new View.OnClickListener() {

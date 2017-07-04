@@ -351,6 +351,13 @@ public class PeopleDetailActivity extends AppCompatActivity {
                     .load(MovieUtils.imageURL(actorDetail.getProfileImage()))
                     .into(profileImage);
 
+            profileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MovieUtils.previewImage(PeopleDetailActivity.this,actorDetail.getProfileImage());
+                }
+            });
+
             if(!actorDetail.getBirthday().equalsIgnoreCase("null")) {
                 aboutSection.setVisibility(View.VISIBLE);
                 birthDay.setText(MovieUtils.getFormattedDate(actorDetail.getBirthday()));
@@ -367,6 +374,13 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 website.setText(actorDetail.getWebSite());
                 website.setVisibility(View.GONE);
             }
+
+            website.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MovieUtils.openInBrowser(PeopleDetailActivity.this,actorDetail.getWebSite());
+                }
+            });
 
 
 

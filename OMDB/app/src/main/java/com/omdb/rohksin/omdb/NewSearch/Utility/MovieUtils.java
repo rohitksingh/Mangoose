@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -259,5 +260,15 @@ public class MovieUtils {
         String ouput = sdf.format(d);
         return ouput;
     }
+
+    public static void openInBrowser(Context context,String movieUrl)
+    {
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(movieUrl));
+        context.startActivity(i);
+
+    }
+
 
 }

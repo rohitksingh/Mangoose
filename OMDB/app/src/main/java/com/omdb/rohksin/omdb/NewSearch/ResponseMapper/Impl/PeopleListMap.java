@@ -45,11 +45,14 @@ public class PeopleListMap implements ResponseMapper {
 
             List<Movie> movies = new ArrayList<Movie>();
 
-/*          TODO INTEGRATE KNOWN FOR
+            /*
+        //TODO INTEGRATE KNOWN FOR
             for(int j=0;j<top3;j++)
             {
-                Log.d("ACTORS DETAL",);
+                Log.d("ACTORS DETAIL",i+"");
                 JSONObject movieObject = (JSONObject)knownfor.get(j);
+
+                Log.d("ACTORS DETAIL null",(movieObject==null)+"");
 
                 Movie movie = new Movie();
                 movie.setName(movieObject.getString("title"));
@@ -57,7 +60,10 @@ public class PeopleListMap implements ResponseMapper {
                 movie.setPosterThumbnail(movieObject.getString("poster_path"));
                 movies.add(movie);
             }
+
             */
+            detail.setKnownFor(movies);
+
             peopleDetails.add(detail);
         }
 
