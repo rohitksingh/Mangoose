@@ -21,37 +21,39 @@
         android:layout_margin="10dp"
 
         />
-    <TextView
-        android:id="@+id/crewName"
-        android:layout_toEndOf="@id/crewImage"
+    >
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="35dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/crewImage"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        >
+    <TextView
+        android:id="@+id/crewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:text="HEROekjkjdkjkdj \nsdsdlljljljljljljljljljljljljljljljoooooooooooooooooooooooooo"
+        android:text="Lisa Hayden"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:textColor="#000000"
-        android:gravity="center"
+        android:layout_gravity="left"
         />
     <TextView
         android:id="@+id/crewRole"
-        android:layout_toEndOf="@id/crewImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/crewName"
-        android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="10dp"
-        android:text="( HERO )"
+        android:text="( Alaska )"
         android:textSize="20dp"
         android:textColor="#000000"
-        android:gravity="center"
+        android:layout_gravity="left"
         />
-
+    </LinearLayout>
 </RelativeLayout>
 </android.support.v7.widget.CardView>

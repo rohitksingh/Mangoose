@@ -20,37 +20,35 @@
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
         />
-    <TextView
-        android:id="@+id/actorName"
-        android:layout_toRightOf="@id/actorImage"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="35dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/actorImage"
+        android:layout_centerVertical="true"
+        android:gravity="center"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
+        >
+    <TextView
+        android:id="@+id/actorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="HEROekjkjdkjkdj \nsdsdlljljljljljljljljljljljljljljljoooooooooooooooooooooooooo"
+        android:text="Aamir Khan"
         android:textStyle="bold"
         android:textSize="20dp"
         android:textColor="#000000"
-        android:gravity="center"
+        android:layout_gravity="left"
         />
     <TextView
         android:id="@+id/characterName"
-        android:layout_toRightOf="@id/actorImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/actorName"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="10dp"
         android:text="( HERO )"
         android:textSize="20dp"
         android:textColor="#000000"
-        android:gravity="center"
+        android:layout_gravity="left"
         />
-
+</LinearLayout>
 </RelativeLayout>
 </android.support.v7.widget.CardView>

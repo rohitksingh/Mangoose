@@ -57,7 +57,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
         thumb = MovieUtils.imageURL(thumb);
         Log.d("Thumb", thumb);
         Picasso.with(context)
-                .load(thumb)
+                .load(thumb).error(R.drawable.placeholder)
                 .into(holder.posterThumbnail);
 
 

@@ -65,7 +65,7 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
         thumb = MovieUtils.imageURL(thumb);
         Log.d("Thumb", thumb);
         Picasso.with(context)
-                .load(thumb)
+                .load(thumb).error(R.drawable.placeholder)
                 .into(holder.posterThumbnail);
 
         holder.title.setOnClickListener(new View.OnClickListener() {
