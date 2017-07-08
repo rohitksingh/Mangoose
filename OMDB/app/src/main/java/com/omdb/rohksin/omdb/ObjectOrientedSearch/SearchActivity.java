@@ -65,8 +65,6 @@ public class SearchActivity extends AppCompatActivity {
         CardView layout = (CardView)findViewById(R.id.searchBox);
         RelativeLayout container =(RelativeLayout)layout.findViewById(R.id.edittextContainer);
 
-        cancel = (ImageView)container.findViewById(R.id.cancel);
-
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +76,14 @@ public class SearchActivity extends AppCompatActivity {
 
 
         seachEditText = (EditText)layout.findViewById(R.id.search_movies);
+
+        cancel = (ImageView)container.findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seachEditText.setText("");
+            }
+        });
         peopleButton = (TextView)layout.findViewById(R.id.personSearch);
         moviesButton = (TextView)layout.findViewById(R.id.movieSearch);
         TvShowButton = (TextView)findViewById(R.id.TVShowSearch);

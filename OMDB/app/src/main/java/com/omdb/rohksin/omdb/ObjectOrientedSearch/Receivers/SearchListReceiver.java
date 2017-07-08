@@ -57,6 +57,10 @@ public class SearchListReceiver extends BroadcastReceiver {
             if(intent.getStringExtra(Search.SEARCH_TYPE).equalsIgnoreCase("PEOPLE")) {
 
                 ArrayList<PeopleDetail> peopleDetails = (ArrayList<PeopleDetail>) intent.getSerializableExtra(Search.RESULT);
+                if(peopleDetails.size()==0)
+                {
+                    NoResultFound();
+                }
                 PeopleListAdapter adapter = new PeopleListAdapter(peopleDetails, context);
                 recyclerView.setAdapter(adapter);
 
@@ -77,6 +81,10 @@ public class SearchListReceiver extends BroadcastReceiver {
             {
 
                 ArrayList<TvShow> tvShowsList = (ArrayList<TvShow>) intent.getSerializableExtra(Search.RESULT);
+                if(tvShowsList.size()==0)
+                {
+                    NoResultFound();
+                }
                 TVShowListAdapter adapter = new TVShowListAdapter(tvShowsList,context);
                 recyclerView.setAdapter(adapter);
             }
