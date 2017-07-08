@@ -30,24 +30,31 @@
             <include layout="@layout/seachbox"
                 android:id="@+id/searchBox"
                 />
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/main.toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin"
 
-                />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:gravity="center"
+        >
+      <TextView
+          android:id="@+id/comingSoon"
+          android:layout_width="match_parent"
+          android:layout_height="100dp"
+          android:text="Coming Soon"
+          android:gravity="center"
+          />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@id/comingSoon"
         >
     </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_height="wrap_content"

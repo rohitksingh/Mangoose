@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.NewSearch.POJO.TvShow;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +46,12 @@ public class SearchListReceiver extends BroadcastReceiver {
         if (intent.getAction().equalsIgnoreCase(Search.SEARCH_FINISHED)) {
 
             RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+
+            hideMsg();
+            stopAnimation();
+
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+
             recyclerView.setLayoutManager(linearLayoutManager);
 
             if(intent.getStringExtra(Search.SEARCH_TYPE).equalsIgnoreCase("PEOPLE")) {
@@ -56,6 +65,10 @@ public class SearchListReceiver extends BroadcastReceiver {
             {
 
                 ArrayList<Movie> movieList = (ArrayList<Movie>) intent.getSerializableExtra(Search.RESULT);
+                if(movieList.size()==0)
+                {
+                    NoResultFound();
+                }
                 RvAdapter adapter = new RvAdapter(movieList,context);
                 recyclerView.setAdapter(adapter);
 
@@ -69,5 +82,27 @@ public class SearchListReceiver extends BroadcastReceiver {
             }
 
         }
+    }
+
+
+
+    public void stopAnimation()
+    {
+        ImageView cancelButton = (ImageView)view.findViewById(R.id.cancel);
+        cancelButton.clearAnimation();
+    }
+
+
+    public void hideMsg()
+    {
+        TextView layout = (TextView) view.findViewById(R.id.comingSoon);
+        layout.setVisibility(View.GONE);
+    }
+
+    public void NoResultFound()
+    {
+            TextView layout = (TextView) view.findViewById(R.id.comingSoon);
+            layout.setVisibility(View.VISIBLE);
+            layout.setText("NO RESULT FOUND :(");
     }
   }

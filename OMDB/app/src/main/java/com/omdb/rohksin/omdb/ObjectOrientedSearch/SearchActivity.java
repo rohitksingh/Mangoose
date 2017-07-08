@@ -13,10 +13,13 @@ import android.transition.Slide;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,6 +42,9 @@ public class SearchActivity extends AppCompatActivity {
     private TextView moviesButton;
     private TextView TvShowButton;
     private EditText seachEditText;
+
+    private ImageView cancel;
+
     private int SearchType =3;
 
     private int ACTIVE = Color.WHITE;
@@ -57,7 +63,10 @@ public class SearchActivity extends AppCompatActivity {
         setAnimation();
 
         CardView layout = (CardView)findViewById(R.id.searchBox);
-        LinearLayout container =(LinearLayout)layout.findViewById(R.id.edittextContainer);
+        RelativeLayout container =(RelativeLayout)layout.findViewById(R.id.edittextContainer);
+
+        cancel = (ImageView)container.findViewById(R.id.cancel);
+
 
         container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,16 +106,19 @@ public class SearchActivity extends AppCompatActivity {
                     com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search search ;
                     if(SearchType==1) {
                         search = new PeopleSearch(seachEditText.getText() + "");
+                        startLoadingAnimation();
                         search.search(SearchActivity.this);
                     }
                     else if(SearchType==3)
                     {
                         search = new MovieSearch(seachEditText.getText() +"");
+                        startLoadingAnimation();
                         search.search(SearchActivity.this);
                     }
                     else
                     {
                         search = new TVShowSearch(seachEditText.getText() +"");
+                        startLoadingAnimation();
                         search.search(SearchActivity.this);
                     }
 
@@ -150,6 +162,14 @@ public class SearchActivity extends AppCompatActivity {
         TvShowButton.setTextColor(INACTIVE);
         moviesButton.setTextColor(ACTIVE);
 
+    }
+
+    public void startLoadingAnimation()
+    {
+        Animation anim = new RotateAnimation(0.0f,360.0f,cancel.getPivotX(),cancel.getPivotY());
+        anim.setDuration(500);
+        anim.setRepeatCount(-1);
+        cancel.setAnimation(anim);
     }
 
     public void indicateSearchType(int SearchType)

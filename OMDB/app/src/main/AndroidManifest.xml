@@ -67,6 +67,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
 
+        <activity android:name=".ObjectOrientedSearch.HomePage.MainSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            >
+
+        </activity>
+
     </application>
 
 </manifest>

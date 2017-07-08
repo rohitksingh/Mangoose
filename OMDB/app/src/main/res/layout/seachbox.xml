@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
     >
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/edittextContainer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -24,19 +24,32 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         >
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/cancel"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            />
         <EditText
             android:id="@+id/search_movies"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:gravity="center"
+            android:gravity="left"
             android:textColor="#000000"
             android:background="@null"
             android:layout_gravity="center"
+            android:layout_toLeftOf="@id/cancel"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
             />
-    </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
