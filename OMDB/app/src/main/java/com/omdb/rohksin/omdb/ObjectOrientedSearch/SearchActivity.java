@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.Receivers.SearchListReceiver;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.MovieSearch;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;
@@ -61,6 +62,9 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.main_search_page);
 
         setAnimation();
+        //BuildGenresListOnce
+        MovieUtils.buildGenres();
+
 
         CardView layout = (CardView)findViewById(R.id.searchBox);
         RelativeLayout container =(RelativeLayout)layout.findViewById(R.id.edittextContainer);

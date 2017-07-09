@@ -14,6 +14,10 @@ public class Movie implements Serializable{
     private String movieId;
     private String overview;
 
+    private String[] genres;
+
+    private String originalLanguage;
+
     public String getMovieId() {
         return movieId;
     }
@@ -52,5 +56,21 @@ public class Movie implements Serializable{
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String[] getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String[] genres) {
+        this.genres = genres;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 }

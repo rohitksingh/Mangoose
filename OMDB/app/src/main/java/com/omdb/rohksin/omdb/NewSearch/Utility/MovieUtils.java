@@ -35,10 +35,11 @@ public class MovieUtils {
 
 
     public static final String PREVIEW_IMAGE = "com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils.PREVIEW_IMAGE";
-
     public static final String JSON_DATE_FORMAT = "yyyy-MM-dd";
     public static final String OUTPUT_DATE_FORMAT = "d MMM yyyy";
     public static final String SORTABLE_DATE_FORMAT = "yyyy-MM-dd";
+
+    public static Map<String,String> genres = null;
 
     public static String imageURL(String name)
     {
@@ -126,7 +127,7 @@ public class MovieUtils {
                  video = new Video();
 
                 JSONObject videoObject = array.getJSONObject(i);
-                video.setId((String)videoObject.get("id"));
+                video.setId((String) videoObject.get("id"));
                 video.setKey((String) videoObject.get("key"));
                 video.setName((String) videoObject.get("name"));
                 video.setType((String) videoObject.get("type"));
@@ -267,6 +268,45 @@ public class MovieUtils {
         i.setAction(Intent.ACTION_VIEW);
         i.setData(Uri.parse(movieUrl));
         context.startActivity(i);
+
+    }
+
+
+    public static String getGenre(String[] genreIds)
+    {
+        StringBuilder builder = new StringBuilder();
+        for(String id:genreIds)
+        {
+            builder.append(genres.get(id)+",");
+        }
+
+        String genres = new String(builder);
+        return genres;
+    }
+
+
+    public static void buildGenres()
+    {
+        genres = new LinkedHashMap<String,String>();
+        genres.put("28","Action");
+        genres.put("12","Adventure");
+        genres.put("16","Animation");
+        genres.put("35","Comedy");
+        genres.put("80","Crime");
+        genres.put("99","Documentary");
+        genres.put("18","Drama");
+        genres.put("10751","Family");
+        genres.put("14","Fantasy");
+        genres.put("36","History");
+        genres.put("27","Horror");
+        genres.put("10402","Music");
+        genres.put("9648","Mystery");
+        genres.put("10749","Romance");
+        genres.put("878","Science Fiction");
+        genres.put("10770","TV Movie");
+        genres.put("53","Thriller");
+        genres.put("10752","War");
+        genres.put("37","Western");
 
     }
 

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.omdb.rohksin.omdb.Movie;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
+import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +43,20 @@ public class MovieListMap implements ResponseMapper {
             String overView = movieObject.getString("overview");
             if(overView!=null)
                 movie.setOverview(overView);
+
+            movie.getGenres();
+
+
+            JSONArray genres = movieObject.getJSONArray("genre_ids");
+            String[] allGenres= new String[genres.length()];
+
+            for (int j =0;j<genres.length();j++)
+            {
+                allGenres[j]= genres.getString(j);
+            }
+
+            movie.setGenres(allGenres);
+            movie.setOriginalLanguage(movieObject.getString("original_language"));
             movies.add(movie);
 
         }

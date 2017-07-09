@@ -1,5 +1,6 @@
 package com.omdb.rohksin.omdb.Adaters;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
@@ -7,10 +8,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ViewUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,7 +53,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final MovieViewHolder holder, int position) {
+    public void onBindViewHolder(final MovieViewHolder holder, final int position) {
        // holder.personName.setText(list.get(position).getName());
         final String movieId = list.get(position).getMovieId();
         holder.title.setText(list.get(position).getName());
@@ -72,22 +76,119 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
                 Intent i = new Intent(context, BlankActivity.class);
                 i.putExtra("blankActivityText", movieId);
 
+                if (Build.VERSION.SDK_INT > 20) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, holder.posterThumbnail, "ImageView");
 
-
-                if(Build.VERSION.SDK_INT>20)
-                {
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,holder.posterThumbnail,"ImageView");
-
-                context.startActivity(i, options.toBundle());
-                }
-                else
-                {
-
+                    context.startActivity(i, options.toBundle());
+                } else {
+                    context.startActivity(i);
                 }
 
             }
         });
-       // holder.posterThumbnail.setImageResource();
+
+        holder.viewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(Build.VERSION.SDK_INT>20) {
+                    int x = holder.moreInfoCard.getRight();
+                    int y = holder.moreInfoCard.getBottom();
+                    int radius = (int) Math.hypot(holder.moreInfoCard.getWidth(), holder.moreInfoCard.getHeight());
+                    Animator animator = ViewAnimationUtils.createCircularReveal(holder.moreInfoCard, x, y, 0, radius);
+                    animator.setDuration(500);
+                    animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                    holder.moreInfoCard.setVisibility(View.VISIBLE);
+
+                    Log.d("GENRES", ((list.get(position)).getGenres().length) + "");
+                    if(list.get(position).getGenres().length!=0)
+                    {
+                        holder.genres.setText(MovieUtils.getGenre(list.get(position).getGenres()));
+                        holder.genres.setVisibility(View.VISIBLE);
+                    }
+
+                    holder.originalLanguage.setText(list.get(position).getOriginalLanguage());
+
+                    animator.start();
+                    animator.addListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            holder.mainCard.setVisibility(View.INVISIBLE);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+
+                }
+                else
+                {
+                    holder.mainCard.setVisibility(View.INVISIBLE);
+                    holder.moreInfoCard.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
+        holder.moreInfoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Build.VERSION.SDK_INT>20) {
+                    int x = holder.moreInfoCard.getRight();
+                    int y = holder.moreInfoCard.getBottom();
+                    int radius = (int) Math.hypot(holder.moreInfoCard.getWidth(), holder.moreInfoCard.getHeight());
+                    Animator animator = ViewAnimationUtils.createCircularReveal(holder.moreInfoCard, x, y, radius, 0);
+                    animator.setDuration(500);
+                    animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                    holder.mainCard.setVisibility(View.VISIBLE);
+
+                    animator.start();
+
+                    animator.addListener(new Animator.AnimatorListener() {
+
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+
+                            holder.moreInfoCard.setVisibility(View.INVISIBLE);
+
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
+
+                }
+                else
+                {
+                    holder.moreInfoCard.setVisibility(View.INVISIBLE);
+                    holder.mainCard.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -101,6 +202,12 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
         TextView title;
         TextView releaseYear;
         TextView overView;
+        TextView viewMore;
+        View mainCard;
+        View moreInfoCard;
+        ImageView moreInfoBack;
+        TextView genres;
+        TextView originalLanguage;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +215,16 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
             title = (TextView)itemView.findViewById(R.id.title);
             releaseYear = (TextView)itemView.findViewById(R.id.release_date);
             overView = (TextView)itemView.findViewById(R.id.overview);
+            viewMore = (TextView)itemView.findViewById(R.id.moreInfo);
+
+            mainCard = (View)itemView.findViewById(R.id.mainCard);
+            moreInfoCard = (View)itemView.findViewById(R.id.viewMoreMovieCard);
+            moreInfoBack = (ImageView)moreInfoCard.findViewById(R.id.backToCard);
+
+            genres = (TextView)moreInfoCard.findViewById(R.id.genres);
+            originalLanguage = (TextView)moreInfoCard.findViewById(R.id.original_language);
+
+
 
             if(Build.VERSION.SDK_INT>20) {
                 posterThumbnail.setTransitionName("ImageView");

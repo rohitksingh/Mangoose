@@ -7,7 +7,11 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <RelativeLayout
+    android:id="@+id/mainCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
@@ -76,6 +80,7 @@
         android:gravity="bottom"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:padding="2dp"
         />
     <TextView
         android:id="@+id/genres"
@@ -90,5 +95,9 @@
         android:layout_alignBaseline="@id/release_date"
         android:visibility="invisible"
         />
-</RelativeLayout>
+       </RelativeLayout>
+        <include layout="@layout/view_more_movie_card"
+            android:id="@+id/viewMoreMovieCard"
+            />
+    </FrameLayout>
     </android.support.v7.widget.CardView>
