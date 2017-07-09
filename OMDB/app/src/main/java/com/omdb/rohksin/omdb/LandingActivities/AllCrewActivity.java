@@ -28,6 +28,9 @@ public class AllCrewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setAnimation();
         setContentView(R.layout.image_landing_layout);
+
+        getSupportActionBar().setTitle("Crew");
+
         SerializableCrewList serializableCrewList = (SerializableCrewList)getIntent().getSerializableExtra(BlankActivity.MOVIE_LIST);
         List<Crew> crews = serializableCrewList.getObjectList();
 

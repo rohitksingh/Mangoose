@@ -270,6 +270,9 @@ public class BlankActivity extends AppCompatActivity {
             CardView layout = (CardView)findViewById(R.id.top3Actors);
 
             if(actors.size()>2) {
+
+                layout.setVisibility(View.VISIBLE);
+
                 LinearLayout layout1 = (LinearLayout) layout.findViewById(R.id.movie_cast);
 
                 LinearLayout actorCard1 = (LinearLayout) layout1.findViewById(R.id.actor1);
@@ -385,8 +388,9 @@ public class BlankActivity extends AppCompatActivity {
 
             CardView layout = (CardView)findViewById(R.id.top3crew);
 
-
             if(crews.size()>2) {
+
+                layout.setVisibility(View.VISIBLE);
                 LinearLayout crewCard1 = (LinearLayout) layout.findViewById(R.id.crew1);
                 ImageView crewImage1 = (ImageView) crewCard1.findViewById(R.id.crewImage);
                 TextView crewName1 = (TextView) crewCard1.findViewById(R.id.crewName);
@@ -468,6 +472,8 @@ public class BlankActivity extends AppCompatActivity {
         public void createAboutSection()
         {
             CardView aboutSectionCard = (CardView)findViewById(R.id.aboutSection);
+
+            aboutSectionCard.setVisibility(View.VISIBLE);
 
             TextView releaseDate = (TextView)aboutSectionCard.findViewById(R.id.release_date);
             releaseDate.setText(MovieUtils.getFormattedDate(movie.getRelaseDate()));

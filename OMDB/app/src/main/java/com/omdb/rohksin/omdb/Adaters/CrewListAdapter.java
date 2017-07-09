@@ -54,7 +54,7 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
 
 
         Picasso.with(context)
-                .load(MovieUtils.imageURL(crew.getProfileImage()))
+                .load(MovieUtils.imageURL(crew.getProfileImage())).error(R.drawable.placeholder)
                 .into(holder.crewImage);
 
     }

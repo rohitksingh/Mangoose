@@ -30,6 +30,9 @@ public class AllActorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setAnimation();
         setContentView(R.layout.image_landing_layout);
+
+        getSupportActionBar().setTitle("Cast");
+
         SerializableObject object = (SerializableObject)getIntent().getSerializableExtra(BlankActivity.MOVIE_LIST);
         List<Actor> actorList = object.getObjectList();
 

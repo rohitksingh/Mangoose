@@ -55,7 +55,7 @@ public void onBindViewHolder(final ActorViewHolder holder, int position) {
         Log.d("ImagePICASSO", actor.toString());
 
         holder.actorName.setText(actor.getName());
-        holder.characterName.setText("( "+actor.getCharacterName()+" )");
+        holder.characterName.setText(actor.getCharacterName());
 
         holder.actorName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public void onBindViewHolder(final ActorViewHolder holder, int position) {
         });
 
     Picasso.with(context)
-        .load(MovieUtils.imageURL(actor.getProfileImage()))
+        .load(MovieUtils.imageURL(actor.getProfileImage())).error(R.drawable.placeholder)
         .into(holder.actorImage);
 
         }

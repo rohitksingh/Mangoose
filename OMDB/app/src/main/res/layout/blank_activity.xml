@@ -97,11 +97,6 @@
             <include layout="@layout/top_3_actors"
                 android:id="@+id/top3Actors"
                 />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"
-                />
             <include layout="@layout/top3crew"
                 android:id="@+id/top3crew"
                 />

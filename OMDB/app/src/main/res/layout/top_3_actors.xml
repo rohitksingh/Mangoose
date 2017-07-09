@@ -6,6 +6,7 @@
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:elevation="5dp"
+    android:visibility="gone"
     >
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -69,4 +70,9 @@
             />
     </LinearLayout>
 </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        />
 </android.support.v7.widget.CardView>

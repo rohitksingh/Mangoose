@@ -1,9 +1,7 @@
 package com.omdb.rohksin.omdb.Adaters;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,17 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.omdb.rohksin.omdb.BlankActivity;
-import com.omdb.rohksin.omdb.Movie;
-import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.NewSearch.POJO.TvShow;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
-import com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.omdb.R;
-import com.omdb.rohksin.omdb.TVShowDetailActivity;
+import com.omdb.rohksin.omdb.ComingSoon;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,7 +66,8 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
             public void onClick(View v) {
 
                 Toast.makeText(context,"FOFO",Toast.LENGTH_LONG).show();
-                Intent i = new Intent(context, TVShowDetailActivity.class);
+                //Intent i = new Intent(context, TVShowDetailActivity.class);     Integrate When layout is done
+                Intent i = new Intent(context, ComingSoon.class);
                 i.putExtra("tvshowdetailactivity", movieId);
                 context.startActivity(i);
             }

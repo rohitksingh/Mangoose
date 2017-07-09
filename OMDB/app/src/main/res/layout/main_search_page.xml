@@ -44,7 +44,6 @@
           android:id="@+id/comingSoon"
           android:layout_width="match_parent"
           android:layout_height="100dp"
-          android:text="Coming Soon"
           android:gravity="center"
           />
     <android.support.v7.widget.RecyclerView

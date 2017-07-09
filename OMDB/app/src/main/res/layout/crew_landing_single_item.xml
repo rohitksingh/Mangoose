@@ -16,10 +16,9 @@
         android:id="@+id/crewImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/actor3"
+        android:src="@drawable/placeholder"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
-
         />
     >
     <LinearLayout
