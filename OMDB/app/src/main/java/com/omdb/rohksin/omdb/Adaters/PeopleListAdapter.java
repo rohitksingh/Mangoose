@@ -51,6 +51,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
         final String movieId = list.get(position).getId();
         holder.title.setText(list.get(position).getName());
 
+        holder.knownFor.setText(list.get(position).getKnownForMovies());
 
         String thumb = list.get(position).getPeofileImage();
         //thumb = "http://image.tmdb.org/t/p/w185"+thumb;
@@ -68,7 +69,14 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
                 Intent i = new Intent(context, PeopleDetailActivity.class);
                 i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
 
-                context.startActivity(i);
+                if(Build.VERSION.SDK_INT>20)
+                {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,holder.posterThumbnail,"ACTOR");
+                    context.startActivity(i,options.toBundle());
+                }
+                else {
+                    context.startActivity(i);
+                }
             }
         });
         // holder.posterThumbnail.setImageResource();
@@ -83,12 +91,18 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
 
         ImageView posterThumbnail;
         TextView title;
+        TextView knownFor;
 
 
         public PeopleViewHolder(View itemView) {
             super(itemView);
             posterThumbnail = (ImageView) itemView.findViewById(R.id.posterThumbnail);
             title = (TextView) itemView.findViewById(R.id.title);
+            knownFor = (TextView)itemView.findViewById(R.id.overview);
+
+            if(Build.VERSION.SDK_INT>20)
+            posterThumbnail.setTransitionName("ACTOR");
+
 
         }
     }

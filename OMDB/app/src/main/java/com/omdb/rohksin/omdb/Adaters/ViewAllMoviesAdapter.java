@@ -50,13 +50,12 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
     public void onBindViewHolder(final PosterHolder holder, int position) {
 
         final MovieRole movieRole= list.get(position);
-
-        setFadeAnimation(holder.itemView);
+        //setFadeAnimation(holder.itemView);
         final String imagePath = movieRole.getMoviePosterPath();
         final String thumb = MovieUtils.imageURL(imagePath);
         Log.d("Thumb", thumb);
         Picasso.with(context)
-                .load(thumb)
+                .load(thumb).error(R.drawable.placeholder)
                 .into(holder.moviePoster);
 
         holder.movieName.setText(movieRole.getMovieName());

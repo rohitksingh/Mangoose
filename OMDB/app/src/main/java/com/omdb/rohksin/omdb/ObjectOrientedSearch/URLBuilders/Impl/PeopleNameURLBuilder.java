@@ -25,6 +25,6 @@ public class PeopleNameURLBuilder extends SearchNameURLBuilder {
 
     @Override
     public String getQueryParams() {
-        return "&page=1&include_adult=true";
+        return "&page=1&include_adult=false";
     }
 }

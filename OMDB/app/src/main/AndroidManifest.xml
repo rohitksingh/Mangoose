@@ -55,7 +55,6 @@
         </activity>
 
         <activity android:name=".ListActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             />
         <activity android:name=".PreviewImageActivity"
             android:theme="@style/AppTheme.NoActionBar"
@@ -73,6 +72,7 @@
         </activity>
 
         <activity android:name=".ComingSoon"/>
+        <activity android:name=".SerializableCarriers.BiographyActivity"/>
 
     </application>
 

@@ -29,9 +29,11 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setAnimation();
         setContentView(R.layout.list_layout);
+
+        getSupportActionBar().setTitle("Roles");
 
         //setAnimation();
 

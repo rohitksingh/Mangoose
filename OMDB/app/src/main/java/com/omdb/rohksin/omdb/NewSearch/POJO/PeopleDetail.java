@@ -15,6 +15,15 @@ public class PeopleDetail implements Serializable{
     private String id;
     private String peofileImage;
     private List<Movie> knownFor;
+    private String knownForMovies;
+
+    public String getKnownForMovies() {
+        return knownForMovies;
+    }
+
+    public void setKnownForMovies(String knownForMovies) {
+        this.knownForMovies = knownForMovies;
+    }
 
     public String getId() {
         return id;

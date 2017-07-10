@@ -39,14 +39,40 @@ public class PeopleListMap implements ResponseMapper {
             detail.setPeofileImage(actor.getString("profile_path"));
             JSONArray knownfor = actor.getJSONArray("known_for");
 
+            Log.d("KNOWN FOR",detail.getName() +knownfor.length()+"");
+
             int top3 = 3;
             if(knownfor.length()<3)
             top3 = knownfor.length();
 
             List<Movie> movies = new ArrayList<Movie>();
 
+            StringBuilder builder = new StringBuilder();
+
+            for(int j=0;j<knownfor.length();j++)
+            {
+
+                if(knownfor.getJSONObject(j)!=null) {
+
+
+                    JSONObject movieObject = knownfor.getJSONObject(j);
+
+                    if(movieObject.getString("media_type").equals("tv")) {
+                        builder.append(movieObject.getString("original_name") + ",");
+                    }
+                    else {
+                        builder.append(movieObject.getString("original_title") + ",");
+                    }
+                }
+            }
+
+            detail.setKnownForMovies(new String(builder));
+
             /*
         //TODO INTEGRATE KNOWN FOR
+
+
+
             for(int j=0;j<top3;j++)
             {
                 Log.d("ACTORS DETAIL",i+"");
@@ -62,7 +88,8 @@ public class PeopleListMap implements ResponseMapper {
             }
 
             */
-            detail.setKnownFor(movies);
+
+            Log.d("OBJECT DETAIL",detail.getName()+"\n"+detail.getId()+"\n"+detail.getPeofileImage()+"\n"+detail.getKnownForMovies());
 
             peopleDetails.add(detail);
         }

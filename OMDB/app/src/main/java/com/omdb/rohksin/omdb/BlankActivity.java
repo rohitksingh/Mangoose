@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.transition.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -31,8 +29,6 @@ import com.omdb.rohksin.omdb.Adaters.ActorsListAdapter;
 import com.omdb.rohksin.omdb.LandingActivities.AllActorsActivity;
 import com.omdb.rohksin.omdb.LandingActivities.AllCrewActivity;
 import com.omdb.rohksin.omdb.LandingActivities.AllImageActivity;
-import com.omdb.rohksin.omdb.NewSearch.EndPoint.EndPoint;
-import com.omdb.rohksin.omdb.NewSearch.EndPoint.Impl.MovieDetailURL;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Actor;
 import com.omdb.rohksin.omdb.NewSearch.POJO.Crew;
 import com.omdb.rohksin.omdb.NewSearch.POJO.DetailMovie;
@@ -40,7 +36,6 @@ import com.omdb.rohksin.omdb.NewSearch.POJO.Genre;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
-import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.MovieIDURLBuilder;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.MovieIDURLBuilder;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
 import com.omdb.rohksin.omdb.SerializableCarriers.SerializableCrewList;
@@ -63,7 +58,6 @@ public class BlankActivity extends AppCompatActivity {
     public static String MOVIE_LIST ="com.omdb.rohksin.omdb.BlankActivity.MovieList";
 
     private CollapsingToolbarLayout layout;
-    //private LinearLayout top3Actors;
 
     @Override
     protected void onCreate(Bundle saveBundleInstance)
@@ -92,16 +86,11 @@ public class BlankActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         Log.d("ENDPOINT",response.toString());
-
                         ResponseMapper mapper = new DetailMovieMapper();
                         try {
                             mapper.mapResponse(response);
                             movie = (DetailMovie)mapper.objectMapped();
-                            Log.d("BR","1 null"+(movie==null));
                             sendBroadcast();
-                            Log.d("BR", "3 null" + (movie == null));
-
-
                         }
                         catch (JSONException e)
                         {
@@ -122,15 +111,12 @@ public class BlankActivity extends AppCompatActivity {
 
     }
 
-
     public void sendBroadcast(){
         Intent i = new Intent();
         i.setAction(OBJECTMAPPED);
-        i.putExtra("BlankActiv" +
-                "ityMovie",movie);
+        i.putExtra("BlankActivityMovie",movie);
         sendBroadcast(i);
     }
-
 
     private class DetailMovieReceiver extends BroadcastReceiver
     {
@@ -144,17 +130,15 @@ public class BlankActivity extends AppCompatActivity {
             {
 
                 this.context  = context;
-                //layout.setTitle(movie.getTitle());
+
                 hideTitle(movie.getTitle());
 
                 ImageView imageView = (ImageView)findViewById(R.id.moviePoster);
-
-                ImageView poster = (ImageView)layout.findViewById(R.id.moviePosterThumbnail);
+                final ImageView poster = (ImageView)layout.findViewById(R.id.moviePosterThumbnail);
 
                 if(Build.VERSION.SDK_INT>20) {
                     poster.setTransitionName("ImageView");
                 }
-                //top3Actors = (LinearLayout)findViewById(R.id.top3Actors);
 
                 String imgSrc = MovieUtils.imageHighURL(movie.getBackDropImage());
                 String imgSrc1 = MovieUtils.imageURL(movie.getPosterPath());
@@ -167,6 +151,13 @@ public class BlankActivity extends AppCompatActivity {
                 Picasso.with(context)
                         .load(imgSrc1)
                         .into(poster);
+
+                poster.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MovieUtils.previewImageWithAnimation(BlankActivity.this,movie.getPosterPath() ,poster,"ImageView");
+                    }
+                });
 
                 createOverViewSection();
                 createImageSection();
@@ -280,17 +271,17 @@ public class BlankActivity extends AppCompatActivity {
                 LinearLayout actorCard3 = (LinearLayout) layout1.findViewById(R.id.actor3);
 
                 //LinearLayout actorHolder1 = (LinearLayout)actorCard1.findViewById(R.id.actorHolder);
-                ImageView actorImage1 = (ImageView) actorCard1.findViewById(R.id.actorImage);
+                final ImageView actorImage1 = (ImageView) actorCard1.findViewById(R.id.actorImage);
                 TextView actorName1 = (TextView) actorCard1.findViewById(R.id.actorName);
                 TextView charaterName1 = (TextView) actorCard1.findViewById(R.id.characterName);
 
                 //LinearLayout actorHolder2 = (LinearLayout)actorCard2.findViewById(R.id.actorHolder);
-                ImageView actorImage2 = (ImageView) actorCard2.findViewById(R.id.actorImage);
+                final ImageView actorImage2 = (ImageView) actorCard2.findViewById(R.id.actorImage);
                 TextView actorName2 = (TextView) actorCard2.findViewById(R.id.actorName);
                 TextView charaterName2 = (TextView) actorCard2.findViewById(R.id.characterName);
 
                 // LinearLayout actorHolder3 = (LinearLayout)actorCard3.findViewById(R.id.actorHolder);
-                ImageView actorImage3 = (ImageView) actorCard3.findViewById(R.id.actorImage);
+                final ImageView actorImage3 = (ImageView) actorCard3.findViewById(R.id.actorImage);
                 TextView actorName3 = (TextView) actorCard3.findViewById(R.id.actorName);
                 TextView charaterName3 = (TextView) actorCard3.findViewById(R.id.characterName);
 
@@ -340,6 +331,7 @@ public class BlankActivity extends AppCompatActivity {
                 actorCard3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Intent i = new Intent(BlankActivity.this, PeopleDetailActivity.class);
                         i.putExtra(ActorsListAdapter.ACTOR_ID, actor3.getId());
                         startActivity(i);

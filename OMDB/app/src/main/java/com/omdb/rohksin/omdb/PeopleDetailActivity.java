@@ -1,6 +1,5 @@
 package com.omdb.rohksin.omdb;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,10 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,12 +24,14 @@ import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.omdb.Adaters.ActorsListAdapter;
 import com.omdb.rohksin.omdb.NewSearch.POJO.ActorDetail;
 import com.omdb.rohksin.omdb.NewSearch.POJO.MovieRole;
+import com.omdb.rohksin.omdb.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.ActorDetailMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.omdb.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.omdb.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.Impl.PeopleIDURLBuilder;
 import com.omdb.rohksin.omdb.ObjectOrientedSearch.URLBuilders.URLBuilder;
+import com.omdb.rohksin.omdb.SerializableCarriers.BiographyActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -43,8 +41,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 /**
  * Created by Illuminati on 6/22/2017.
  */
@@ -52,7 +48,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
     private ActorDetail actorDetail;
     private ImageView backDrop;
-    private CircleImageView profileImage;
+    private ImageView profileImage;
     private CardView aboutSection;
     List<MovieRole> roles;
 
@@ -65,7 +61,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
         backDrop = (ImageView)findViewById(R.id.backDrop);
         //profileImage =(CircleImageView)findViewById(R.id.profileImage);
         aboutSection = (CardView)findViewById(R.id.aboutSection);
-        profileImage = (CircleImageView)aboutSection.findViewById(R.id.actorImage);
+        profileImage = (ImageView)aboutSection.findViewById(R.id.actorImage);
 
         if(Build.VERSION.SDK_INT>20)
         {
@@ -134,11 +130,9 @@ public class PeopleDetailActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equalsIgnoreCase(DetailMovieMapper.ObjectMapped))
             {
-                Toast.makeText(context,actorDetail.toString(),Toast.LENGTH_LONG).show();
                 this.context = context;
 
                 createBioGraphy();
-               ///createAboutSetion();
                 createMainContent();
                 createActorsSection();
                 createNewAboutSetion();
@@ -172,12 +166,32 @@ public class PeopleDetailActivity extends AppCompatActivity {
             CardView cardView = (CardView)findViewById(R.id.biography);
             TextView actorName = (TextView)cardView.findViewById(R.id.movie_name);
             TextView biography = (TextView)cardView.findViewById(R.id.OverViewText);
+            TextView readMore = (TextView)cardView.findViewById(R.id.readMore);
 
             if(!actorDetail.getBiography().equalsIgnoreCase("null")) {
                 cardView.setVisibility(View.VISIBLE);
                 actorName.setText("Biography");
                 biography.setText(actorDetail.getBiography());
             }
+
+            readMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(PeopleDetailActivity.this, BiographyActivity.class);
+                    i.putExtra("Biography",actorDetail.getBiography());
+                    i.putExtra("Name",actorDetail.getName());
+
+                    if(Build.VERSION.SDK_INT>20)
+                    {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(PeopleDetailActivity.this);
+                        startActivity(i,options.toBundle());
+                    }
+                    else {
+                        startActivity(i);
+                    }
+
+                }
+            });
 
         }
 
@@ -223,6 +237,8 @@ public class PeopleDetailActivity extends AppCompatActivity {
             CardView layout = (CardView)findViewById(R.id.top3Actors);
 
             if(roles.size()>2) {
+
+                layout.setVisibility(View.VISIBLE);
                 LinearLayout layout1 = (LinearLayout) layout.findViewById(R.id.movie_cast);
 
                 LinearLayout actorCard1 = (LinearLayout) layout1.findViewById(R.id.actor1);
@@ -231,17 +247,16 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
 
                 //LinearLayout actorHolder1 = (LinearLayout)actorCard1.findViewById(R.id.actorHolder);
-                ImageView actorImage1 = (ImageView) actorCard1.findViewById(R.id.actorImage);
+                final ImageView actorImage1 = (ImageView) actorCard1.findViewById(R.id.actorImage);
                 TextView actorName1 = (TextView) actorCard1.findViewById(R.id.actorName);
                 TextView charaterName1 = (TextView) actorCard1.findViewById(R.id.characterName);
 
                 //LinearLayout actorHolder2 = (LinearLayout)actorCard2.findViewById(R.id.actorHolder);
-                ImageView actorImage2 = (ImageView) actorCard2.findViewById(R.id.actorImage);
+                final ImageView actorImage2 = (ImageView) actorCard2.findViewById(R.id.actorImage);
                 TextView actorName2 = (TextView) actorCard2.findViewById(R.id.actorName);
                 TextView charaterName2 = (TextView) actorCard2.findViewById(R.id.characterName);
 
-                // LinearLayout actorHolder3 = (LinearLayout)actorCard3.findViewById(R.id.actorHolder);
-                ImageView actorImage3 = (ImageView) actorCard3.findViewById(R.id.actorImage);
+                final ImageView actorImage3 = (ImageView) actorCard3.findViewById(R.id.actorImage);
                 TextView actorName3 = (TextView) actorCard3.findViewById(R.id.actorName);
                 TextView charaterName3 = (TextView) actorCard3.findViewById(R.id.characterName);
 
@@ -309,6 +324,9 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
                     view.setText("View " + (roles.size() - 3) + " +");
 
+
+                    Collections.sort(roles);
+
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -328,9 +346,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
                             //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                         }
                     });
-
-                    Collections.sort(roles);
-
                 }
 
             }
@@ -354,7 +369,8 @@ public class PeopleDetailActivity extends AppCompatActivity {
             profileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MovieUtils.previewImage(PeopleDetailActivity.this,actorDetail.getProfileImage());
+                    //MovieUtils.previewImage(PeopleDetailActivity.this,actorDetail.getProfileImage());
+                    MovieUtils.previewImageWithAnimation(PeopleDetailActivity.this,actorDetail.getProfileImage(),profileImage,"ImageView");
                 }
             });
 
@@ -382,11 +398,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 }
             });
 
-
-
-
         }
-
     }
 
 }

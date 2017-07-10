@@ -62,7 +62,8 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.main_search_page);
 
         setAnimation();
-        //BuildGenresListOnce
+
+        //BuildGenresListOnce Later Update it From Service Call
         MovieUtils.buildGenres();
 
 
