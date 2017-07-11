@@ -44,8 +44,6 @@ public class ListActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(ListActivity.this);
         recyclerView.setLayoutManager(llm);
 
-        //Collections.sort(movieRoles);
-
         ViewAllMoviesAdapter adapter = new ViewAllMoviesAdapter(movieRoles,ListActivity.this);
         recyclerView.setAdapter(adapter);
 
