@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Hi"
             android:textAllCaps="true"
-            android:background="@android:color/holo_red_light"
+            android:background="@color/colorAccent"
             android:textColor="#ffffff"
             android:padding="10dp"
             android:textStyle="bold"

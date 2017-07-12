@@ -46,11 +46,21 @@ public class SearchActivity extends AppCompatActivity {
 
     private ImageView cancel;
 
-    private int SearchType =3;
-
     private int ACTIVE = Color.WHITE;
     private int INACTIVE = Color.LTGRAY;
 
+    private String movieName="";
+    private String tvShowName="";
+    private String peopleName="";
+
+    private static final int PEOPLE_SEARCH=1;
+    private static final int TV_SHOW_SEARCH=2;
+    private static final int MOVIE_SEARCH=3;
+
+    private int previousSearchType=MOVIE_SEARCH;
+
+
+    private int SearchType =MOVIE_SEARCH;
 
 
     @Override
@@ -115,12 +125,12 @@ public class SearchActivity extends AppCompatActivity {
                             InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
                     com.omdb.rohksin.omdb.ObjectOrientedSearch.SearchAlgo.Search search ;
-                    if(SearchType==1) {
+                    if(SearchType==PEOPLE_SEARCH) {
                         search = new PeopleSearch(seachEditText.getText() + "");
                         startLoadingAnimation();
                         search.search(SearchActivity.this);
                     }
-                    else if(SearchType==3)
+                    else if(SearchType==MOVIE_SEARCH)
                     {
                         search = new MovieSearch(seachEditText.getText() +"");
                         startLoadingAnimation();
@@ -143,24 +153,60 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 seachEditText.setHint("Search People");
-                SearchType = 1;
+                SearchType = PEOPLE_SEARCH;
                 indicateSearchType(SearchType);
+
+                if(previousSearchType!=PEOPLE_SEARCH)
+                {
+                    saveSearchText(previousSearchType);
+                    previousSearchType = PEOPLE_SEARCH;
+                    seachEditText.setText(peopleName);
+                    seachEditText.setSelection(seachEditText.getText().length());
+                }
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
             }
         });
         moviesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 seachEditText.setHint("Search Movies");
-                SearchType = 3;
+                SearchType = MOVIE_SEARCH;
                 indicateSearchType(SearchType);
+
+                if(previousSearchType!=MOVIE_SEARCH)
+                {
+                    saveSearchText(previousSearchType);
+                    previousSearchType = MOVIE_SEARCH;
+                    seachEditText.setText(movieName);
+                    seachEditText.setSelection(seachEditText.getText().length());
+                }
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
             }
         });
         TvShowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 seachEditText.setHint("Search Tv Shows");
-                SearchType = 2;
+                SearchType = TV_SHOW_SEARCH;
                 indicateSearchType(SearchType);
+
+                if(previousSearchType!=TV_SHOW_SEARCH)
+                {
+                    saveSearchText(previousSearchType);
+                    previousSearchType = TV_SHOW_SEARCH;
+                    seachEditText.setText(tvShowName);
+                    seachEditText.setSelection(seachEditText.getText().length());
+                }
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+
             }
         });
     }
@@ -168,7 +214,7 @@ public class SearchActivity extends AppCompatActivity {
     public void defalutSearchType()
     {
         seachEditText.setHint("Search Movies");
-        SearchType = 3;
+        SearchType = MOVIE_SEARCH;
         peopleButton.setTextColor(INACTIVE);
         TvShowButton.setTextColor(INACTIVE);
         moviesButton.setTextColor(ACTIVE);
@@ -177,21 +223,24 @@ public class SearchActivity extends AppCompatActivity {
 
     public void startLoadingAnimation()
     {
-        Animation anim = new RotateAnimation(0.0f,360.0f,cancel.getPivotX(),cancel.getPivotY());
-        anim.setDuration(500);
-        anim.setRepeatCount(-1);
-        cancel.setAnimation(anim);
+        Animation loadingAnimation = new RotateAnimation(0.0f,360.0f,cancel.getPivotX(),cancel.getPivotY());
+        loadingAnimation.setDuration(500);
+        loadingAnimation.setRepeatCount(-1);
+        cancel.setAnimation(loadingAnimation);
     }
+
+
 
     public void indicateSearchType(int SearchType)
     {
-        if(SearchType==1)
+        if(SearchType==PEOPLE_SEARCH)
         {
             peopleButton.setTextColor(ACTIVE);
             TvShowButton.setTextColor(INACTIVE);
             moviesButton.setTextColor(INACTIVE);
 
-        }else if(SearchType==2)
+
+        }else if(SearchType==TV_SHOW_SEARCH)
         {
             peopleButton.setTextColor(INACTIVE);
             TvShowButton.setTextColor(ACTIVE);
@@ -214,5 +263,23 @@ public class SearchActivity extends AppCompatActivity {
             getWindow().setEnterTransition(slide);
         }
     }
+
+
+    public void saveSearchText(int searchType)
+    {
+        if(searchType==MOVIE_SEARCH)
+        {
+            movieName = seachEditText.getText()+"";
+        }
+        else if(searchType==TV_SHOW_SEARCH)
+        {
+            tvShowName = seachEditText.getText()+"";
+        }
+        else {
+            peopleName = seachEditText.getText()+"";
+        }
+    }
+
+
 
 }

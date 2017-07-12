@@ -15,5 +15,7 @@ public class ComingSoon extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coming_soon);
+        getSupportActionBar().setTitle("Coming Soon :)");
+
     }
 }

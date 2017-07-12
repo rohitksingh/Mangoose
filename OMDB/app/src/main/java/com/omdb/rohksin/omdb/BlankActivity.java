@@ -478,6 +478,7 @@ public class BlankActivity extends AppCompatActivity {
 
             // TODO FILTER MOVIE ACTIVITY INTEGRATION
 
+            /*
             language.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -492,6 +493,7 @@ public class BlankActivity extends AppCompatActivity {
                     }
                 }
             });
+            */
 
 
             final TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
