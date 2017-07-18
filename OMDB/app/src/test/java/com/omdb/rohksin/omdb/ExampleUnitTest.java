@@ -1,4 +1,4 @@
-package com.omdb.rohksin.omdb;
+package com.omdb.rohksin.Mangoose;
 
 import org.junit.Test;
 
