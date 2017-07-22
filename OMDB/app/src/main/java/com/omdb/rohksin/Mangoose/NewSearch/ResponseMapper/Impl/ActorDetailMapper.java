@@ -28,6 +28,8 @@ public class ActorDetailMapper implements ResponseMapper {
 
         JSONObject jsonObject = (JSONObject)object;
 
+        Log.d("CRASH", "INSIDE1 MAPPER");
+
         actorDetail.setName(jsonObject.getString("name"));
         actorDetail.setId(jsonObject.getInt("id") + "");
         actorDetail.setBirthday(jsonObject.getString("birthday"));
@@ -36,25 +38,41 @@ public class ActorDetailMapper implements ResponseMapper {
         actorDetail.setGender(jsonObject.getInt("gender") + "");
         actorDetail.setBiography(jsonObject.getString("biography"));
         actorDetail.setProfileImage(jsonObject.getString("profile_path"));
-        actorDetail.setWebSite(jsonObject.getString("homepage"));
 
+        try {
+            actorDetail.setWebSite(jsonObject.getString("homepage"));
+        }
+        catch (JSONException e){
+            actorDetail.setWebSite("");
+        }
         JSONObject movieCredits = jsonObject.getJSONObject("movie_credits");
         JSONArray movieRoles = movieCredits.getJSONArray("cast");
 
         List<MovieRole> roles = new ArrayList<MovieRole>();
+
+
+
         for(int i=0;i<movieRoles.length();i++)
         {
-            JSONObject movie = movieRoles.getJSONObject(i);
-            MovieRole role = new MovieRole();
-            role.setCharacterName(movie.getString("character"));
-            role.setMovieId(movie.getInt("id") + "");
-            role.setMovieName(movie.getString("title"));
-            role.setReleaseDate(movie.getString("release_date"));
-            role.setMoviePosterPath(movie.getString("poster_path"));
-            roles.add(role);
+
+
+            try {
+                JSONObject movie = movieRoles.getJSONObject(i);
+                MovieRole role = new MovieRole();
+
+                role.setCharacterName(movie.getString("character"));
+                role.setMovieId(movie.getInt("id") + "");
+                role.setMovieName(movie.getString("title"));
+                role.setReleaseDate(movie.getString("release_date"));
+                role.setMoviePosterPath(movie.getString("poster_path"));
+                roles.add(role);
+            }
+            catch (JSONException e)
+            {
+                Log.d("CRASH", "caught inside");
+            }
 
         }
-        Log.d("TOTALS",roles.size()+"");
 
         actorDetail.setMovieRoles(roles);
 

@@ -90,12 +90,15 @@ public class PeopleDetailActivity extends AppCompatActivity {
                         try {
                             ResponseMapper mapper = new ActorDetailMapper();
                             mapper.mapResponse(response);
+
                             actorDetail = (ActorDetail)mapper.objectMapped();
+
                             sendBroadcast();
+
                         }
                         catch (JSONException e)
                         {
-
+                            Log.d("CRASH","EXCEPTION handled");
                         }
 
                     }
@@ -130,7 +133,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
             if(intent.getAction().equalsIgnoreCase(DetailMovieMapper.ObjectMapped))
             {
                 this.context = context;
-
                 createBioGraphy();
                 createMainContent();
                 createActorsSection();
@@ -235,6 +237,10 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
             CardView layout = (CardView)findViewById(R.id.top3Actors);
 
+            Log.d("CRASH","ROLES SIZE"+(roles==null));
+
+            Log.d("CRASH","ROLES SIZE == "+roles.size());
+
             if(roles.size()>2) {
 
                 layout.setVisibility(View.VISIBLE);
@@ -261,6 +267,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
 
                 final MovieRole actor1 = roles.get(0);
+
                 Picasso.with(context)
                         .load(MovieUtils.imageURL(actor1.getMoviePosterPath()))
                         .into(actorImage1);
@@ -269,6 +276,8 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 charaterName1.setText(actor1.getCharacterName());
 
                 final MovieRole actor2 = roles.get(1);
+
+
                 Picasso.with(context)
                         .load(MovieUtils.imageURL(actor2.getMoviePosterPath()))
                         .into(actorImage2);
@@ -277,6 +286,8 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 charaterName2.setText(actor2.getCharacterName());
 
                 final MovieRole actor3 = roles.get(2);
+
+
                 Picasso.with(context)
                         .load(MovieUtils.imageURL(actor3.getMoviePosterPath()))
                         .into(actorImage3);
@@ -322,7 +333,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 } else {
 
                     view.setText("View " + (roles.size() - 3) + " +");
-
 
                     Collections.sort(roles);
 

@@ -116,4 +116,11 @@ public class ActorDetail {
     public void setId(String id) {
         this.id = id;
     }
+
+
+    @Override
+    public String toString()
+    {
+        return  this.name +"\n"+this.id+"\n"+this.birthday+"\n"+this.deathday+"\n"+this.birthPlace+"\n"+this.biography;
+    }
 }

@@ -1,5 +1,7 @@
 package com.omdb.rohksin.Mangoose.NewSearch.POJO;
 
+import android.util.Log;
+
 import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
 
 import java.io.Serializable;
@@ -60,8 +62,11 @@ public class MovieRole implements Serializable,Comparable<MovieRole>{
     {
         // Sorting In desending order of Date;
 
+
             String date1 = MovieUtils.getSortedDate(this.getReleaseDate());
+
             String date2 = MovieUtils.getSortedDate(movieRole.getReleaseDate());
+
             return date2.compareTo(date1);
 
 

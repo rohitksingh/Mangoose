@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.View;
 
@@ -241,25 +242,29 @@ public class MovieUtils {
 
     public static String getSortedDate(String fromJson){
 
-        //Log.d("DATE NULL ?", (fromJson==null)+"");
-        if(fromJson==null || fromJson.equalsIgnoreCase("null"))
+
+        try {
+
+            if (fromJson == null || fromJson.equalsIgnoreCase("null")) {
+                return "0";
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat(JSON_DATE_FORMAT);
+            Date d = null;
+            try {
+                d = sdf.parse(fromJson);
+            } catch (ParseException e) {
+
+            }
+
+            sdf = new SimpleDateFormat(SORTABLE_DATE_FORMAT);
+
+            String ouput = sdf.format(d);
+            return ouput;
+        }
+        catch (NullPointerException e)
         {
             return "0";
         }
-        SimpleDateFormat sdf = new SimpleDateFormat(JSON_DATE_FORMAT);
-        Date d=null;
-        try {
-            d = sdf.parse(fromJson);
-        }
-        catch (ParseException e)
-        {
-
-        }
-
-        sdf = new SimpleDateFormat(SORTABLE_DATE_FORMAT);
-
-        String ouput = sdf.format(d);
-        return ouput;
     }
 
     public static void openInBrowser(Context context,String movieUrl)
