@@ -57,6 +57,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private int SearchType =MOVIE_SEARCH;
 
+    private TextView shareThis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -86,6 +88,16 @@ public class SearchActivity extends AppCompatActivity {
 
 
         seachEditText = (EditText)layout.findViewById(R.id.search_movies);
+
+        shareThis = (TextView)findViewById(R.id.Share);
+
+        shareThis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieUtils.shareThisApp(SearchActivity.this);
+            }
+        });
+
 
         cancel = (ImageView)container.findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {

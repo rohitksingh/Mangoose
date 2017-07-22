@@ -36,7 +36,7 @@ public abstract class Search {
 
     public void getResults()
     {
-         JSONObject jsonObject;
+        JSONObject jsonObject;
 
         RequestQueue queue = Volley.newRequestQueue(context);
 

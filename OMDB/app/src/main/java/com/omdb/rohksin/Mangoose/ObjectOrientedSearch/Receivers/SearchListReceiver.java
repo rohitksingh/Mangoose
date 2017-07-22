@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.omdb.rohksin.Mangoose.Adaters.TVShowListAdapter;
 import com.omdb.rohksin.Mangoose.Movie;
 import com.omdb.rohksin.Mangoose.NewSearch.POJO.PeopleDetail;
 import com.omdb.rohksin.Mangoose.NewSearch.POJO.TvShow;
+import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.Mangoose.R;
 
@@ -27,10 +29,13 @@ public class SearchListReceiver extends BroadcastReceiver {
 
 
     private View view;
+    private Context context;
+    private RecyclerView recyclerView;
 
     public SearchListReceiver(View v)
     {
         view = v;
+        this.context = context;
     }
 
     @Override
@@ -38,7 +43,7 @@ public class SearchListReceiver extends BroadcastReceiver {
 
         if (intent.getAction().equalsIgnoreCase(Search.SEARCH_FINISHED)) {
 
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+            recyclerView = (RecyclerView) view.findViewById(R.id.rv);
 
             hideMsg();
             stopAnimation();
@@ -54,8 +59,11 @@ public class SearchListReceiver extends BroadcastReceiver {
                 {
                     NoResultFound();
                 }
-                PeopleListAdapter adapter = new PeopleListAdapter(peopleDetails, context);
-                recyclerView.setAdapter(adapter);
+                else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    PeopleListAdapter adapter = new PeopleListAdapter(peopleDetails, context);
+                    recyclerView.setAdapter(adapter);
+                }
 
             }
             else if(intent.getStringExtra(Search.SEARCH_TYPE).equalsIgnoreCase("MOVIE"))
@@ -66,8 +74,11 @@ public class SearchListReceiver extends BroadcastReceiver {
                 {
                     NoResultFound();
                 }
-                RvAdapter adapter = new RvAdapter(movieList,context);
-                recyclerView.setAdapter(adapter);
+                else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    RvAdapter adapter = new RvAdapter(movieList, context);
+                    recyclerView.setAdapter(adapter);
+                }
 
             }
             else
@@ -78,8 +89,11 @@ public class SearchListReceiver extends BroadcastReceiver {
                 {
                     NoResultFound();
                 }
-                TVShowListAdapter adapter = new TVShowListAdapter(tvShowsList,context);
-                recyclerView.setAdapter(adapter);
+                else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    TVShowListAdapter adapter = new TVShowListAdapter(tvShowsList, context);
+                    recyclerView.setAdapter(adapter);
+                }
             }
 
         }
@@ -98,6 +112,9 @@ public class SearchListReceiver extends BroadcastReceiver {
     {
         TextView layout = (TextView) view.findViewById(R.id.comingSoon);
         layout.setVisibility(View.GONE);
+        TextView share = (TextView) view.findViewById(R.id.Share);
+        share.setVisibility(View.GONE);
+
     }
 
     public void NoResultFound()
@@ -105,5 +122,12 @@ public class SearchListReceiver extends BroadcastReceiver {
             TextView layout = (TextView) view.findViewById(R.id.comingSoon);
             layout.setVisibility(View.VISIBLE);
             layout.setText("NO RESULT FOUND :(");
+
+            TextView share = (TextView) view.findViewById(R.id.Share);
+            share.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
+
+
+
     }
   }

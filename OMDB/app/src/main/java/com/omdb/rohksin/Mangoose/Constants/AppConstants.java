@@ -13,5 +13,6 @@ public class AppConstants {
     public static final String PEOPLE_SEARCH_NAME_BASE_URL= "https://api.themoviedb.org/3/search/person?api_key=";
     public static final String PEOPLE_SEARCH_NAME_SUFFIX= "&language=en-US&query=Sunny%20leone&page=1&include_adult=true";
 
+    public static final String APPSTORE_LINK="https://play.google.com/store/apps/details?id=com.omdb.rohksin.omdb";
 
 }

@@ -9,6 +9,7 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 
+import com.omdb.rohksin.Mangoose.Constants.AppConstants;
 import com.omdb.rohksin.Mangoose.NewSearch.POJO.Actor;
 import com.omdb.rohksin.Mangoose.NewSearch.POJO.Crew;
 import com.omdb.rohksin.Mangoose.NewSearch.POJO.Genre;
@@ -281,6 +282,21 @@ public class MovieUtils {
 
         String genres = new String(builder);
         return genres;
+    }
+
+    public static void shareThisApp(Context context)
+    {
+        try {
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_SUBJECT, "Mangoose");
+            String shareMessage = "\nSearch about your favorite actors,movies and tv shows with Mangoose\n\n";
+            shareMessage = shareMessage + AppConstants.APPSTORE_LINK;
+            i.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            context.startActivity(Intent.createChooser(i, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 
 

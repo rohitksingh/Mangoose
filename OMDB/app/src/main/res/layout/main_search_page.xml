@@ -38,14 +38,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:gravity="center"
         >
       <TextView
           android:id="@+id/comingSoon"
           android:layout_width="match_parent"
           android:layout_height="100dp"
           android:gravity="center"
+          android:visibility="gone"
           />
+
+        <TextView
+            android:id="@+id/Share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorAccent"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/comingSoon"
+            android:textStyle="bold"
+            />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
