@@ -51,7 +51,7 @@
             android:id="@+id/Share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share"
+            android:text="Share this App"
             android:layout_centerHorizontal="true"
             android:background="@color/colorAccent"
             android:padding="10dp"
