@@ -6,5 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_blue_dark"
+        android:src="@drawable/back"
+        android:scaleType="fitXY"
+        />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            android:src="@drawable/actor3"
+            android:scaleType="fitXY"
+            />
+    </LinearLayout>
 </LinearLayout>
 <!--chec parent backgrou if parent layout is getting generated or not -->

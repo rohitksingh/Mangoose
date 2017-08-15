@@ -15,9 +15,9 @@ import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
  */
 public class ComingSoon extends AppCompatActivity {
 
-    private TextView checkUpdates;
-    private TextView share;
-
+    private Button share;
+    private Button checkLatest;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,20 +25,20 @@ public class ComingSoon extends AppCompatActivity {
         setContentView(R.layout.coming_soon);
         getSupportActionBar().setTitle("Coming Soon :)");
 
-        checkUpdates = (TextView)findViewById(R.id.checkUpdates);
-        share = (TextView)findViewById(R.id.share);
-
-        checkUpdates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MovieUtils.openInBrowser(ComingSoon.this, AppConstants.APPSTORE_LINK);
-            }
-        });
+        share = (Button)findViewById(R.id.share);
+        checkLatest = (Button)findViewById(R.id.checkLatest);
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               MovieUtils.shareThisApp(ComingSoon.this);
+                MovieUtils.shareThisApp(ComingSoon.this);
+            }
+        });
+
+        checkLatest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieUtils.openInBrowser(ComingSoon.this, AppConstants.APPSTORE_LINK);
             }
         });
 

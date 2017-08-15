@@ -66,7 +66,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
                 .load(thumb).error(R.drawable.placeholder)
                 .into(holder.posterThumbnail);
 
-        holder.title.setOnClickListener(new View.OnClickListener() {
+
+        holder.mainCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

@@ -61,7 +61,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
                 .into(holder.posterThumbnail);
 
 
-        holder.title.setOnClickListener(new View.OnClickListener() {
+        holder.mainCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -91,6 +91,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
         ImageView posterThumbnail;
         TextView title;
         TextView knownFor;
+        View mainCard;
 
 
         public PeopleViewHolder(View itemView) {
@@ -98,6 +99,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
             posterThumbnail = (ImageView) itemView.findViewById(R.id.posterThumbnail);
             title = (TextView) itemView.findViewById(R.id.title);
             knownFor = (TextView)itemView.findViewById(R.id.overview);
+            mainCard = (View)itemView.findViewById(R.id.peoplemainCard);
 
             if(Build.VERSION.SDK_INT>20)
             posterThumbnail.setTransitionName("ACTOR");

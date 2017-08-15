@@ -228,6 +228,7 @@ public class BlankActivity extends AppCompatActivity {
                 Picasso.with(context)
                         .load(imgsrc2)
                         .into(image2);
+
                 Picasso.with(context)
                         .load(imgsrc3)
                         .into(image3);

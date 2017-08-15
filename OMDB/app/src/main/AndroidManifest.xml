@@ -53,6 +53,9 @@
         <activity android:name="com.omdb.rohksin.Mangoose.ComingSoon"/>
         <activity android:name="com.omdb.rohksin.Mangoose.SerializableCarriers.BiographyActivity"/>
 
+        <activity android:name=".Test">
+        </activity>
+
     </application>
 
 </manifest>
