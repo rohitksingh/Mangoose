@@ -17,7 +17,7 @@ public class ComingSoon extends AppCompatActivity {
 
     private Button share;
     private Button checkLatest;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

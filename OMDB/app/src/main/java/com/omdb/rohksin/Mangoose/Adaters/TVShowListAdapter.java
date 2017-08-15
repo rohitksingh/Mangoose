@@ -61,7 +61,7 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
                 .load(thumb).error(R.drawable.placeholder)
                 .into(holder.posterThumbnail);
 
-        holder.title.setOnClickListener(new View.OnClickListener() {
+        holder.mainCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -86,6 +86,7 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
         TextView title;
         TextView releaseYear;
         TextView overView;
+        View mainCard;
 
         public TvViewHolder(View itemView) {
             super(itemView);
@@ -93,6 +94,7 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
             title = (TextView)itemView.findViewById(R.id.title);
             releaseYear = (TextView)itemView.findViewById(R.id.release_date);
             overView = (TextView)itemView.findViewById(R.id.overview);
+            mainCard = (View)itemView.findViewById(R.id.mainCard);
         }
     }
 }
