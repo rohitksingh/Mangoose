@@ -6,6 +6,8 @@ Get information about your favorite movies, tv show and actors with an awesome m
   
 Current Version 1.0.2     
 
+About Mangoose
+------
 > **Library used** 
 
 [Volley](https://github.com/google/volley) HTTP library for networking.       
@@ -32,7 +34,9 @@ HomePage Search is enriched with Object Oriented Design.
 
 
                    
-**Screenshots** 
+
+Screenshots
+------
 
 ![21558594_1445516722206659_2903627433450310056_n](https://user-images.githubusercontent.com/11274840/30292536-630f1f26-96eb-11e7-83ba-e394695331d8.jpg)
 ![21558625_1445510258873972_663623495900386596_n](https://user-images.githubusercontent.com/11274840/30292546-6efb3112-96eb-11e7-9e4f-2a8c48ddc515.jpg)
