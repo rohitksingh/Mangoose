@@ -5,6 +5,32 @@ Get information about your favorite movies, tv show and actors with an awesome m
 [Mangoose][1] 
   
 Current Version 1.0.2     
+
+> **Library used** 
+
+[Volley](https://github.com/google/volley) HTTP library for networking.       
+[Picasso](https://github.com/square/picasso)  For Async image loading and caching
+
+> **Views,ViewGroup, Widgets used**
+
+- Coordinator View
+- CardViews 
+- RecyclerView
+- Custom CircleView
+
+> **Mangoose uses** 
+
+- BroadcastReceiver
+- Implicit, Explicit Intents 
+- Android Transition API
+- Reveal Transition 
+- SharedTransition
+- Fragments
+
+HomePage Search is enriched with Object Oriented Design.
+
+
+
                    
 **Screenshots** 
 
