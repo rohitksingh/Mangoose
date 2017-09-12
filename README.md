@@ -4,7 +4,9 @@ Get information about your favorite movies, tv show and actors with an awesome m
 **Play Store Link**  
 [Mangoose][1] 
   
-Current Version 1.0.2     
+Current Version 1.0.2  
+![en_badge_web_generic](https://user-images.githubusercontent.com/11274840/30340509-9cb20308-97a7-11e7-8352-d717be004b46.png)
+
 
 About Mangoose
 ------
