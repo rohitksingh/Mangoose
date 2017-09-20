@@ -50,4 +50,18 @@ Screenshots
 ![21463255_1445516725539992_8878549551036834264_n](https://user-images.githubusercontent.com/11274840/30293018-02d46902-96ed-11e7-965e-818ae8aafc8f.jpg)
 
 
+
+</br></br>
+## About author
+<p align="center">This Repository is developed and maintained by </p>
+<p align="center">
+  <a href="https://stackoverflow.com/users/4700156/rohit-singh?tab=profile"><img width="100" height="100" src="https://user-images.githubusercontent.com/11274840/30627155-38952a30-9dec-11e7-9072-a00d9a86bdb8.gif">
+</p></a>
+<a href="https://stackoverflow.com/users/4700156/rohit-singh?tab=profile">
+<p align="center">
+  Rohit Singh
+</p>
+</a>
+
+
   [1]: https://play.google.com/store/apps/details?id=com.omdb.rohksin.omdb&hl=en
