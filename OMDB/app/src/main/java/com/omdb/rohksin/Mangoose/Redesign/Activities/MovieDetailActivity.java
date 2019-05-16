@@ -44,6 +44,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -275,9 +276,10 @@ public class MovieDetailActivity extends AppCompatActivity {
             viewMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
+
+
                     Intent i = new Intent(MovieDetailActivity.this, AllImageActivity.class);
-                    i.putStringArrayListExtra(MOVIE_LIST, movie.getImages());
+                    i.putExtra(MOVIE_LIST, (Serializable)movie.images.backdrops);
                     if(Build.VERSION.SDK_INT>20)
                     {
                         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
@@ -287,7 +289,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                         startActivity(i);
                     }
 
-                    */
+
 
                 }
 
@@ -392,13 +394,13 @@ public class MovieDetailActivity extends AppCompatActivity {
 
                     view.setText("View " + (actors.size() - 3) + " +");
 
-                    /*
+
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(MovieDetailActivity.this, AllActorsActivity.class);
-                            SerializableObject serializableObject = new SerializableObject(actors);
-                            i.putExtra(MovieDetailActivity.MOVIE_LIST, serializableObject);
+
+                            i.putExtra(MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.cast);
                             if(Build.VERSION.SDK_INT>20)
                             {
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
@@ -409,7 +411,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    */
+
 
                 }
 
