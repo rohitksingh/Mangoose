@@ -15,4 +15,11 @@ public class AppConstants {
 
     public static final String APPSTORE_LINK="https://play.google.com/store/apps/details?id=com.omdb.rohksin.omdb";
 
+
+
+
+    //Key Value Pairs
+    public static final String MOVIE_ID = "com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity";
+
+
 }

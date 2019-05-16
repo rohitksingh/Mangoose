@@ -28,35 +28,48 @@ import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.Mangoose.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
-import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
-import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
-import com.omdb.rohksin.Mangoose.Redesign.Models.DetailMovie;
-import com.omdb.rohksin.Mangoose.Redesign.Models.Genre;
-import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
-import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Genre;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Movie;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.MovieIDURLBuilder;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
-import com.omdb.rohksin.Mangoose.SerializableCarriers.SerializableCrewList;
-import com.omdb.rohksin.Mangoose.SerializableCarriers.SerializableObject;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by Illuminati on 6/17/2017.
+ *
+ * Common Tasks in Activity
+ * 1) Getting Movie Id
+ * 2) Creating url
+ * 3) Make VolleyRequest
+ * 4) Parse Response
+ * 5) Listen for Response
+ * 6) Map to POJO
+ *
  */
+
+
+
 public class MovieDetailActivity extends AppCompatActivity {
 
-    private DetailMovie movie;
+    private Movie movie;
     public static String OBJECTMAPPED ="com.omdb.rohksin.omdb.MovieDetailActivity.ObjectMapped";
     public static String MOVIE_LIST ="com.omdb.rohksin.omdb.MovieDetailActivity.MovieList";
 
     private CollapsingToolbarLayout layout;
+
+    private static final String TAG = "MovieDetailActivity";
 
     @Override
     protected void onCreate(Bundle saveBundleInstance)
@@ -64,13 +77,13 @@ public class MovieDetailActivity extends AppCompatActivity {
         super.onCreate(saveBundleInstance);
         setContentView(R.layout.blank_activity);
         Intent i = getIntent();
-        final String movieId = i.getStringExtra("blankActivityText");
+        final String movieId = i.getStringExtra(AppConstants.MOVIE_ID);
 
         CoordinatorLayout parent = (CoordinatorLayout)findViewById(R.id.parent);
         layout = (CollapsingToolbarLayout)findViewById(R.id.title);
 
         URLBuilder urlBuilder = new MovieIDURLBuilder(movieId);
-        String end = urlBuilder.bulidURL();
+        final String end = urlBuilder.bulidURL();
         BroadcastReceiver receiver = new DetailMovieReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(OBJECTMAPPED);
@@ -84,17 +97,18 @@ public class MovieDetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.d("ENDPOINT",response.toString());
-                        ResponseMapper mapper = new DetailMovieMapper();
-                        try {
-                            mapper.mapResponse(response);
-                            movie = (DetailMovie)mapper.objectMapped();
-                            sendBroadcast();
-                        }
-                        catch (JSONException e)
-                        {
+                        Log.d(TAG, "onResponse: "+ end);
+                        Log.d(TAG, "onResponse: "+ response.toString() );
 
-                        }
+
+
+
+                        //ResponseMapper mapper = new DetailMovieMapper();
+                        //mapper.mapResponse(response);
+                        //movie = (DetailMovie)mapper.objectMapped();
+                        getMovieObject(response.toString());
+                        sendBroadcast();
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -107,15 +121,33 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         queue.add(request);
 
-
     }
 
     public void sendBroadcast(){
         Intent i = new Intent();
         i.setAction(OBJECTMAPPED);
-        i.putExtra("BlankActivityMovie",movie);
         sendBroadcast(i);
     }
+
+    private void getMovieObject(String jsonString) {
+
+        Log.d(TAG, "IN: ");
+        Moshi moshi = new Moshi.Builder()
+                .build();
+
+        JsonAdapter<Movie> jsonAdapter = moshi.adapter(Movie.class);
+
+        try {
+            movie = jsonAdapter.fromJson(jsonString);
+
+        }catch (IOException e)
+        {
+            Log.d(TAG, "EXCEPTION");
+        }
+
+    }
+
+
 
     private class DetailMovieReceiver extends BroadcastReceiver
     {
@@ -130,7 +162,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
                 this.context  = context;
 
-                hideTitle(movie.getTitle());
+                hideTitle(movie.title);
 
                 ImageView imageView = (ImageView)findViewById(R.id.moviePoster);
                 final ImageView poster = (ImageView)layout.findViewById(R.id.moviePosterThumbnail);
@@ -139,8 +171,8 @@ public class MovieDetailActivity extends AppCompatActivity {
                     poster.setTransitionName("ImageView");
                 }
 
-                String imgSrc = MovieUtils.imageHighURL(movie.getBackDropImage());
-                String imgSrc1 = MovieUtils.imageURL(movie.getPosterPath());
+                String imgSrc = MovieUtils.imageHighURL(movie.backdrop_path);
+                String imgSrc1 = MovieUtils.imageURL(movie.poster_path);
 
 
                 Picasso.with(context)
@@ -154,7 +186,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 poster.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MovieUtils.previewImageWithAnimation(MovieDetailActivity.this,movie.getPosterPath() ,poster,"ImageView");
+                        MovieUtils.previewImageWithAnimation(MovieDetailActivity.this,movie.poster_path ,poster,"ImageView");
                     }
                 });
 
@@ -196,30 +228,34 @@ public class MovieDetailActivity extends AppCompatActivity {
             CardView overViewCard = (CardView)findViewById(R.id.overview);
             TextView movieName = (TextView)overViewCard.findViewById(R.id.movie_name);
             TextView OverViewText = (TextView)overViewCard.findViewById(R.id.OverViewText);
-            movieName.setText(movie.getTitle());
-            if(!movie.getOverView().equalsIgnoreCase("null")) {
+            movieName.setText(movie.title);
+            if(!movie.overview.equalsIgnoreCase("null")) {
                 overViewCard.setVisibility(View.VISIBLE);
-                OverViewText.setText(movie.getOverView());
+                OverViewText.setText(movie.overview);
             }
 
 
         }
 
+
         public void createImageSection()
         {
+
             FrameLayout top3Images = (FrameLayout)findViewById(R.id.top3Images);
             LinearLayout imageContainer = (LinearLayout)top3Images.findViewById(R.id.imageContainer);
+
+            List<Backdrop> backdrops = movie.images.backdrops;
+
             ImageView image1 = (ImageView)imageContainer.findViewById(R.id.image1);
             LinearLayout imageContainer1 = (LinearLayout)imageContainer.findViewById(R.id.imageContainer1);
             ImageView image2 = (ImageView)imageContainer1.findViewById(R.id.image2);
             ImageView image3 = (ImageView)imageContainer1.findViewById(R.id.image3);
 
-            ArrayList<String> images = movie.getImages();
 
-            if(images.size()>2) {
-                String imgsrc1 = MovieUtils.imageHighURL(images.get(0));
-                String imgsrc2 = MovieUtils.imageHighURL(images.get(1));
-                String imgsrc3 = MovieUtils.imageHighURL(images.get(2));
+            if(backdrops.size()>2) {
+                String imgsrc1 = MovieUtils.imageHighURL(backdrops.get(0).file_path);
+                String imgsrc2 = MovieUtils.imageHighURL(backdrops.get(1).file_path);
+                String imgsrc3 = MovieUtils.imageHighURL(backdrops.get(2).file_path);
 
                 Picasso.with(context)
                         .load(imgsrc1)
@@ -239,6 +275,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             viewMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    /*
                     Intent i = new Intent(MovieDetailActivity.this, AllImageActivity.class);
                     i.putStringArrayListExtra(MOVIE_LIST, movie.getImages());
                     if(Build.VERSION.SDK_INT>20)
@@ -249,14 +286,22 @@ public class MovieDetailActivity extends AppCompatActivity {
                     else {
                         startActivity(i);
                     }
+
+                    */
+
                 }
+
             });
+
+
 
         }
 
         public void createActorsSection()
         {
-            final List<Actor> actors = movie.getActors();
+
+
+            final List<Cast> actors = movie.casts.cast;
 
             CardView layout = (CardView)findViewById(R.id.top3Actors);
 
@@ -286,36 +331,36 @@ public class MovieDetailActivity extends AppCompatActivity {
                 TextView charaterName3 = (TextView) actorCard3.findViewById(R.id.characterName);
 
 
-                final Actor actor1 = actors.get(0);
+                final Cast actor1 = actors.get(0);
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(actor1.getProfileImage()))
+                        .load(MovieUtils.imageURL(actor1.profile_path))
                         .into(actorImage1);
                 Picasso.with(context);
-                actorName1.setText(actor1.getName());
-                charaterName1.setText(actor1.getCharacterName());
+                actorName1.setText(actor1.name);
+                charaterName1.setText(actor1.character);
 
-                final Actor actor2 = actors.get(1);
+                final Cast actor2 = actors.get(1);
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(actor2.getProfileImage()))
+                        .load(MovieUtils.imageURL(actor2.profile_path))
                         .into(actorImage2);
                 Picasso.with(context);
-                actorName2.setText(actor2.getName());
-                charaterName2.setText(actor2.getCharacterName());
+                actorName2.setText(actor2.name);
+                charaterName2.setText(actor2.character);
 
-                final Actor actor3 = actors.get(2);
+                final Cast actor3 = actors.get(2);
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(actor3.getProfileImage()))
+                        .load(MovieUtils.imageURL(actor3.profile_path))
                         .into(actorImage3);
                 Picasso.with(context);
-                actorName3.setText(actor3.getName());
-                charaterName3.setText(actor3.getCharacterName());
+                actorName3.setText(actor3.name);
+                charaterName3.setText(actor3.character);
 
 
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.getId());
+                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.id);
                         startActivity(i);
                     }
                 });
@@ -323,7 +368,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor2.getId());
+                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor2.id);
                         startActivity(i);
                     }
                 });
@@ -333,7 +378,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor3.getId());
+                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor3.id);
                         startActivity(i);
                     }
                 });
@@ -347,6 +392,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
                     view.setText("View " + (actors.size() - 3) + " +");
 
+                    /*
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -363,6 +409,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                             }
                         }
                     });
+                    */
 
                 }
 
@@ -376,7 +423,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         public void createCrewSection()
         {
 
-            ArrayList<Crew> crews = movie.getCrews();
+            List<com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew> crews = movie.casts.crew;
 
             CardView layout = (CardView)findViewById(R.id.top3crew);
 
@@ -400,27 +447,27 @@ public class MovieDetailActivity extends AppCompatActivity {
 
                 Crew crew1 = crews.get(0);
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(crew1.getProfileImage()))
+                        .load(MovieUtils.imageURL(crew1.profile_path))
                         .into(crewImage1);
 
-                crewName1.setText(crew1.getName());
-                crewRole1.setText(crew1.getJob());
+                crewName1.setText(crew1.name);
+                crewRole1.setText(crew1.job);
 
                 Crew crew2 = crews.get(1);
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(crew2.getProfileImage()))
+                        .load(MovieUtils.imageURL(crew2.profile_path))
                         .into(crewImage2);
 
-                crewName2.setText(crew2.getName());
-                crewRole2.setText(crew2.getJob());
+                crewName2.setText(crew2.name);
+                crewRole2.setText(crew2.job);
 
                 Crew crew3 = crews.get(2);
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(crew3.getProfileImage()))
+                        .load(MovieUtils.imageURL(crew3.profile_path))
                         .into(crewImage3);
 
-                crewName3.setText(crew3.getName());
-                crewRole3.setText(crew3.getJob());
+                crewName3.setText(crew3.name);
+                crewRole3.setText(crew3.job);
 
                 TextView textView = (TextView) layout.findViewById(R.id.viewMoreText);
 
@@ -429,14 +476,14 @@ public class MovieDetailActivity extends AppCompatActivity {
                     textView.setVisibility(View.GONE);
                 }
                 else {
+
                     textView.setText("View " + (crews.size() - 3) + " +");
-
-
                     textView.setOnClickListener(new View.OnClickListener() {
 
                         @Override
                         public void onClick(View v) {
 
+                            /*
                             Intent i = new Intent(MovieDetailActivity.this, AllCrewActivity.class);
                             SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
                             i.putExtra(MovieDetailActivity.MOVIE_LIST, serializableCrewList);
@@ -448,6 +495,8 @@ public class MovieDetailActivity extends AppCompatActivity {
                             else {
                                 startActivity(i);
                             }
+
+                            */
 
                         }
                     });
@@ -461,6 +510,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         }
 
+
         public void createAboutSection()
         {
             CardView aboutSectionCard = (CardView)findViewById(R.id.aboutSection);
@@ -468,13 +518,13 @@ public class MovieDetailActivity extends AppCompatActivity {
             aboutSectionCard.setVisibility(View.VISIBLE);
 
             TextView releaseDate = (TextView)aboutSectionCard.findViewById(R.id.release_date);
-            releaseDate.setText(MovieUtils.getFormattedDate(movie.getRelaseDate()));
+            releaseDate.setText(MovieUtils.getFormattedDate(movie.release_date));
 
             TextView runtime = (TextView)aboutSectionCard.findViewById(R.id.runtime);
-            runtime.setText(movie.getRunTime()+" mins");
+            runtime.setText(movie.runtime+" mins");
 
             TextView language = (TextView)aboutSectionCard.findViewById(R.id.original_language);
-            language.setText(movie.getOriginalLanguage());
+            language.setText(movie.original_language);
 
             // TODO FILTER MOVIE ACTIVITY INTEGRATION
 
@@ -514,8 +564,8 @@ public class MovieDetailActivity extends AppCompatActivity {
             website.setText(genall);
             */
 
-            if(!movie.getHomePage().equalsIgnoreCase("")) {
-                website.setText(movie.getHomePage());
+            if(!movie.homepage.equalsIgnoreCase("")) {
+                website.setText(movie.homepage);
                 website.setVisibility(View.VISIBLE);
 
             }
@@ -523,7 +573,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             website.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MovieUtils.openInBrowser(MovieDetailActivity.this,movie.getHomePage());
+                    MovieUtils.openInBrowser(MovieDetailActivity.this,movie.homepage);
                 }
             });
 
@@ -537,28 +587,24 @@ public class MovieDetailActivity extends AppCompatActivity {
             TextView genre2 = (TextView)v.findViewById(R.id.genre2);
             TextView genre3 = (TextView)v.findViewById(R.id.genre3);
 
-            List<Genre> genres = movie.getGenres();
+            List<Genre> genres = movie.genres;
             Log.d("GENRES SIZE", genres.size() + "");
 
             if(genres.size()>0) {
-                genre1.setText(genres.get(0).getName());
+
+                genre1.setText(genres.get(0).name);
                 genre1.setVisibility(View.VISIBLE);
             }
             if(genres.size()>1) {
-                genre2.setText(genres.get(1).getName());
+                genre2.setText(genres.get(1).name);
                 genre2.setVisibility(View.VISIBLE);
             }
             if(genres.size()>2) {
-                genre3.setText(genres.get(2).getName());
+                genre3.setText(genres.get(2).name);
                 genre3.setVisibility(View.VISIBLE);
             }
         }
 
-
-        public void createRatingSection()
-        {
-
-        }
     }
 
 
