@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.squareup.picasso.Picasso;
 
 /**

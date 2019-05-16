@@ -5,18 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.Adaters.PeopleListAdapter;
-import com.omdb.rohksin.Mangoose.Adaters.RvAdapter;
-import com.omdb.rohksin.Mangoose.Adaters.TVShowListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.PeopleListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.RvAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.TVShowListAdapter;
 import com.omdb.rohksin.Mangoose.Movie;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.PeopleDetail;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.TvShow;
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Models.PeopleDetail;
+import com.omdb.rohksin.Mangoose.Redesign.Models.TvShow;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Search;
 import com.omdb.rohksin.Mangoose.R;
 

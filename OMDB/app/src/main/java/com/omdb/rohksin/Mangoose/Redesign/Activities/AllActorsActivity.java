@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.LandingActivities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.omdb.rohksin.Mangoose.Adaters.ActorsListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
 import com.omdb.rohksin.Mangoose.BlankActivity;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Actor;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
 import com.omdb.rohksin.Mangoose.SerializableCarriers.SerializableObject;
 import com.omdb.rohksin.Mangoose.R;
 

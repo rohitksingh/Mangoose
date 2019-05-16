@@ -1,7 +1,7 @@
-package com.omdb.rohksin.Mangoose.NewSearch.Utility;
+package com.omdb.rohksin.Mangoose.Redesign.Utilities;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Genre;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Language;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Genre;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Language;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

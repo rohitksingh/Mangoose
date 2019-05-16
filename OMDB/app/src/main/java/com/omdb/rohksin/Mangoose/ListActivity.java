@@ -9,8 +9,8 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.omdb.rohksin.Mangoose.Adaters.ViewAllMoviesAdapter;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.MovieRole;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.ViewAllMoviesAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 
 import java.util.ArrayList;
 

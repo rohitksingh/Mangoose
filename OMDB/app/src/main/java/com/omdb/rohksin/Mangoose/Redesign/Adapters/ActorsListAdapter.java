@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Adaters;
+package com.omdb.rohksin.Mangoose.Redesign.Adapters;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Actor;
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;

@@ -1,15 +1,15 @@
-package com.omdb.rohksin.Mangoose.NewSearch.POJO;
+package com.omdb.rohksin.Mangoose.Redesign.Models;
 
 import java.io.Serializable;
 
 /**
  * Created by Illuminati on 6/17/2017.
  */
-public class Crew implements Serializable{
+public class Actor extends Object implements Serializable{
 
     private String name;
-    private String job;
     private String id;
+    private String characterName;
     private String profileImage;
 
     public String getName() {
@@ -20,20 +20,20 @@ public class Crew implements Serializable{
         this.name = name;
     }
 
-    public String getJob() {
-        return job;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 
     public String getProfileImage() {

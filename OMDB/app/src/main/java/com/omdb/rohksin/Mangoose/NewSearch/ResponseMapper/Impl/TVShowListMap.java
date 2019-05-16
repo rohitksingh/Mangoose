@@ -1,6 +1,6 @@
 package com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.TvShow;
+import com.omdb.rohksin.Mangoose.Redesign.Models.TvShow;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
 
 import org.json.JSONArray;

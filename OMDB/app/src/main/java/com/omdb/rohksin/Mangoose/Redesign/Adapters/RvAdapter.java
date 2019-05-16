@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Adaters;
+package com.omdb.rohksin.Mangoose.Redesign.Adapters;
 
 import android.animation.Animator;
 import android.app.Activity;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.BlankActivity;
 import com.omdb.rohksin.Mangoose.Movie;
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
 

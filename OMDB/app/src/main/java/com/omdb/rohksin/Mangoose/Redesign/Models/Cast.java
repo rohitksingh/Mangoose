@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.NewSearch.POJO;
+package com.omdb.rohksin.Mangoose.Redesign.Models;
 
 /**
  * Created by Illuminati on 6/26/2017.
