@@ -1,6 +1,6 @@
 package com.omdb.rohksin.Mangoose.SerializableCarriers;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Crew;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
 
 import java.io.Serializable;
 import java.util.List;

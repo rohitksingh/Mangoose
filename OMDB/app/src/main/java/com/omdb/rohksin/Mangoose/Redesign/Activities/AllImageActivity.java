@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.LandingActivities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.transition.Explode;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 
-import com.omdb.rohksin.Mangoose.Adaters.ListAdaper;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.ListAdaper;
 import com.omdb.rohksin.Mangoose.BlankActivity;
 import com.omdb.rohksin.Mangoose.R;
 

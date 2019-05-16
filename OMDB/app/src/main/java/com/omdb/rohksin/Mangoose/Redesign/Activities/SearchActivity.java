@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.ObjectOrientedSearch;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.Receivers.SearchListReceiver;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Impl.MovieSearch;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;

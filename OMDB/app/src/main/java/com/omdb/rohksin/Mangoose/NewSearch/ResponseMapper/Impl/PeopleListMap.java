@@ -3,7 +3,7 @@ package com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl;
 import android.util.Log;
 
 import com.omdb.rohksin.Mangoose.Movie;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.PeopleDetail;
+import com.omdb.rohksin.Mangoose.Redesign.Models.PeopleDetail;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
 
 import org.json.JSONArray;

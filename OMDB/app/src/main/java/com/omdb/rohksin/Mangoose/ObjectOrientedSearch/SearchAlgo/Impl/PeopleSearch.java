@@ -2,7 +2,7 @@ package com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Impl;
 
 import android.content.Intent;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.PeopleDetail;
+import com.omdb.rohksin.Mangoose.Redesign.Models.PeopleDetail;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.PeopleListMap;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Search;

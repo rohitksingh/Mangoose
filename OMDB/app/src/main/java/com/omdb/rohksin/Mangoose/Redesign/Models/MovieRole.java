@@ -1,8 +1,6 @@
-package com.omdb.rohksin.Mangoose.NewSearch.POJO;
+package com.omdb.rohksin.Mangoose.Redesign.Models;
 
-import android.util.Log;
-
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Adaters;
+package com.omdb.rohksin.Mangoose.Redesign.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
 

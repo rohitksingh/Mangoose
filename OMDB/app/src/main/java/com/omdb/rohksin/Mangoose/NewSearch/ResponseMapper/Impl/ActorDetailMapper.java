@@ -2,8 +2,8 @@ package com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl;
 
 import android.util.Log;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.ActorDetail;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.MovieRole;
+import com.omdb.rohksin.Mangoose.Redesign.Models.ActorDetail;
+import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
 
 import org.json.JSONArray;

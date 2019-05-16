@@ -1,6 +1,6 @@
 package com.omdb.rohksin.Mangoose.SerializableCarriers;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Actor;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
 
 import java.io.Serializable;
 import java.util.List;

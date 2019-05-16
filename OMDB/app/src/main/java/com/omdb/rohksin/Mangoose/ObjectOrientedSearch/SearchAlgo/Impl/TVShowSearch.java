@@ -3,7 +3,7 @@ package com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Impl;
 import android.content.Intent;
 import android.util.Log;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.TvShow;
+import com.omdb.rohksin.Mangoose.Redesign.Models.TvShow;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.TVShowListMap;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Search;

@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.NewSearch.POJO;
+package com.omdb.rohksin.Mangoose.Redesign.Models;
 
 import java.io.Serializable;
 

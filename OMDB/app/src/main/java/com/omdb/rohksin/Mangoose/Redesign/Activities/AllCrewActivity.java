@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.LandingActivities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.omdb.rohksin.Mangoose.Adaters.CrewListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.CrewListAdapter;
 import com.omdb.rohksin.Mangoose.BlankActivity;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Crew;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.SerializableCarriers.SerializableCrewList;
 

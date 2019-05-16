@@ -2,12 +2,12 @@ package com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl;
 
 import android.util.Log;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Actor;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Crew;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.DetailMovie;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Video;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
+import com.omdb.rohksin.Mangoose.Redesign.Models.DetailMovie;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Video;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

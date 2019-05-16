@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Adaters;
+package com.omdb.rohksin.Mangoose.Redesign.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.TvShow;
-import com.omdb.rohksin.Mangoose.NewSearch.Utility.MovieUtils;
+import com.omdb.rohksin.Mangoose.Redesign.Models.TvShow;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.ComingSoon;
 import com.squareup.picasso.Picasso;

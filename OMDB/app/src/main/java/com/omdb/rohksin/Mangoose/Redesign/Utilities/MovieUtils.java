@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.NewSearch.Utility;
+package com.omdb.rohksin.Mangoose.Redesign.Utilities;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -6,15 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.transition.Explode;
 import android.util.Log;
 import android.view.View;
 
 import com.omdb.rohksin.Mangoose.Constants.AppConstants;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Actor;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Crew;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Genre;
-import com.omdb.rohksin.Mangoose.NewSearch.POJO.Video;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Genre;
+import com.omdb.rohksin.Mangoose.Redesign.Models.Video;
 import com.omdb.rohksin.Mangoose.PreviewImageActivity;
 
 import org.json.JSONArray;
