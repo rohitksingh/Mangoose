@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -485,10 +486,9 @@ public class MovieDetailActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            /*
+
                             Intent i = new Intent(MovieDetailActivity.this, AllCrewActivity.class);
-                            SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
-                            i.putExtra(MovieDetailActivity.MOVIE_LIST, serializableCrewList);
+                            i.putExtra(MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.crew);
                             if(Build.VERSION.SDK_INT>20)
                             {
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
@@ -497,9 +497,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                             else {
                                 startActivity(i);
                             }
-
-                            */
-
                         }
                     });
                 }
