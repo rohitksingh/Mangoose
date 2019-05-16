@@ -1,6 +1,8 @@
 package com.omdb.rohksin.Mangoose.Redesign.MoshiModels;
 
-public class Cast {
+import java.io.Serializable;
+
+public class Cast implements Serializable{
 
     public int cast_id;
     public String character;
