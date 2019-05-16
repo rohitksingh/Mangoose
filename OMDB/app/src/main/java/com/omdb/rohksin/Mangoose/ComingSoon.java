@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.omdb.rohksin.Mangoose.Constants.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 
 /**

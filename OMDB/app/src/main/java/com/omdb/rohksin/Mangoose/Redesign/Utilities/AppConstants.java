@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Constants;
+package com.omdb.rohksin.Mangoose.Redesign.Utilities;
 
 /**
  * Created by Illuminati on 5/22/2017.

@@ -1,6 +1,6 @@
 package com.omdb.rohksin.Mangoose.NewSearch.EndPoint.Impl;
 
-import com.omdb.rohksin.Mangoose.Constants.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
 import com.omdb.rohksin.Mangoose.NewSearch.EndPoint.EndPoint;
 /**
  * Created by Illuminati on 6/22/2017.

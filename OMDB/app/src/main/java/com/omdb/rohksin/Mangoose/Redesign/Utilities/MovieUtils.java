@@ -9,7 +9,6 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 
-import com.omdb.rohksin.Mangoose.Constants.AppConstants;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Genre;
