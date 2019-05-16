@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Constants;
+package com.omdb.rohksin.Mangoose.Redesign.Utilities;
 
 /**
  * Created by Illuminati on 5/22/2017.
@@ -14,5 +14,12 @@ public class AppConstants {
     public static final String PEOPLE_SEARCH_NAME_SUFFIX= "&language=en-US&query=Sunny%20leone&page=1&include_adult=true";
 
     public static final String APPSTORE_LINK="https://play.google.com/store/apps/details?id=com.omdb.rohksin.omdb";
+
+
+
+
+    //Key Value Pairs
+    public static final String MOVIE_ID = "com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity";
+
 
 }

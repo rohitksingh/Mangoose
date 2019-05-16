@@ -1,6 +1,6 @@
 package com.omdb.rohksin.Mangoose.QueryBuilder.Impl;
 
-import com.omdb.rohksin.Mangoose.Constants.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
 import com.omdb.rohksin.Mangoose.QueryBuilder.QueryBuilder;
 
 /**

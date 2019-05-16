@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.CrewListAdapter;
-import com.omdb.rohksin.Mangoose.BlankActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.SerializableCarriers.SerializableCrewList;
@@ -31,7 +30,7 @@ public class AllCrewActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Crew");
 
-        SerializableCrewList serializableCrewList = (SerializableCrewList)getIntent().getSerializableExtra(BlankActivity.MOVIE_LIST);
+        SerializableCrewList serializableCrewList = (SerializableCrewList)getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
         List<Crew> crews = serializableCrewList.getObjectList();
 
         RecyclerView crewRecyclerView = (RecyclerView)findViewById(R.id.image_list_landing);

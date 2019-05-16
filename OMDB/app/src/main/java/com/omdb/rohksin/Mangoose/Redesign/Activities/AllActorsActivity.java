@@ -11,7 +11,6 @@ import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
-import com.omdb.rohksin.Mangoose.BlankActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
 import com.omdb.rohksin.Mangoose.SerializableCarriers.SerializableObject;
 import com.omdb.rohksin.Mangoose.R;
@@ -32,7 +31,7 @@ public class AllActorsActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Cast");
 
-        SerializableObject object = (SerializableObject)getIntent().getSerializableExtra(BlankActivity.MOVIE_LIST);
+        SerializableObject object = (SerializableObject)getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
         List<Actor> actorList = object.getObjectList();
 
         RecyclerView allActorRecyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
