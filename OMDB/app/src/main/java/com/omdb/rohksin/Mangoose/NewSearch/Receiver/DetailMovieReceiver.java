@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.BlankActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.DetailMovie;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
@@ -31,7 +31,7 @@ public class DetailMovieReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        if(intent.getAction().equalsIgnoreCase(BlankActivity.OBJECTMAPPED))
+        if(intent.getAction().equalsIgnoreCase(MovieDetailActivity.OBJECTMAPPED))
         {
             movie = (DetailMovie)intent.getSerializableExtra("BlankActivityMovie");
 

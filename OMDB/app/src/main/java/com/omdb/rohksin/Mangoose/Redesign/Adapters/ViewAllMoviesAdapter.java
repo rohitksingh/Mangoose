@@ -16,7 +16,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.BlankActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
@@ -65,7 +65,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
         holder.movieName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, BlankActivity.class);
+                Intent i = new Intent(context, MovieDetailActivity.class);
                 i.putExtra("blankActivityText",movieRole.getMovieId());
 
                 if(Build.VERSION.SDK_INT>20)

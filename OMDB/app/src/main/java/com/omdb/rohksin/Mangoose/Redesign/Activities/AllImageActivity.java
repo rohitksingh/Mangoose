@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ListAdaper;
-import com.omdb.rohksin.Mangoose.BlankActivity;
 import com.omdb.rohksin.Mangoose.R;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class AllImageActivity extends AppCompatActivity{
         setAnimation();
         setContentView(R.layout.image_landing_layout);
 
-        List<String> moviesList = getIntent().getStringArrayListExtra(BlankActivity.MOVIE_LIST);
+        List<String> moviesList = getIntent().getStringArrayListExtra(MovieDetailActivity.MOVIE_LIST);
         RecyclerView recyclerImageView = (RecyclerView)findViewById(R.id.image_list_landing);
         GridLayoutManager llm = new GridLayoutManager(this,2);
         ListAdaper adapter = new ListAdaper(moviesList,this);

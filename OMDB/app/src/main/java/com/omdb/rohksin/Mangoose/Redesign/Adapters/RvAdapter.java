@@ -16,7 +16,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.BlankActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Movie;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
@@ -71,7 +71,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, BlankActivity.class);
+                Intent i = new Intent(context, MovieDetailActivity.class);
                 i.putExtra("blankActivityText", movieId);
 
                 if (Build.VERSION.SDK_INT > 20) {

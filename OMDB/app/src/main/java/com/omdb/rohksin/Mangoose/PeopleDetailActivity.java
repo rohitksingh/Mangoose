@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
 import com.omdb.rohksin.Mangoose.Redesign.Models.ActorDetail;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
@@ -299,7 +300,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(PeopleDetailActivity.this, BlankActivity.class);
+                        Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
                         i.putExtra("blankActivityText", actor1.getMovieId());
                         startActivity(i);
                     }
@@ -307,7 +308,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(PeopleDetailActivity.this, BlankActivity.class);
+                        Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
                         i.putExtra("blankActivityText", actor2.getMovieId());
                         startActivity(i);
                     }
@@ -316,7 +317,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 actorCard3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(PeopleDetailActivity.this, BlankActivity.class);
+                        Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
                         i.putExtra("blankActivityText", actor3.getMovieId());
                         startActivity(i);
                     }

@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
@@ -25,10 +25,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.omdb.rohksin.Mangoose.PeopleDetailActivity;
+import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.AllActorsActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.AllCrewActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.AllImageActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
 import com.omdb.rohksin.Mangoose.Redesign.Models.DetailMovie;
@@ -51,11 +50,11 @@ import java.util.List;
 /**
  * Created by Illuminati on 6/17/2017.
  */
-public class BlankActivity extends AppCompatActivity {
+public class MovieDetailActivity extends AppCompatActivity {
 
     private DetailMovie movie;
-    public static String OBJECTMAPPED ="com.omdb.rohksin.omdb.BlankActivity.ObjectMapped";
-    public static String MOVIE_LIST ="com.omdb.rohksin.omdb.BlankActivity.MovieList";
+    public static String OBJECTMAPPED ="com.omdb.rohksin.omdb.MovieDetailActivity.ObjectMapped";
+    public static String MOVIE_LIST ="com.omdb.rohksin.omdb.MovieDetailActivity.MovieList";
 
     private CollapsingToolbarLayout layout;
 
@@ -126,7 +125,7 @@ public class BlankActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context,Intent intent)
         {
-            if(intent.getAction().equalsIgnoreCase(BlankActivity.OBJECTMAPPED))
+            if(intent.getAction().equalsIgnoreCase(MovieDetailActivity.OBJECTMAPPED))
             {
 
                 this.context  = context;
@@ -155,7 +154,7 @@ public class BlankActivity extends AppCompatActivity {
                 poster.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MovieUtils.previewImageWithAnimation(BlankActivity.this,movie.getPosterPath() ,poster,"ImageView");
+                        MovieUtils.previewImageWithAnimation(MovieDetailActivity.this,movie.getPosterPath() ,poster,"ImageView");
                     }
                 });
 
@@ -240,11 +239,11 @@ public class BlankActivity extends AppCompatActivity {
             viewMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(BlankActivity.this, AllImageActivity.class);
+                    Intent i = new Intent(MovieDetailActivity.this, AllImageActivity.class);
                     i.putStringArrayListExtra(MOVIE_LIST, movie.getImages());
                     if(Build.VERSION.SDK_INT>20)
                     {
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
                         startActivity(i,options.toBundle());
                     }
                     else {
@@ -315,7 +314,7 @@ public class BlankActivity extends AppCompatActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(BlankActivity.this, PeopleDetailActivity.class);
+                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
                         i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.getId());
                         startActivity(i);
                     }
@@ -323,7 +322,7 @@ public class BlankActivity extends AppCompatActivity {
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(BlankActivity.this, PeopleDetailActivity.class);
+                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
                         i.putExtra(ActorsListAdapter.ACTOR_ID, actor2.getId());
                         startActivity(i);
                     }
@@ -333,7 +332,7 @@ public class BlankActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent i = new Intent(BlankActivity.this, PeopleDetailActivity.class);
+                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
                         i.putExtra(ActorsListAdapter.ACTOR_ID, actor3.getId());
                         startActivity(i);
                     }
@@ -351,12 +350,12 @@ public class BlankActivity extends AppCompatActivity {
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(BlankActivity.this, AllActorsActivity.class);
+                            Intent i = new Intent(MovieDetailActivity.this, AllActorsActivity.class);
                             SerializableObject serializableObject = new SerializableObject(actors);
-                            i.putExtra(BlankActivity.MOVIE_LIST, serializableObject);
+                            i.putExtra(MovieDetailActivity.MOVIE_LIST, serializableObject);
                             if(Build.VERSION.SDK_INT>20)
                             {
-                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
                                 startActivity(i,options.toBundle());
                             }
                             else {
@@ -438,12 +437,12 @@ public class BlankActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            Intent i = new Intent(BlankActivity.this, AllCrewActivity.class);
+                            Intent i = new Intent(MovieDetailActivity.this, AllCrewActivity.class);
                             SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
-                            i.putExtra(BlankActivity.MOVIE_LIST, serializableCrewList);
+                            i.putExtra(MovieDetailActivity.MOVIE_LIST, serializableCrewList);
                             if(Build.VERSION.SDK_INT>20)
                             {
-                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
                                 startActivity(i,options.toBundle());
                             }
                             else {
@@ -483,10 +482,10 @@ public class BlankActivity extends AppCompatActivity {
             language.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(BlankActivity.this,FilterMovieActivity.class);
+                    Intent i = new Intent(MovieDetailActivity.this,FilterMovieActivity.class);
                     if(Build.VERSION.SDK_INT>20)
                     {
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BlankActivity.this);
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
                         startActivity(i,options.toBundle());
                     }
                     else {
@@ -524,7 +523,7 @@ public class BlankActivity extends AppCompatActivity {
             website.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MovieUtils.openInBrowser(BlankActivity.this,movie.getHomePage());
+                    MovieUtils.openInBrowser(MovieDetailActivity.this,movie.getHomePage());
                 }
             });
 
