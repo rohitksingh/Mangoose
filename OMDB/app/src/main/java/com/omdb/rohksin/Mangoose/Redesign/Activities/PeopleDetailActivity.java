@@ -82,7 +82,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
         filter.addAction(ActorDetailMapper.ObjectMapped);
         registerReceiver(new ActorDetailReceiver(),filter);
 
-        String people_id = getIntent().getStringExtra(ActorsListAdapter.ACTOR_ID);
+        String people_id = getIntent().getStringExtra(AppConstants.PERSON_ID);
 
         URLBuilder urlBuilder = new PeopleIDURLBuilder(people_id);
         String endPointURL = urlBuilder.bulidURL();

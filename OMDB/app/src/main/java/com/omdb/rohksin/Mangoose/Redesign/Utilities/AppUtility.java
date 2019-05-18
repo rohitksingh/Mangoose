@@ -20,8 +20,8 @@ public class AppUtility {
     public static void startMovieDetailActivity(Context context, String movieId)
     {
         Log.d(TAG, "startMovieDetailActivity: "+movieId);
-        Intent i = new Intent(context, PeopleDetailActivity.class);
-        i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
+        Intent i = new Intent(context, MovieDetailActivity.class);
+        i.putExtra(AppConstants.MOVIE_ID, movieId);
         context.startActivity(i);
     }
 
@@ -43,7 +43,7 @@ public class AppUtility {
     public static void startPeopleDetailActivity(Context context, String personId)
     {
         Intent i = new Intent(context, PeopleDetailActivity.class);
-        i.putExtra(ActorsListAdapter.ACTOR_ID, personId);
+        i.putExtra(AppConstants.PERSON_ID, personId);
         context.startActivity(i);
     }
 
@@ -52,7 +52,7 @@ public class AppUtility {
 
         Log.d(TAG, "startPeopleDetailActivity: "+ personId);
         Intent i = new Intent(context, PeopleDetailActivity.class);
-        i.putExtra(ActorsListAdapter.ACTOR_ID, personId);
+        i.putExtra(AppConstants.PERSON_ID, personId);
 
         if(Build.VERSION.SDK_INT>20)
         {

@@ -561,10 +561,12 @@ public class MovieDetailActivity extends AppCompatActivity {
             website.setText(genall);
             */
 
-            if(!movie.homepage.equalsIgnoreCase("")) {
-                website.setText(movie.homepage);
-                website.setVisibility(View.VISIBLE);
+            if(movie.homepage!=null) {
+                if (!movie.homepage.equalsIgnoreCase("")) {
+                    website.setText(movie.homepage);
+                    website.setVisibility(View.VISIBLE);
 
+                }
             }
 
             website.setOnClickListener(new View.OnClickListener() {
