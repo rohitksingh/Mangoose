@@ -360,6 +360,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
                         i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.id);
                         startActivity(i);

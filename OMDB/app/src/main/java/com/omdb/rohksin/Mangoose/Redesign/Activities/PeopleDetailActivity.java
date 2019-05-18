@@ -30,6 +30,7 @@ import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.DetailMovieMapper
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Actor;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.PeopleIDURLBuilder;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
@@ -303,27 +304,37 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        /*
                         Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
                         Log.d(TAG, "MOVIE_ID"+actor1.id);
                         i.putExtra(AppConstants.MOVIE_ID, actor1.id+"");
                         startActivity(i);
+                        */
+                        AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor1.id+"");
                     }
                 });
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        /*
                         Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
                         i.putExtra(AppConstants.MOVIE_ID, actor2.id+"");
                         startActivity(i);
+                        */
+                        AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor2.id+"");
+
                     }
                 });
 
                 actorCard3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
                         i.putExtra(AppConstants.MOVIE_ID, actor3.id+"");
                         startActivity(i);
+
+                       // AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor3.id+"");
                     }
                 });
 

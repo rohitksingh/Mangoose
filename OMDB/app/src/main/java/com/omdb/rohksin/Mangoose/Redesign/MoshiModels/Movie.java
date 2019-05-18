@@ -9,7 +9,6 @@ public class Movie implements Serializable {
 
     public boolean adult;
     public String backdrop_path;
-    public String belongs_to_collection;
     public List<Genre> genres;
     public String homepage;
     public int id;
@@ -29,6 +28,6 @@ public class Movie implements Serializable {
     @Override
     public String toString()
     {
-        return adult +" \n"+ backdrop_path+"\n"+belongs_to_collection;
+        return adult +" \n"+ backdrop_path;
     }
 }
