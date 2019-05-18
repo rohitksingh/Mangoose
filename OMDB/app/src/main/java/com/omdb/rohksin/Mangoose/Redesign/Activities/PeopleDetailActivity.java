@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
@@ -21,7 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
+import com.omdb.rohksin.Mangoose.ListActivity;
+import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
 import com.omdb.rohksin.Mangoose.Redesign.Models.ActorDetail;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
@@ -52,6 +53,9 @@ public class PeopleDetailActivity extends AppCompatActivity {
     private CardView aboutSection;
     List<MovieRole> roles;
 
+    private static final String TAG = "PeopleDetailActivity";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -77,7 +81,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
         URLBuilder urlBuilder = new PeopleIDURLBuilder(people_id);
         String endPointURL = urlBuilder.bulidURL();
-        Log.d("PEOPLE_URL", endPointURL);
+        Log.d("PeopleDetailActivity", endPointURL);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -87,7 +91,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.d("ENDPOINT", response.toString());
+                        Log.d("PeopleDetailActivity", response.toString());
                         try {
                             ResponseMapper mapper = new ActorDetailMapper();
                             mapper.mapResponse(response);

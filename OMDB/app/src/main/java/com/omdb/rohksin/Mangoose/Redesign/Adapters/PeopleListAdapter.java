@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.Redesign.Models.PeopleDetail;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
-import com.omdb.rohksin.Mangoose.PeopleDetailActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
 

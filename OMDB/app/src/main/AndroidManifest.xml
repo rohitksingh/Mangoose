@@ -20,7 +20,7 @@
             />
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.AllActorsActivity"/>
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.AllCrewActivity"/>
-        <activity android:name="com.omdb.rohksin.Mangoose.PeopleDetailActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
