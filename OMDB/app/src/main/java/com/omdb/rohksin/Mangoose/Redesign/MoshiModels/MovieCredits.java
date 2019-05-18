@@ -4,5 +4,5 @@ import java.util.List;
 
 public class MovieCredits {
 
-    public List<Role> casts;
+    public List<Role> cast;
 }
