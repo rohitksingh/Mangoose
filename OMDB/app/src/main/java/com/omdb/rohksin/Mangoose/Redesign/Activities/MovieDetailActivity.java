@@ -59,6 +59,8 @@ import java.util.List;
  * 6) Map to POJO
  *
  * Dont pass crew list to CrewListActivity 676 entries makes it slow Use Static variable instead
+ * BroadcastReceiver Memory leaks
+ * Move all Key-Value Pair in AppConstant
  *
  */
 

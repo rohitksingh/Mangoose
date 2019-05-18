@@ -38,8 +38,6 @@ public class AllImageActivity extends AppCompatActivity{
         recyclerImageView.setLayoutManager(llm);
         recyclerImageView.setAdapter(adapter);
 
-        //Toast.makeText(this,"kjdksjd",Toast.LENGTH_LONG);
-
     }
 
     public void setAnimation()

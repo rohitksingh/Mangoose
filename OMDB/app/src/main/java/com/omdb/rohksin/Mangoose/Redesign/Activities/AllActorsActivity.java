@@ -31,15 +31,12 @@ public class AllActorsActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Cast");
 
-        //SerializableObject object = (SerializableObject)getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
-        //List<Actor> actorList = object.getObjectList();
-
         List<Cast> casts = (List<Cast>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
-
 
         RecyclerView allActorRecyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         allActorRecyclerView.setLayoutManager(llm);
+
         ActorsListAdapter adapter = new ActorsListAdapter(casts,this);
         allActorRecyclerView.setAdapter(adapter);
     }
