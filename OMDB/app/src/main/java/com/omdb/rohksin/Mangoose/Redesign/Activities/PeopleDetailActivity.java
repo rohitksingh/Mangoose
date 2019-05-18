@@ -24,22 +24,18 @@ import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.Mangoose.ListActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
-import com.omdb.rohksin.Mangoose.Redesign.Models.ActorDetail;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.ActorDetailMapper;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
-import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Actor;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.PeopleIDURLBuilder;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
-import com.omdb.rohksin.Mangoose.SerializableCarriers.BiographyActivity;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
