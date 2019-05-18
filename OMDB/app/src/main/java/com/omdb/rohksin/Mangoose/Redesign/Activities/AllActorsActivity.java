@@ -6,15 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Slide;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
-import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
-import com.omdb.rohksin.Mangoose.SerializableCarriers.SerializableObject;
-import com.omdb.rohksin.Mangoose.R;
 
+import com.omdb.rohksin.Mangoose.R;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -31,14 +31,16 @@ public class AllActorsActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Cast");
 
-        SerializableObject object = (SerializableObject)getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
-        List<Actor> actorList = object.getObjectList();
+        //SerializableObject object = (SerializableObject)getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
+        //List<Actor> actorList = object.getObjectList();
+
+        List<Cast> casts = (List<Cast>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
+
 
         RecyclerView allActorRecyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         allActorRecyclerView.setLayoutManager(llm);
-        Log.d("LIST EMPTY",(actorList==null)+"");
-        ActorsListAdapter adapter = new ActorsListAdapter(actorList,this);
+        ActorsListAdapter adapter = new ActorsListAdapter(casts,this);
         allActorRecyclerView.setAdapter(adapter);
     }
 

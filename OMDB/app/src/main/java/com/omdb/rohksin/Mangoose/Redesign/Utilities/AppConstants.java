@@ -20,6 +20,7 @@ public class AppConstants {
 
     //Key Value Pairs
     public static final String MOVIE_ID = "com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity";
+    public static final String PERSON_ID = "com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity";
 
 
 }

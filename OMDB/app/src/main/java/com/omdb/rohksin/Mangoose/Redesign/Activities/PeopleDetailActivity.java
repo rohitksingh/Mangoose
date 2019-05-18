@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
@@ -21,22 +21,26 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
+import com.omdb.rohksin.Mangoose.ListActivity;
+import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
-import com.omdb.rohksin.Mangoose.Redesign.Models.ActorDetail;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.ActorDetailMapper;
 import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
-import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.ResponseMapper;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Actor;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.PeopleIDURLBuilder;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
-import com.omdb.rohksin.Mangoose.SerializableCarriers.BiographyActivity;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -46,11 +50,16 @@ import java.util.List;
  */
 public class PeopleDetailActivity extends AppCompatActivity {
 
-    private ActorDetail actorDetail;
+    //private ActorDetail actorDetail;
     private ImageView backDrop;
     private ImageView profileImage;
     private CardView aboutSection;
     List<MovieRole> roles;
+
+    private Actor actorDetail;
+
+    private static final String TAG = "PeopleDetailActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,11 +82,11 @@ public class PeopleDetailActivity extends AppCompatActivity {
         filter.addAction(ActorDetailMapper.ObjectMapped);
         registerReceiver(new ActorDetailReceiver(),filter);
 
-        String people_id = getIntent().getStringExtra(ActorsListAdapter.ACTOR_ID);
+        String people_id = getIntent().getStringExtra(AppConstants.PERSON_ID);
 
         URLBuilder urlBuilder = new PeopleIDURLBuilder(people_id);
         String endPointURL = urlBuilder.bulidURL();
-        Log.d("PEOPLE_URL", endPointURL);
+        Log.d("PeopleDetailActivity", endPointURL);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -87,20 +96,15 @@ public class PeopleDetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.d("ENDPOINT", response.toString());
-                        try {
-                            ResponseMapper mapper = new ActorDetailMapper();
-                            mapper.mapResponse(response);
+                        Log.d("PeopleDetailActivity", response.toString());
 
-                            actorDetail = (ActorDetail)mapper.objectMapped();
+                        // ResponseMapper mapper = new ActorDetailMapper();
+                        // mapper.mapResponse(response);
 
-                            sendBroadcast();
+                        parse(response.toString());
+                        // actorDetail = (ActorDetail)mapper.objectMapped();
 
-                        }
-                        catch (JSONException e)
-                        {
-                            Log.d("CRASH","EXCEPTION handled");
-                        }
+                        sendBroadcast();
 
                     }
                 }, new Response.ErrorListener() {
@@ -147,13 +151,13 @@ public class PeopleDetailActivity extends AppCompatActivity {
         {
 
             CollapsingToolbarLayout title= (CollapsingToolbarLayout)findViewById(R.id.title);
-            title.setTitle(actorDetail.getName());
+            title.setTitle(actorDetail.name);
 
-            List<MovieRole> roles =actorDetail.getMovieRoles();
+            List<Role> roles =actorDetail.movie_credits.cast;
 
             if(roles!=null)
             {
-                String backDropPth = roles.get(0).getMoviePosterPath();
+                String backDropPth = roles.get(0).poster_path;
 
                 Picasso.with(context)
                         .load(MovieUtils.imageURL(backDropPth))
@@ -170,18 +174,18 @@ public class PeopleDetailActivity extends AppCompatActivity {
             TextView biography = (TextView)cardView.findViewById(R.id.OverViewText);
             TextView readMore = (TextView)cardView.findViewById(R.id.readMore);
 
-            if(!actorDetail.getBiography().equalsIgnoreCase("null")) {
+            if(!actorDetail.biography.equalsIgnoreCase("null")) {
                 cardView.setVisibility(View.VISIBLE);
                 actorName.setText("Biography");
-                biography.setText(actorDetail.getBiography());
+                biography.setText(actorDetail.biography);
             }
 
             readMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(PeopleDetailActivity.this, BiographyActivity.class);
-                    i.putExtra("Biography",actorDetail.getBiography());
-                    i.putExtra("Name",actorDetail.getName());
+                    i.putExtra("Biography",actorDetail.biography);
+                    i.putExtra("Name",actorDetail.name);
 
                     if(Build.VERSION.SDK_INT>20)
                     {
@@ -205,25 +209,25 @@ public class PeopleDetailActivity extends AppCompatActivity {
             TextView birthplace = (TextView)findViewById(R.id.birthplace);
             TextView website = (TextView)findViewById(R.id.website);
 
-            if(!actorDetail.getBirthday().equalsIgnoreCase("null")) {
+            if(!actorDetail.birthday.equalsIgnoreCase("null")) {
                 cardView.setVisibility(View.VISIBLE);
-                birthday.setText(MovieUtils.getFormattedDate(actorDetail.getBirthday()));
+                birthday.setText(MovieUtils.getFormattedDate(actorDetail.birthday));
                 birthday.setVisibility(View.VISIBLE);
             }
 
-            if(!actorDetail.getDeathday().equalsIgnoreCase("null")) {
-                deathdate.setText(MovieUtils.getFormattedDate(actorDetail.getDeathday()));
+            if(!actorDetail.deathday.equalsIgnoreCase("null")) {
+                deathdate.setText(MovieUtils.getFormattedDate(actorDetail.deathday));
                 deathdate.setVisibility(View.VISIBLE);
             }
 
-            if(!actorDetail.getBirthPlace().equalsIgnoreCase("null")) {
-                birthplace.setText(actorDetail.getBirthPlace());
+            if(!actorDetail.place_of_birth.equalsIgnoreCase("null")) {
+                birthplace.setText(actorDetail.place_of_birth);
                 birthplace.setVisibility(View.VISIBLE);
             }
 
 
-            if(!actorDetail.getWebSite().equalsIgnoreCase("null")) {
-                website.setText(actorDetail.getWebSite());
+            if(!actorDetail.homepage.equalsIgnoreCase("null")) {
+                website.setText(actorDetail.homepage);
                 website.setVisibility(View.GONE);
             }
 
@@ -234,7 +238,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
         public void createActorsSection()
         {
-            final List<MovieRole> roles = actorDetail.getMovieRoles();
+            final List<Role> roles = actorDetail.movie_credits.cast;
 
             CardView layout = (CardView)findViewById(R.id.top3Actors);
 
@@ -267,59 +271,66 @@ public class PeopleDetailActivity extends AppCompatActivity {
                 TextView charaterName3 = (TextView) actorCard3.findViewById(R.id.characterName);
 
 
-                final MovieRole actor1 = roles.get(0);
+                final Role actor1 = roles.get(0);
 
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(actor1.getMoviePosterPath()))
+                        .load(MovieUtils.imageURL(actor1.poster_path))
                         .into(actorImage1);
                 Picasso.with(context);
-                actorName1.setText(actor1.getMovieName());
-                charaterName1.setText(actor1.getCharacterName());
+                actorName1.setText(actor1.title);
+                charaterName1.setText(actor1.character);
 
-                final MovieRole actor2 = roles.get(1);
+                final Role actor2 = roles.get(1);
 
 
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(actor2.getMoviePosterPath()))
+                        .load(MovieUtils.imageURL(actor2.poster_path))
                         .into(actorImage2);
                 Picasso.with(context);
-                actorName2.setText(actor2.getMovieName());
-                charaterName2.setText(actor2.getCharacterName());
+                actorName2.setText(actor2.title);
+                charaterName2.setText(actor2.character);
 
-                final MovieRole actor3 = roles.get(2);
+                final Role actor3 = roles.get(2);
 
 
                 Picasso.with(context)
-                        .load(MovieUtils.imageURL(actor3.getMoviePosterPath()))
+                        .load(MovieUtils.imageURL(actor3.poster_path))
                         .into(actorImage3);
                 Picasso.with(context);
-                actorName3.setText(actor3.getMovieName());
-                charaterName3.setText(actor3.getCharacterName());
+                actorName3.setText(actor3.title);
+                charaterName3.setText(actor3.character);
 
 
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        /*
                         Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
-                        i.putExtra("blankActivityText", actor1.getMovieId());
+                        Log.d(TAG, "MOVIE_ID"+actor1.id);
+                        i.putExtra(AppConstants.MOVIE_ID, actor1.id+"");
                         startActivity(i);
+                        */
+                        AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor1.id+"");
                     }
                 });
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        /*
                         Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
-                        i.putExtra("blankActivityText", actor2.getMovieId());
+                        i.putExtra(AppConstants.MOVIE_ID, actor2.id+"");
                         startActivity(i);
+                        */
+                        AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor2.id+"");
+
                     }
                 });
 
                 actorCard3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
-                        i.putExtra("blankActivityText", actor3.getMovieId());
-                        startActivity(i);
+
+                       AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor3.id+"");
                     }
                 });
 
@@ -373,42 +384,62 @@ public class PeopleDetailActivity extends AppCompatActivity {
             TextView website = (TextView)aboutSection.findViewById(R.id.website);
 
             Picasso.with(context)
-                    .load(MovieUtils.imageURL(actorDetail.getProfileImage()))
+                    .load(MovieUtils.imageURL(actorDetail.profile_path))
                     .into(profileImage);
 
             profileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //MovieUtils.previewImage(PeopleDetailActivity.this,actorDetail.getProfileImage());
-                    MovieUtils.previewImageWithAnimation(PeopleDetailActivity.this,actorDetail.getProfileImage(),profileImage,"ImageView");
+                    MovieUtils.previewImageWithAnimation(PeopleDetailActivity.this,actorDetail.profile_path,profileImage,"ImageView");
                 }
             });
 
-            if(!actorDetail.getBirthday().equalsIgnoreCase("null")) {
+            if(!actorDetail.birthday.equalsIgnoreCase("null")) {
                 aboutSection.setVisibility(View.VISIBLE);
-                birthDay.setText(MovieUtils.getFormattedDate(actorDetail.getBirthday()));
+                birthDay.setText(MovieUtils.getFormattedDate(actorDetail.birthday));
                 birthDay.setVisibility(View.VISIBLE);
             }
 
-            if(!actorDetail.getBirthPlace().equalsIgnoreCase("null")) {
-                birtPlace.setText(actorDetail.getBirthPlace());
+            if(!actorDetail.place_of_birth.equalsIgnoreCase("null")) {
+                birtPlace.setText(actorDetail.place_of_birth);
                 birtPlace.setVisibility(View.VISIBLE);
             }
 
 
-            if(!actorDetail.getWebSite().equalsIgnoreCase("null")) {
-                website.setText(actorDetail.getWebSite());
-                website.setVisibility(View.GONE);
+            if(actorDetail.homepage!=null){
+                if(!actorDetail.homepage.equalsIgnoreCase("null")) {
+                    website.setText(actorDetail.homepage);
+                    website.setVisibility(View.GONE);
+                }
             }
 
             website.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MovieUtils.openInBrowser(PeopleDetailActivity.this,actorDetail.getWebSite());
+                    MovieUtils.openInBrowser(PeopleDetailActivity.this,actorDetail.homepage);
                 }
             });
-
         }
+    }
+
+
+    private void parse(String jsonString) {
+
+        Moshi moshi = new Moshi.Builder()
+                .build();
+
+        JsonAdapter<Actor> jsonAdapter = moshi.adapter(Actor.class);
+
+        try {
+            actorDetail = jsonAdapter.fromJson(jsonString);
+            Log.d(TAG, "Parsing success: ");
+        }
+        catch (IOException e)
+        {
+            Log.d(TAG, "Parsing Failed: ");
+        }
+
     }
 
 }

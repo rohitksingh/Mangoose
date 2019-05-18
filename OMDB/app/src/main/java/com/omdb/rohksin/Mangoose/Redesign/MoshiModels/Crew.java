@@ -1,6 +1,8 @@
 package com.omdb.rohksin.Mangoose.Redesign.MoshiModels;
 
-public class Crew {
+import java.io.Serializable;
+
+public class Crew implements Serializable{
 
     public String job;
     public String name;

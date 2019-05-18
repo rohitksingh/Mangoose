@@ -12,9 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
-import com.omdb.rohksin.Mangoose.PeopleDetailActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
 
@@ -29,10 +30,10 @@ public class ActorsListAdapter  extends RecyclerView.Adapter<ActorsListAdapter.A
 
 
         public static final String ACTOR_ID = "com.omdb.rohksin.omdb.Adaters.ActorsListAdapter.ACTOR_ID";
-        private List<Actor> list;
+        private List<Cast> list;
         private Context context;
 
-        public ActorsListAdapter(List<Actor> list, Context context) {
+        public ActorsListAdapter(List<Cast> list, Context context) {
         this.list = list;
         this.context = context;
 
@@ -49,18 +50,20 @@ public ActorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 @Override
 public void onBindViewHolder(final ActorViewHolder holder, int position) {
 
-        final Actor actor = list.get(position);
+        final Cast actor = list.get(position);
 
         Log.d("ImagePICASSO", actor.toString());
 
-        holder.actorName.setText(actor.getName());
-        holder.characterName.setText(actor.getCharacterName());
+        holder.actorName.setText(actor.name);
+        holder.characterName.setText(actor.character);
 
         holder.actorName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /*
                 Intent i = new Intent(context, PeopleDetailActivity.class);
-                i.putExtra(ACTOR_ID, actor.getId());
+                i.putExtra(ACTOR_ID, actor.id);
 
 
                 if(Build.VERSION.SDK_INT>20) {
@@ -70,11 +73,14 @@ public void onBindViewHolder(final ActorViewHolder holder, int position) {
                 else {
                     context.startActivity(i);
                 }
+                */
+                AppUtility.startPeopleDetailActivityWithAnim(context, actor.id+"", holder.actorImage);
             }
         });
 
     Picasso.with(context)
-        .load(MovieUtils.imageURL(actor.getProfileImage())).error(R.drawable.placeholder)
+        .load(MovieUtils.imageURL(actor.profile_path))
+            .error(R.drawable.placeholder)
         .into(holder.actorImage);
 
         }

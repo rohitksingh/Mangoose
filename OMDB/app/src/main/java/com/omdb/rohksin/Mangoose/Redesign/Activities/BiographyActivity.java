@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.SerializableCarriers;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.os.Build;
 import android.os.Bundle;

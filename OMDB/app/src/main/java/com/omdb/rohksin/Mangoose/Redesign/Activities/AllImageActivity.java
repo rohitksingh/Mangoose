@@ -11,7 +11,9 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ListAdaper;
 import com.omdb.rohksin.Mangoose.R;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +29,9 @@ public class AllImageActivity extends AppCompatActivity{
         setAnimation();
         setContentView(R.layout.image_landing_layout);
 
-        List<String> moviesList = getIntent().getStringArrayListExtra(MovieDetailActivity.MOVIE_LIST);
+        List<Backdrop> backdrops = (List<Backdrop>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
+
+        List<String> moviesList = getMovieList(backdrops);
         RecyclerView recyclerImageView = (RecyclerView)findViewById(R.id.image_list_landing);
         GridLayoutManager llm = new GridLayoutManager(this,2);
         ListAdaper adapter = new ListAdaper(moviesList,this);
@@ -47,5 +51,15 @@ public class AllImageActivity extends AppCompatActivity{
             getWindow().setExitTransition(explode);
             getWindow().setEnterTransition(explode);
         }
+    }
+
+    private List<String> getMovieList(List<Backdrop> backdrops)
+    {
+        List<String> imagePaths = new ArrayList<String>();
+        for(Backdrop backdrop: backdrops)
+        {
+            imagePaths.add(backdrop.file_path);
+        }
+        return imagePaths;
     }
 }

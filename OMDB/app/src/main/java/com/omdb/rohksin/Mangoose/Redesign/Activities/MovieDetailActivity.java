@@ -25,7 +25,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.omdb.rohksin.Mangoose.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
@@ -34,6 +33,7 @@ import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Genre;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Movie;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.MovieIDURLBuilder;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
@@ -44,6 +44,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -275,9 +276,10 @@ public class MovieDetailActivity extends AppCompatActivity {
             viewMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
+
+
                     Intent i = new Intent(MovieDetailActivity.this, AllImageActivity.class);
-                    i.putStringArrayListExtra(MOVIE_LIST, movie.getImages());
+                    i.putExtra(MOVIE_LIST, (Serializable)movie.images.backdrops);
                     if(Build.VERSION.SDK_INT>20)
                     {
                         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
@@ -287,7 +289,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                         startActivity(i);
                     }
 
-                    */
+
 
                 }
 
@@ -359,17 +361,18 @@ public class MovieDetailActivity extends AppCompatActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        /*
                         Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
                         i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.id);
                         startActivity(i);
+                        */
+                        AppUtility.startPeopleDetailActivity(context, actor1.id+"");
                     }
                 });
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor2.id);
-                        startActivity(i);
+                        AppUtility.startPeopleDetailActivity(context, actor2.id+"");
                     }
                 });
 
@@ -377,9 +380,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor3.id);
-                        startActivity(i);
+                        AppUtility.startPeopleDetailActivity(context, actor3.id+"");
                     }
                 });
 
@@ -392,13 +393,13 @@ public class MovieDetailActivity extends AppCompatActivity {
 
                     view.setText("View " + (actors.size() - 3) + " +");
 
-                    /*
+
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(MovieDetailActivity.this, AllActorsActivity.class);
-                            SerializableObject serializableObject = new SerializableObject(actors);
-                            i.putExtra(MovieDetailActivity.MOVIE_LIST, serializableObject);
+
+                            i.putExtra(MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.cast);
                             if(Build.VERSION.SDK_INT>20)
                             {
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
@@ -409,7 +410,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    */
+
 
                 }
 
@@ -483,10 +484,9 @@ public class MovieDetailActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            /*
+
                             Intent i = new Intent(MovieDetailActivity.this, AllCrewActivity.class);
-                            SerializableCrewList serializableCrewList = new SerializableCrewList(movie.getCrews());
-                            i.putExtra(MovieDetailActivity.MOVIE_LIST, serializableCrewList);
+                            i.putExtra(MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.crew);
                             if(Build.VERSION.SDK_INT>20)
                             {
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
@@ -495,9 +495,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                             else {
                                 startActivity(i);
                             }
-
-                            */
-
                         }
                     });
                 }
@@ -564,10 +561,12 @@ public class MovieDetailActivity extends AppCompatActivity {
             website.setText(genall);
             */
 
-            if(!movie.homepage.equalsIgnoreCase("")) {
-                website.setText(movie.homepage);
-                website.setVisibility(View.VISIBLE);
+            if(movie.homepage!=null) {
+                if (!movie.homepage.equalsIgnoreCase("")) {
+                    website.setText(movie.homepage);
+                    website.setVisibility(View.VISIBLE);
 
+                }
             }
 
             website.setOnClickListener(new View.OnClickListener() {

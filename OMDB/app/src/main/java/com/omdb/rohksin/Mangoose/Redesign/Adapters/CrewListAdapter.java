@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
@@ -47,12 +47,12 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
 
         Log.d("ImagePICASSO", crew.toString());
 
-        holder.crewName.setText(crew.getName());
-        holder.roleName.setText(crew.getJob());
+        holder.crewName.setText(crew.name);
+        holder.roleName.setText(crew.job);
 
 
         Picasso.with(context)
-                .load(MovieUtils.imageURL(crew.getProfileImage())).error(R.drawable.placeholder)
+                .load(MovieUtils.imageURL(crew.profile_path)).error(R.drawable.placeholder)
                 .into(holder.crewImage);
 
     }

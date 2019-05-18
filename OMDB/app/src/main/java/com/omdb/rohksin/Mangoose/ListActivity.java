@@ -11,6 +11,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ViewAllMoviesAdapter;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class ListActivity extends AppCompatActivity {
 
         //setAnimation();
 
-        ArrayList<MovieRole> movieRoles = (ArrayList<MovieRole>)getIntent().getSerializableExtra("allMoviesListActivity");
+        ArrayList<Role> movieRoles = (ArrayList<Role>)getIntent().getSerializableExtra("allMoviesListActivity");
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 

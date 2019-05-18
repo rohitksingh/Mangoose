@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Movie;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
@@ -72,6 +73,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
             @Override
             public void onClick(View v) {
 
+                /*
                 Intent i = new Intent(context, MovieDetailActivity.class);
                 i.putExtra(AppConstants.MOVIE_ID, movieId);
 
@@ -82,6 +84,9 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
                 } else {
                     context.startActivity(i);
                 }
+                */
+
+                AppUtility.startMovieDetailActiivtyWithAnim(context, movieId, holder.posterThumbnail);
 
             }
         });
