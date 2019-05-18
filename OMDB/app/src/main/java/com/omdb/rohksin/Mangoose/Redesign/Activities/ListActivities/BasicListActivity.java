@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Redesign.Activities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities;
 
 import android.os.Build;
 import android.os.Bundle;

@@ -2,15 +2,12 @@ package com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 
-import com.omdb.rohksin.Mangoose.Redesign.Activities.BasicListActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ListAdaper;
 import com.omdb.rohksin.Mangoose.R;

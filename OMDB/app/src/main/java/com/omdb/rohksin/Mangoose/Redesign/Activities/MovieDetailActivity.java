@@ -68,7 +68,7 @@ import java.util.List;
 
 
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends BasicDetailActivity {
 
     private Movie movie;
     public static String OBJECTMAPPED ="com.omdb.rohksin.omdb.MovieDetailActivity.ObjectMapped";
@@ -79,52 +79,27 @@ public class MovieDetailActivity extends AppCompatActivity {
     private static final String TAG = "MovieDetailActivity";
 
     @Override
-    protected void onCreate(Bundle saveBundleInstance)
+    public void onCreate(Bundle saveBundleInstance)
     {
         super.onCreate(saveBundleInstance);
-        setContentView(R.layout.blank_activity);
-        Intent i = getIntent();
-        final String movieId = i.getStringExtra(AppConstants.MOVIE_ID);
-
-        layout = (CollapsingToolbarLayout)findViewById(R.id.title);
-
-        URLBuilder urlBuilder = new MovieIDURLBuilder(movieId);
-        final String end = urlBuilder.bulidURL();
-
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, end,
-
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        Log.d(TAG, "onResponse: "+ end);
-                        Log.d(TAG, "onResponse: "+ response.toString() );
-
-                        parseMovie(response.toString());
-                        //sendBroadcast();
-                        createUI();
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }
-
-        );
-
-        queue.add(request);
+        //Intent i = getIntent();
+        //final String movieId = i.getStringExtra(AppConstants.MOVIE_ID);
 
     }
 
-    public void sendBroadcast(){
-        Intent i = new Intent();
-        i.setAction(OBJECTMAPPED);
-        sendBroadcast(i);
+    @Override
+    public URLBuilder getUrlBuilder() {
+        return new MovieIDURLBuilder(objectId);
+    }
+
+    @Override
+    public String getObjectId() {
+        return AppConstants.MOVIE_ID;
+    }
+
+    @Override
+    public void parseObject(String jsonString) {
+        parseMovie(jsonString);
     }
 
     private void parseMovie(String jsonString) {
@@ -146,9 +121,11 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
 
+    @Override
     public void createUI()
     {
 
+        layout = (CollapsingToolbarLayout)findViewById(R.id.title);
         hideTitle(movie.title);
 
         ImageView backdrop = (ImageView)findViewById(R.id.moviePoster);
@@ -185,7 +162,13 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
 
-        public void hideTitle(final String title)
+    @Override
+    public int getMainLayout() {
+        return R.layout.blank_activity;
+    }
+
+
+    public void hideTitle(final String title)
         {
             AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
             appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
