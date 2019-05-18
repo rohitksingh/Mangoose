@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
@@ -29,10 +31,10 @@ import java.util.List;
  */
 public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdapter.PosterHolder> {
 
-    private List<MovieRole> list;
+    private List<Role> list;
     private Context context;
 
-    public ViewAllMoviesAdapter(List<MovieRole> list,Context context)
+    public ViewAllMoviesAdapter(List<Role> list,Context context)
     {
         this.list = list;
         this.context = context;
@@ -49,24 +51,24 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
     @Override
     public void onBindViewHolder(final PosterHolder holder, int position) {
 
-        final MovieRole movieRole= list.get(position);
+        final Role movieRole= list.get(position);
         //setFadeAnimation(holder.itemView);
-        final String imagePath = movieRole.getMoviePosterPath();
+        final String imagePath = movieRole.poster_path;
         final String thumb = MovieUtils.imageURL(imagePath);
         Log.d("Thumb", thumb);
         Picasso.with(context)
                 .load(thumb).error(R.drawable.placeholder)
                 .into(holder.moviePoster);
 
-        holder.movieName.setText(movieRole.getMovieName());
-        holder.releaseDate.setText(MovieUtils.getFormattedDate(movieRole.getReleaseDate()));
-        holder.characterName.setText(movieRole.getCharacterName());
+        holder.movieName.setText(movieRole.title);
+        holder.releaseDate.setText(MovieUtils.getFormattedDate(movieRole.release_date));
+        holder.characterName.setText(movieRole.character);
 
         holder.movieName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, MovieDetailActivity.class);
-                i.putExtra("blankActivityText",movieRole.getMovieId());
+                i.putExtra(AppConstants.MOVIE_ID,movieRole.id);
 
                 if(Build.VERSION.SDK_INT>20)
                 {
@@ -83,7 +85,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
             @Override
             public void onClick(View v) {
                 //MovieUtils.previewImage(context,movieRole.getMoviePosterPath());
-                MovieUtils.previewImageWithAnimation(context,movieRole.getMoviePosterPath(),holder.moviePoster,"ImageView");
+                MovieUtils.previewImageWithAnimation(context,movieRole.poster_path,holder.moviePoster,"ImageView");
             }
         });
     }
