@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.R;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.BasicDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllActorsActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllCrewActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllImageActivity;

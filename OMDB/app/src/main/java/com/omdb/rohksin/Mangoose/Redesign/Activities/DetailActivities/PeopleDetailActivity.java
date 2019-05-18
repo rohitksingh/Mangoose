@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.ListActivity;
 import com.omdb.rohksin.Mangoose.R;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.BasicDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.BiographyActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Actor;
