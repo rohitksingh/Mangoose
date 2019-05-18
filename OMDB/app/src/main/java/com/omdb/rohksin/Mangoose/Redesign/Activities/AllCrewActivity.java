@@ -19,36 +19,26 @@ import java.util.List;
 /**
  * Created by Illuminati on 6/21/2017.
  */
-public class AllCrewActivity extends AppCompatActivity {
+public class AllCrewActivity extends BasicListActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setAnimation();
-        setContentView(R.layout.image_landing_layout);
+    }
 
-        getSupportActionBar().setTitle("Crew");
+    @Override
+    public RecyclerView.Adapter createAdapter() {
 
         List<Crew> crews = (List<Crew>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
-
-        RecyclerView crewRecyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
-        CrewListAdapter adapter = new CrewListAdapter(crews,this);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        crewRecyclerView.setLayoutManager(llm);
-        crewRecyclerView.setAdapter(adapter);
-
+        return new CrewListAdapter(crews,this);
     }
 
-    public void setAnimation()
-    {
-        if(Build.VERSION.SDK_INT>20) {
-            Slide slide = new Slide();
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setDuration(400);
-            slide.setInterpolator(new AccelerateDecelerateInterpolator());
-            getWindow().setExitTransition(slide);
-            getWindow().setEnterTransition(slide);
-        }
+    @Override
+    public void createUI() {
+        setContentView(R.layout.image_landing_layout);
+        getSupportActionBar().setTitle("Crew");
+        recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
     }
+
 }

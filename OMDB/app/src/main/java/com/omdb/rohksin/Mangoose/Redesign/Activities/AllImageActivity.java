@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
 import android.view.WindowManager;
@@ -19,27 +20,37 @@ import java.util.List;
 /**
  * Created by Illuminati on 6/20/2017.
  */
-public class AllImageActivity extends AppCompatActivity{
+public class AllImageActivity extends BasicListActivity{
 
     @Override
-    protected void onCreate(Bundle savedInstaceState)
+    public void onCreate(Bundle savedInstaceState)
     {
         super.onCreate(savedInstaceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setAnimation();
-        setContentView(R.layout.image_landing_layout);
-
-        List<Backdrop> backdrops = (List<Backdrop>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
-
-        List<String> moviesList = getMovieList(backdrops);
-        RecyclerView recyclerImageView = (RecyclerView)findViewById(R.id.image_list_landing);
-        GridLayoutManager llm = new GridLayoutManager(this,2);
-        ListAdaper adapter = new ListAdaper(moviesList,this);
-        recyclerImageView.setLayoutManager(llm);
-        recyclerImageView.setAdapter(adapter);
-
     }
 
+    @Override
+    public RecyclerView.LayoutManager provideLayoutManager()
+    {
+        return new GridLayoutManager(this,2);
+    }
+
+    @Override
+    public RecyclerView.Adapter createAdapter() {
+
+        List<Backdrop> backdrops = (List<Backdrop>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
+        List<String> moviesList = getMovieList(backdrops);
+        return new ListAdaper(moviesList,this);
+    }
+
+    @Override
+    public void createUI() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.image_landing_layout);
+        recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
+    }
+
+
+    @Override
     public void setAnimation()
     {
         if(Build.VERSION.SDK_INT>20) {
