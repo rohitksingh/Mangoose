@@ -3,7 +3,7 @@ package com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
-import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.CrewListAdapter;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;

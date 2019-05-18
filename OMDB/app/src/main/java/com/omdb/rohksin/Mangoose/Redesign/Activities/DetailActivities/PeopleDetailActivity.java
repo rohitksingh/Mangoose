@@ -1,32 +1,22 @@
-package com.omdb.rohksin.Mangoose.Redesign.Activities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities;
 
 import android.app.ActivityOptions;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.omdb.rohksin.Mangoose.ListActivity;
 import com.omdb.rohksin.Mangoose.R;
-import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.BasicDetailActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.BiographyActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
-import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.ActorDetailMapper;
-import com.omdb.rohksin.Mangoose.NewSearch.ResponseMapper.Impl.DetailMovieMapper;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Actor;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
@@ -37,8 +27,6 @@ import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;

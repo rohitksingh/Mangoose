@@ -8,9 +8,8 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.PeopleDetailActivity;
 
 
 public class AppUtility {

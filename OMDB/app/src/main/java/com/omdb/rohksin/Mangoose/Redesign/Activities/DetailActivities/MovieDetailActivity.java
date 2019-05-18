@@ -1,16 +1,11 @@
-package com.omdb.rohksin.Mangoose.Redesign.Activities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities;
 
 import android.app.ActivityOptions;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
@@ -19,13 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.Mangoose.R;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.BasicDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllActorsActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllCrewActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllImageActivity;
@@ -42,8 +32,6 @@ import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -150,7 +138,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
         poster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MovieUtils.previewImageWithAnimation(MovieDetailActivity.this,movie.poster_path ,poster,"ImageView");
+                MovieUtils.previewImageWithAnimation(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this,movie.poster_path ,poster,"ImageView");
             }
         });
 
@@ -246,11 +234,11 @@ public class MovieDetailActivity extends BasicDetailActivity {
                 public void onClick(View v) {
 
 
-                    Intent i = new Intent(MovieDetailActivity.this, AllImageActivity.class);
+                    Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllImageActivity.class);
                     i.putExtra(MOVIE_LIST, (Serializable)movie.images.backdrops);
                     if(Build.VERSION.SDK_INT>20)
                     {
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this);
                         startActivity(i,options.toBundle());
                     }
                     else {
@@ -329,20 +317,20 @@ public class MovieDetailActivity extends BasicDetailActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppUtility.startPeopleDetailActivity(MovieDetailActivity.this, actor1.id+"");
+                        AppUtility.startPeopleDetailActivity(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, actor1.id+"");
                     }
                 });
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppUtility.startPeopleDetailActivity(MovieDetailActivity.this, actor2.id+"");
+                        AppUtility.startPeopleDetailActivity(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, actor2.id+"");
                     }
                 });
 
                 actorCard3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppUtility.startPeopleDetailActivity(MovieDetailActivity.this, actor3.id+"");
+                        AppUtility.startPeopleDetailActivity(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, actor3.id+"");
                     }
                 });
 
@@ -358,12 +346,12 @@ public class MovieDetailActivity extends BasicDetailActivity {
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(MovieDetailActivity.this, AllActorsActivity.class);
+                            Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllActorsActivity.class);
 
-                            i.putExtra(MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.cast);
+                            i.putExtra(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.cast);
                             if(Build.VERSION.SDK_INT>20)
                             {
-                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this);
                                 startActivity(i,options.toBundle());
                             }
                             else {
@@ -446,11 +434,11 @@ public class MovieDetailActivity extends BasicDetailActivity {
                         public void onClick(View v) {
 
 
-                            Intent i = new Intent(MovieDetailActivity.this, AllCrewActivity.class);
-                            i.putExtra(MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.crew);
+                            Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllCrewActivity.class);
+                            i.putExtra(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.crew);
                             if(Build.VERSION.SDK_INT>20)
                             {
-                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this);
                                 startActivity(i,options.toBundle());
                             }
                             else {
@@ -533,7 +521,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
             website.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MovieUtils.openInBrowser(MovieDetailActivity.this,movie.homepage);
+                    MovieUtils.openInBrowser(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this,movie.homepage);
                 }
             });
 

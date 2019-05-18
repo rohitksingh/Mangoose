@@ -1,9 +1,6 @@
 package com.omdb.rohksin.Mangoose.Redesign.Adapters;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,7 +12,6 @@ import android.widget.TextView;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
 

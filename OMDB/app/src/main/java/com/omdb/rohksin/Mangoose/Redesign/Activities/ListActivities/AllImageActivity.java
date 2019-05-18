@@ -8,7 +8,7 @@ import android.transition.Explode;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 
-import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ListAdaper;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
