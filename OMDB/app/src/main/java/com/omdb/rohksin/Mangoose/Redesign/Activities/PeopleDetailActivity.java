@@ -330,11 +330,7 @@ public class PeopleDetailActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent i = new Intent(PeopleDetailActivity.this, MovieDetailActivity.class);
-                        i.putExtra(AppConstants.MOVIE_ID, actor3.id+"");
-                        startActivity(i);
-
-                       // AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor3.id+"");
+                       AppUtility.startMovieDetailActivity(PeopleDetailActivity.this, actor3.id+"");
                     }
                 });
 
@@ -411,9 +407,11 @@ public class PeopleDetailActivity extends AppCompatActivity {
             }
 
 
-            if(!actorDetail.homepage.equalsIgnoreCase("null")) {
-                website.setText(actorDetail.homepage);
-                website.setVisibility(View.GONE);
+            if(actorDetail.homepage!=null){
+                if(!actorDetail.homepage.equalsIgnoreCase("null")) {
+                    website.setText(actorDetail.homepage);
+                    website.setVisibility(View.GONE);
+                }
             }
 
             website.setOnClickListener(new View.OnClickListener() {
@@ -422,7 +420,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
                     MovieUtils.openInBrowser(PeopleDetailActivity.this,actorDetail.homepage);
                 }
             });
-
         }
     }
 
@@ -442,8 +439,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
         {
             Log.d(TAG, "Parsing Failed: ");
         }
-
-
 
     }
 

@@ -17,25 +17,49 @@ public class AppUtility {
 
     private static final String TAG = "AppUtility";
 
-    public static void startMovieDetailActivity(Context context, String id)
+    public static void startMovieDetailActivity(Context context, String movieId)
     {
-        Log.d(TAG, "startMovieDetailActivity: "+id);
+        Log.d(TAG, "startMovieDetailActivity: "+movieId);
         Intent i = new Intent(context, PeopleDetailActivity.class);
-        i.putExtra(ActorsListAdapter.ACTOR_ID, id);
+        i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
         context.startActivity(i);
     }
 
 
-    public static void startMovieDetailActiivtyWithAnim(Context context, String id, ImageView posterThumbnail)
+    public static void startMovieDetailActiivtyWithAnim(Context context, String movieId, ImageView posterThumbnail)
     {
-        Log.d(TAG, "startMovieDetailActivity: "+id);
+        Log.d(TAG, "startMovieDetailActivity: "+movieId);
         Intent i = new Intent(context, MovieDetailActivity.class);
-        i.putExtra(AppConstants.MOVIE_ID, id);
+        i.putExtra(AppConstants.MOVIE_ID, movieId);
 
         if (Build.VERSION.SDK_INT > 20) {
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, posterThumbnail, "ImageView");
             context.startActivity(i, options.toBundle());
         } else {
+            context.startActivity(i);
+        }
+    }
+
+    public static void startPeopleDetailActivity(Context context, String personId)
+    {
+        Intent i = new Intent(context, PeopleDetailActivity.class);
+        i.putExtra(ActorsListAdapter.ACTOR_ID, personId);
+        context.startActivity(i);
+    }
+
+    public static void startPeopleDetailActivityWithAnim(Context context, String personId, ImageView thumbnail)
+    {
+
+        Log.d(TAG, "startPeopleDetailActivity: "+ personId);
+        Intent i = new Intent(context, PeopleDetailActivity.class);
+        i.putExtra(ActorsListAdapter.ACTOR_ID, personId);
+
+        if(Build.VERSION.SDK_INT>20)
+        {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,thumbnail,"ACTOR");
+            context.startActivity(i,options.toBundle());
+        }
+        else {
             context.startActivity(i);
         }
     }

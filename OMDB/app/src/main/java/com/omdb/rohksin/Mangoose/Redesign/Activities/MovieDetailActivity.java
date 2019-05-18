@@ -33,6 +33,7 @@ import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Genre;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Movie;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.MovieIDURLBuilder;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
@@ -360,18 +361,18 @@ public class MovieDetailActivity extends AppCompatActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        /*
                         Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
                         i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.id);
                         startActivity(i);
+                        */
+                        AppUtility.startPeopleDetailActivity(context, actor1.id+"");
                     }
                 });
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor2.id);
-                        startActivity(i);
+                        AppUtility.startPeopleDetailActivity(context, actor2.id+"");
                     }
                 });
 
@@ -379,9 +380,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor3.id);
-                        startActivity(i);
+                        AppUtility.startPeopleDetailActivity(context, actor3.id+"");
                     }
                 });
 

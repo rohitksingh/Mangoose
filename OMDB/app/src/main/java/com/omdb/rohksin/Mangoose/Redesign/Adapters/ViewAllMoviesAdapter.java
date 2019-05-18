@@ -20,6 +20,7 @@ import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
 import com.squareup.picasso.Picasso;
@@ -67,6 +68,8 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
         holder.movieName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+               /*
                 Intent i = new Intent(context, MovieDetailActivity.class);
                 i.putExtra(AppConstants.MOVIE_ID,movieRole.id);
 
@@ -78,6 +81,9 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
                 else {
                     context.startActivity(i);
                 }
+                */
+
+                AppUtility.startMovieDetailActiivtyWithAnim(context, movieRole.id+"", holder.moviePoster);
             }
         });
 

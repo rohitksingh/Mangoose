@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
@@ -59,6 +60,8 @@ public void onBindViewHolder(final ActorViewHolder holder, int position) {
         holder.actorName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /*
                 Intent i = new Intent(context, PeopleDetailActivity.class);
                 i.putExtra(ACTOR_ID, actor.id);
 
@@ -70,6 +73,8 @@ public void onBindViewHolder(final ActorViewHolder holder, int position) {
                 else {
                     context.startActivity(i);
                 }
+                */
+                AppUtility.startPeopleDetailActivityWithAnim(context, actor.id+"", holder.actorImage);
             }
         });
 

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.Redesign.Models.PeopleDetail;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppUtility;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity;
 import com.omdb.rohksin.Mangoose.R;
@@ -65,6 +66,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
             @Override
             public void onClick(View v) {
 
+                /*
                 Intent i = new Intent(context, PeopleDetailActivity.class);
                 i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
 
@@ -76,6 +78,9 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
                 else {
                     context.startActivity(i);
                 }
+                */
+
+                AppUtility.startPeopleDetailActivityWithAnim(context, movieId, holder.posterThumbnail);
             }
         });
         // holder.posterThumbnail.setImageResource();
