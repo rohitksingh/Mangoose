@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme" >
 
 
-        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllImageActivity"
@@ -20,7 +20,7 @@
             />
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllActorsActivity"/>
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllCrewActivity"/>
-        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.PeopleDetailActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.PeopleDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
