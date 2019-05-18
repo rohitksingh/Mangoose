@@ -58,6 +58,8 @@ import java.util.List;
  * 5) Listen for Response
  * 6) Map to POJO
  *
+ * Dont pass crew list to CrewListActivity 676 entries makes it slow Use Static variable instead
+ *
  */
 
 
