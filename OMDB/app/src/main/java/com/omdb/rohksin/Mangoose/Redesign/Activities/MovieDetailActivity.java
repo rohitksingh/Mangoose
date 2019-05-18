@@ -90,10 +90,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         URLBuilder urlBuilder = new MovieIDURLBuilder(movieId);
         final String end = urlBuilder.bulidURL();
-        BroadcastReceiver receiver = new DetailMovieReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(OBJECTMAPPED);
-        registerReceiver(receiver, filter);
+
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -106,14 +103,9 @@ public class MovieDetailActivity extends AppCompatActivity {
                         Log.d(TAG, "onResponse: "+ end);
                         Log.d(TAG, "onResponse: "+ response.toString() );
 
-
-
-
-                        //ResponseMapper mapper = new DetailMovieMapper();
-                        //mapper.mapResponse(response);
-                        //movie = (DetailMovie)mapper.objectMapped();
-                        getMovieObject(response.toString());
-                        sendBroadcast();
+                        parseMovie(response.toString());
+                        //sendBroadcast();
+                        createUI();
 
                     }
                 }, new Response.ErrorListener() {
@@ -135,7 +127,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         sendBroadcast(i);
     }
 
-    private void getMovieObject(String jsonString) {
+    private void parseMovie(String jsonString) {
 
         Log.d(TAG, "IN: ");
         Moshi moshi = new Moshi.Builder()
@@ -154,56 +146,44 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
 
-
-    private class DetailMovieReceiver extends BroadcastReceiver
+    public void createUI()
     {
 
-        private Context context;
+        hideTitle(movie.title);
 
-        @Override
-        public void onReceive(Context context,Intent intent)
-        {
-            if(intent.getAction().equalsIgnoreCase(MovieDetailActivity.OBJECTMAPPED))
-            {
+        ImageView backdrop = (ImageView)findViewById(R.id.moviePoster);
+        final ImageView poster = (ImageView)layout.findViewById(R.id.moviePosterThumbnail);
 
-                this.context  = context;
-
-                hideTitle(movie.title);
-
-                ImageView imageView = (ImageView)findViewById(R.id.moviePoster);
-                final ImageView poster = (ImageView)layout.findViewById(R.id.moviePosterThumbnail);
-
-                if(Build.VERSION.SDK_INT>20) {
-                    poster.setTransitionName("ImageView");
-                }
-
-                String imgSrc = MovieUtils.imageHighURL(movie.backdrop_path);
-                String imgSrc1 = MovieUtils.imageURL(movie.poster_path);
-
-
-                Picasso.with(context)
-                        .load(imgSrc)
-                        .into(imageView);
-
-                Picasso.with(context)
-                        .load(imgSrc1)
-                        .into(poster);
-
-                poster.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MovieUtils.previewImageWithAnimation(MovieDetailActivity.this,movie.poster_path ,poster,"ImageView");
-                    }
-                });
-
-                createOverViewSection();
-                createImageSection();
-                createActorsSection();
-                createCrewSection();
-                createAboutSection();
-
-            }
+        if(Build.VERSION.SDK_INT>20) {
+            poster.setTransitionName("ImageView");
         }
+
+        String backdrop_path = MovieUtils.imageHighURL(movie.backdrop_path);
+        String poster_path = MovieUtils.imageURL(movie.poster_path);
+
+
+        Picasso.with(this)
+                .load(backdrop_path)
+                .into(backdrop);
+
+        Picasso.with(this)
+                .load(poster_path)
+                .into(poster);
+
+        poster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieUtils.previewImageWithAnimation(MovieDetailActivity.this,movie.poster_path ,poster,"ImageView");
+            }
+        });
+
+        createOverViewSection();
+        createImageSection();
+        createActorsSection();
+        createCrewSection();
+        createAboutSection();
+    }
+
 
         public void hideTitle(final String title)
         {
@@ -263,14 +243,14 @@ public class MovieDetailActivity extends AppCompatActivity {
                 String imgsrc2 = MovieUtils.imageHighURL(backdrops.get(1).file_path);
                 String imgsrc3 = MovieUtils.imageHighURL(backdrops.get(2).file_path);
 
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(imgsrc1)
                         .into(image1);
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(imgsrc2)
                         .into(image2);
 
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(imgsrc3)
                         .into(image3);
             }
@@ -339,26 +319,26 @@ public class MovieDetailActivity extends AppCompatActivity {
 
 
                 final Cast actor1 = actors.get(0);
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(MovieUtils.imageURL(actor1.profile_path))
                         .into(actorImage1);
-                Picasso.with(context);
+                Picasso.with(this);
                 actorName1.setText(actor1.name);
                 charaterName1.setText(actor1.character);
 
                 final Cast actor2 = actors.get(1);
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(MovieUtils.imageURL(actor2.profile_path))
                         .into(actorImage2);
-                Picasso.with(context);
+                Picasso.with(this);
                 actorName2.setText(actor2.name);
                 charaterName2.setText(actor2.character);
 
                 final Cast actor3 = actors.get(2);
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(MovieUtils.imageURL(actor3.profile_path))
                         .into(actorImage3);
-                Picasso.with(context);
+                Picasso.with(this);
                 actorName3.setText(actor3.name);
                 charaterName3.setText(actor3.character);
 
@@ -366,26 +346,20 @@ public class MovieDetailActivity extends AppCompatActivity {
                 actorCard1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /*
-                        Intent i = new Intent(MovieDetailActivity.this, PeopleDetailActivity.class);
-                        i.putExtra(ActorsListAdapter.ACTOR_ID, actor1.id);
-                        startActivity(i);
-                        */
-                        AppUtility.startPeopleDetailActivity(context, actor1.id+"");
+                        AppUtility.startPeopleDetailActivity(MovieDetailActivity.this, actor1.id+"");
                     }
                 });
                 actorCard2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppUtility.startPeopleDetailActivity(context, actor2.id+"");
+                        AppUtility.startPeopleDetailActivity(MovieDetailActivity.this, actor2.id+"");
                     }
                 });
 
                 actorCard3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        AppUtility.startPeopleDetailActivity(context, actor3.id+"");
+                        AppUtility.startPeopleDetailActivity(MovieDetailActivity.this, actor3.id+"");
                     }
                 });
 
@@ -397,7 +371,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                 } else {
 
                     view.setText("View " + (actors.size() - 3) + " +");
-
 
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -452,7 +425,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 TextView crewRole3 = (TextView) crewCard3.findViewById(R.id.crewRole);
 
                 Crew crew1 = crews.get(0);
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(MovieUtils.imageURL(crew1.profile_path))
                         .into(crewImage1);
 
@@ -460,7 +433,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 crewRole1.setText(crew1.job);
 
                 Crew crew2 = crews.get(1);
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(MovieUtils.imageURL(crew2.profile_path))
                         .into(crewImage2);
 
@@ -468,7 +441,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 crewRole2.setText(crew2.job);
 
                 Crew crew3 = crews.get(2);
-                Picasso.with(context)
+                Picasso.with(this)
                         .load(MovieUtils.imageURL(crew3.profile_path))
                         .into(crewImage3);
 
@@ -609,7 +582,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             }
         }
 
-    }
+
 
 
 
