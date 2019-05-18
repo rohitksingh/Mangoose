@@ -26,7 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.Mangoose.R;
-import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllActorsActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllCrewActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllImageActivity;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
@@ -84,7 +86,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         Intent i = getIntent();
         final String movieId = i.getStringExtra(AppConstants.MOVIE_ID);
 
-        CoordinatorLayout parent = (CoordinatorLayout)findViewById(R.id.parent);
         layout = (CollapsingToolbarLayout)findViewById(R.id.title);
 
         URLBuilder urlBuilder = new MovieIDURLBuilder(movieId);

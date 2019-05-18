@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Redesign.Activities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.transition.Explode;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 
+import com.omdb.rohksin.Mangoose.Redesign.Activities.BasicListActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ListAdaper;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
@@ -20,7 +22,7 @@ import java.util.List;
 /**
  * Created by Illuminati on 6/20/2017.
  */
-public class AllImageActivity extends BasicListActivity{
+public class AllImageActivity extends BasicListActivity {
 
     @Override
     public void onCreate(Bundle savedInstaceState)

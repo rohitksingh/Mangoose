@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose.Redesign.Activities;
+package com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import com.omdb.rohksin.Mangoose.Redesign.Activities.BasicListActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.MovieDetailActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.CrewListAdapter;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
