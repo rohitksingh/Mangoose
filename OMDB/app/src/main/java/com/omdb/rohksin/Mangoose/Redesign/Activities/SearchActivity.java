@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.seach_page_layout);
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        setContentView(R.layout.main_search_page);
+        setContentView(R.layout.activity_search);
 
         setAnimation();
 

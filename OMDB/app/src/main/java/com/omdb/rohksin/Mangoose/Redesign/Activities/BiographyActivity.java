@@ -20,7 +20,7 @@ public class BiographyActivity extends AppCompatActivity{
     {
         super.onCreate(savedInstanceState);
         setAnimation();
-        setContentView(R.layout.biography_activity);
+        setContentView(R.layout.activity_biography);
         bioGraphy = (TextView)findViewById(R.id.bioGraphy);
         String bio = (String)getIntent().getStringExtra("Biography");
         String Name = (String)getIntent().getStringExtra("Name");

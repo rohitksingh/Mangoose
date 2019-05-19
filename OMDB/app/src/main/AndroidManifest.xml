@@ -15,11 +15,11 @@
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllImageActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.ImageListActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllActorsActivity"/>
-        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllCrewActivity"/>
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.ActorListActivity"/>
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.CrewListActivity"/>
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.PeopleDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
@@ -33,15 +33,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.omdb.rohksin.Mangoose.ListActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.RoleListActivity"
             />
-        <activity android:name="com.omdb.rohksin.Mangoose.PreviewImageActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.PreviewImageActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name="com.omdb.rohksin.Mangoose.TVShowDetailActivity"/>
-        <activity android:name="com.omdb.rohksin.Mangoose.SeasonDetailActivity"/>
-        <activity android:name="com.omdb.rohksin.Mangoose.EpisodeDetailActivity"/>
-        <activity android:name="com.omdb.rohksin.Mangoose.FilterMovieActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.FutureActivities.TVShowDetailActivity"/>
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.FutureActivities.SeasonDetailActivity"/>
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.FutureActivities.EpisodeDetailActivity"/>
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.FutureActivities.FilterMovieActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
@@ -50,7 +50,7 @@
             >
         </activity>
 
-        <activity android:name="com.omdb.rohksin.Mangoose.ComingSoon"/>
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ComingsoonActivity"/>
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.BiographyActivity"/>
 
     </application>

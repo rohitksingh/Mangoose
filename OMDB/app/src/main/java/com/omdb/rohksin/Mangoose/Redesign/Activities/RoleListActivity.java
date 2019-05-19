@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.ViewAllMoviesAdapter;
-import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Role;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by Illuminati on 6/28/2017.
  */
-public class ListActivity extends AppCompatActivity {
+public class RoleListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,10 +36,10 @@ public class ListActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
-        LinearLayoutManager llm = new LinearLayoutManager(ListActivity.this);
+        LinearLayoutManager llm = new LinearLayoutManager(RoleListActivity.this);
         recyclerView.setLayoutManager(llm);
 
-        ViewAllMoviesAdapter adapter = new ViewAllMoviesAdapter(movieRoles,ListActivity.this);
+        ViewAllMoviesAdapter adapter = new ViewAllMoviesAdapter(movieRoles,RoleListActivity.this);
         recyclerView.setAdapter(adapter);
 
 

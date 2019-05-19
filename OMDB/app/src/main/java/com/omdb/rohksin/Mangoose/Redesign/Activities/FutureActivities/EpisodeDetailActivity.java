@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose;
+package com.omdb.rohksin.Mangoose.Redesign.Activities.FutureActivities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.EpisodeIDURLBuilder;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
+import com.omdb.rohksin.Mangoose.R;
 
 import org.json.JSONObject;
 

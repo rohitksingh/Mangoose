@@ -10,7 +10,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,9 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.R;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllActorsActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllCrewActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllImageActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.ActorListActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.CrewListActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.ImageListActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Adapters.PeopleScrollAdapter;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
@@ -155,7 +154,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
 
     @Override
     public int getMainLayout() {
-        return R.layout.blank_activity;
+        return R.layout.activity_movie_detail;
     }
 
 
@@ -239,7 +238,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
                 @Override
                 public void onClick(View v) {
 
-                    Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllImageActivity.class);
+                    Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, ImageListActivity.class);
                     i.putExtra(MOVIE_LIST, (Serializable)movie.images.backdrops);
 
                     if(Build.VERSION.SDK_INT>20)
@@ -353,7 +352,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllActorsActivity.class);
+                            Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, ActorListActivity.class);
 
                             i.putExtra(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.cast);
                             if(Build.VERSION.SDK_INT>20)
@@ -438,7 +437,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
                         @Override
                         public void onClick(View v) {
 
-                            Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllCrewActivity.class);
+                            Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, CrewListActivity.class);
                             i.putExtra(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.crew);
                             if(Build.VERSION.SDK_INT>20)
                             {

@@ -13,7 +13,7 @@ import com.omdb.rohksin.Mangoose.Redesign.Models.Actor;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Crew;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Genre;
 import com.omdb.rohksin.Mangoose.Redesign.Models.Video;
-import com.omdb.rohksin.Mangoose.PreviewImageActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.PreviewImageActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

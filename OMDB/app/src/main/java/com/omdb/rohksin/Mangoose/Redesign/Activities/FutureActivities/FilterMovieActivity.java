@@ -1,4 +1,4 @@
-package com.omdb.rohksin.Mangoose;
+package com.omdb.rohksin.Mangoose.Redesign.Activities.FutureActivities;
 
 import android.animation.Animator;
 import android.os.Build;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewAnimationUtils;
 import android.widget.LinearLayout;
+
+import com.omdb.rohksin.Mangoose.R;
 
 /**
  * Created by Illuminati on 7/2/2017.
