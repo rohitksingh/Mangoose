@@ -83,4 +83,5 @@ public abstract class BasicDetailActivity extends AppCompatActivity {
 
     public abstract int getMainLayout();
 
+
 }
