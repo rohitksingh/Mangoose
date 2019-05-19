@@ -57,19 +57,6 @@ public void onBindViewHolder(final ActorViewHolder holder, int position) {
             @Override
             public void onClick(View v) {
 
-                /*
-                Intent i = new Intent(context, PeopleDetailActivity.class);
-                i.putExtra(ACTOR_ID, actor.id);
-
-
-                if(Build.VERSION.SDK_INT>20) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, holder.actorImage, "ACTOR");
-                    context.startActivity(i,options.toBundle());
-                }
-                else {
-                    context.startActivity(i);
-                }
-                */
                 AppUtility.startPeopleDetailActivityWithAnim(context, actor.id+"", holder.actorImage);
             }
         });
@@ -83,7 +70,6 @@ public void onBindViewHolder(final ActorViewHolder holder, int position) {
 
 @Override
 public int getItemCount() {
-        //return list.size();
         return list.size();
         }
 

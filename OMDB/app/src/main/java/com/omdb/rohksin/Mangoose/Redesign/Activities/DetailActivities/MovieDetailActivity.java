@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,6 +21,7 @@ import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllActorsActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllCrewActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.AllImageActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.PeopleScrollAdapter;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
@@ -62,6 +66,8 @@ public class MovieDetailActivity extends BasicDetailActivity {
     public static String MOVIE_LIST ="com.omdb.rohksin.omdb.MovieDetailActivity.MovieList";
 
     private CollapsingToolbarLayout layout;
+
+    private RecyclerView actorRecyclerView;
 
     private static final String TAG = "MovieDetailActivity";
 
@@ -141,6 +147,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
         createOverViewSection();
         createImageSection();
         createActorsSection();
+        //createNewActorSection();
         createCrewSection();
         createAboutSection();
     }
@@ -247,9 +254,21 @@ public class MovieDetailActivity extends BasicDetailActivity {
 
             });
 
-        }
+    }
 
-        private void createActorsSection() {
+
+    private void createNewActorSection()
+    {
+        actorRecyclerView = (RecyclerView)findViewById(R.id.people_scroll_view);
+        List<Cast> actors = movie.casts.cast;
+        RecyclerView.Adapter adapter = new PeopleScrollAdapter(this, actors);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true);
+        actorRecyclerView.setLayoutManager(layoutManager);
+        actorRecyclerView.setAdapter(adapter);
+    }
+
+
+    private void createActorsSection() {
 
             final List<Cast> actors = movie.casts.cast;
 
@@ -503,5 +522,8 @@ public class MovieDetailActivity extends BasicDetailActivity {
                 genre3.setVisibility(View.VISIBLE);
             }
         }
+
+
+
 
 }
