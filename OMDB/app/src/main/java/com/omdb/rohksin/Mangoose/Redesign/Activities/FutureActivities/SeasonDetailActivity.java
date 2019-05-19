@@ -14,8 +14,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.SeasonIdURLBuilder;
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
+import com.omdb.rohksin.Mangoose.Redesign.URLBuilders.Impl.SeasonIdURLBuilder;
+import com.omdb.rohksin.Mangoose.Redesign.URLBuilders.URLBuilder;
 import com.omdb.rohksin.Mangoose.R;
 
 import org.json.JSONObject;
