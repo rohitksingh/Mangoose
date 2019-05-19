@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.Redesign.Activities.RoleListActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.RoleListActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.BiographyActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;

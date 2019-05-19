@@ -31,9 +31,7 @@ public class ActorListActivity extends BasicListActivity {
 
     @Override
     public void createUI() {
-        setContentView(R.layout.activity_list_basic);
         getSupportActionBar().setTitle("Cast");
-        recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
     }
 
 }

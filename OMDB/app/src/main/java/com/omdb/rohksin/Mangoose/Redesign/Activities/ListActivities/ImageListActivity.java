@@ -44,8 +44,6 @@ public class ImageListActivity extends BasicListActivity {
     @Override
     public void createUI() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_list_basic);
-        recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
     }
 
 

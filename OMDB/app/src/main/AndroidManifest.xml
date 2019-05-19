@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.RoleListActivity"
+        <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.ListActivities.RoleListActivity"
             />
         <activity android:name="com.omdb.rohksin.Mangoose.Redesign.Activities.PreviewImageActivity"
             android:theme="@style/AppTheme.NoActionBar"
