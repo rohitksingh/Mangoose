@@ -1,7 +1,7 @@
 package com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl;
 
-import com.omdb.rohksin.Mangoose.Constants.Config;
 import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.URLBuilder;
+import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
 
 /**
  * Created by Illuminati on 6/24/2017.
@@ -16,12 +16,12 @@ public  abstract class SearchIDURLBuilder implements URLBuilder {
 
     @Override
     public String getBaseURL() {
-        return Config.BASE_URL;
+        return AppConstants.BASE_URL;
     }
 
     @Override
     public String getAPIKEY() {
-        return "api_key="+ Config.MAIN_API_KEY;
+        return "api_key="+ AppConstants.TMDB_KEY;
     }
 
 }

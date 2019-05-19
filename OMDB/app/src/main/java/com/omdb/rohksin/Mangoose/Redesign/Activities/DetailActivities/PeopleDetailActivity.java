@@ -146,7 +146,7 @@ public class PeopleDetailActivity extends BasicDetailActivity {
 
         CardView cardView = (CardView)findViewById(R.id.aboutSection);
         TextView birthday = (TextView)findViewById(R.id.birthday);
-        TextView deathdate = (TextView)findViewById(R.id.deathdate);
+        //TextView deathdate = (TextView)findViewById(R.id.deathdate);
         TextView birthplace = (TextView)findViewById(R.id.birthplace);
         TextView website = (TextView)findViewById(R.id.website);
 
@@ -157,8 +157,8 @@ public class PeopleDetailActivity extends BasicDetailActivity {
         }
 
         if(!actorDetail.deathday.equalsIgnoreCase("null")) {
-            deathdate.setText(MovieUtils.getFormattedDate(actorDetail.deathday));
-            deathdate.setVisibility(View.VISIBLE);
+           // deathdate.setText(MovieUtils.getFormattedDate(actorDetail.deathday));
+            //deathdate.setVisibility(View.VISIBLE);
         }
 
         if(!actorDetail.place_of_birth.equalsIgnoreCase("null")) {

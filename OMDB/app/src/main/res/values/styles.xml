@@ -28,9 +28,6 @@
         <item name="cardBackgroundColor">#00000000</item>
     </style>
 
-    <style name="OverlayStyle">
-        <item name="android:alpha">0.8</item>
-    </style>
 
     <style name="TextContent">
         <item name="android:textColor">#ffffff</item>
