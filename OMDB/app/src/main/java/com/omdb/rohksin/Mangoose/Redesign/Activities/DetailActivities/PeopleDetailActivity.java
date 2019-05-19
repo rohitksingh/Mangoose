@@ -40,7 +40,6 @@ public class PeopleDetailActivity extends BasicDetailActivity {
     private ImageView backDrop;
     private ImageView profileImage;
     private CardView aboutSection;
-    List<MovieRole> roles;
 
     private Actor actorDetail;
 
@@ -77,7 +76,6 @@ public class PeopleDetailActivity extends BasicDetailActivity {
         if(Build.VERSION.SDK_INT>20)
         {
             profileImage.setTransitionName("ACTOR");
-
         }
 
         createBioGraphy();
@@ -91,8 +89,7 @@ public class PeopleDetailActivity extends BasicDetailActivity {
         return R.layout.people_detail_activity;
     }
 
-
-    public void createMainContent() {
+    private void createMainContent() {
 
         CollapsingToolbarLayout title= (CollapsingToolbarLayout)findViewById(R.id.title);
         title.setTitle(actorDetail.name);
@@ -106,12 +103,10 @@ public class PeopleDetailActivity extends BasicDetailActivity {
                         .load(MovieUtils.imageURL(poster_path))
                         .into(backDrop);
 
-            }
-
+        }
     }
 
-
-    public void createBioGraphy() {
+    private void createBioGraphy() {
 
         CardView cardView = (CardView)findViewById(R.id.biography);
         TextView actorName = (TextView)cardView.findViewById(R.id.movie_name);
@@ -147,7 +142,7 @@ public class PeopleDetailActivity extends BasicDetailActivity {
 
     }
 
-    public void createAboutSetion() {
+    private void createAboutSetion() {
 
         CardView cardView = (CardView)findViewById(R.id.aboutSection);
         TextView birthday = (TextView)findViewById(R.id.birthday);
@@ -291,7 +286,6 @@ public class PeopleDetailActivity extends BasicDetailActivity {
                                 startActivity(i);
                             }
 
-                            //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                         }
                     });
                 }
@@ -303,8 +297,7 @@ public class PeopleDetailActivity extends BasicDetailActivity {
 
         }
 
-        public void createNewAboutSetion()
-        {
+        private void createNewAboutSetion() {
 
             TextView birthDay= (TextView)aboutSection.findViewById(R.id.birthday);
             TextView birtPlace = (TextView)aboutSection.findViewById(R.id.birthplace);
@@ -317,7 +310,6 @@ public class PeopleDetailActivity extends BasicDetailActivity {
             profileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //MovieUtils.previewImage(PeopleDetailActivity.this,actorDetail.getProfileImage());
                     MovieUtils.previewImageWithAnimation(PeopleDetailActivity.this,actorDetail.profile_path,profileImage,"ImageView");
                 }
             });
@@ -347,10 +339,7 @@ public class PeopleDetailActivity extends BasicDetailActivity {
                     MovieUtils.openInBrowser(PeopleDetailActivity.this,actorDetail.homepage);
                 }
             });
-
-        }
-
-
+    }
 
     private void parse(String jsonString) {
 
