@@ -93,7 +93,7 @@
             <include layout="@layout/all_images"
                 android:id="@+id/top3Images"
                 />
-            <include layout="@layout/people_scroll_section"
+            <include layout="@layout/top_3_actors"
                 android:id="@+id/top3Actors"
                 />
             <include layout="@layout/top3crew"

@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -145,8 +146,8 @@ public class MovieDetailActivity extends BasicDetailActivity {
 
         createOverViewSection();
         createImageSection();
-        //createActorsSection();
-        createNewActorSection();
+        createActorsSection();
+        //createNewActorSection();
         createCrewSection();
         createAboutSection();
     }
@@ -261,13 +262,13 @@ public class MovieDetailActivity extends BasicDetailActivity {
         actorRecyclerView = (RecyclerView)findViewById(R.id.people_scroll_view);
         List<Cast> actors = movie.casts.cast;
         RecyclerView.Adapter adapter = new PeopleScrollAdapter(this, actors);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true);
         actorRecyclerView.setLayoutManager(layoutManager);
         actorRecyclerView.setAdapter(adapter);
     }
 
 
-    private void createActorsSections() {
+    private void createActorsSection() {
 
             final List<Cast> actors = movie.casts.cast;
 
