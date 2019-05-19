@@ -3,7 +3,6 @@ package com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,14 +16,11 @@ import org.json.JSONObject;
 
 public abstract class BasicDetailActivity extends AppCompatActivity {
 
-
-
     public URLBuilder urlBuilder;
     public String endPoint;
     public String objectId;
 
     private static final String TAG = "BasicDetailActivity";
-
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -39,36 +35,36 @@ public abstract class BasicDetailActivity extends AppCompatActivity {
     {
         urlBuilder = getUrlBuilder();
         endPoint = urlBuilder.bulidURL();
+        Log.d(TAG, "End point: "+endPoint);
     }
 
     private void createObjectID()
     {
          String key = getObjectId();
          objectId = getIntent().getStringExtra(key);
+        Log.d(TAG, "Object id: "+objectId);
     }
 
     private void makeRequest()
     {
+        Log.d(TAG, "makeRequest: ");
         RequestQueue queue = Volley.newRequestQueue(this);
-
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, endPoint,
 
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.d(TAG, "onResponse: "+ endPoint);
-                        Log.d(TAG, "onResponse: "+ response.toString() );
+                        Log.d(TAG, "onResponse: Success"+ response.toString() );
 
                         parseObject(response.toString());
-                        //sendBroadcast();
                         createUI();
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d(TAG, "onResponse: failed Volley Error");
             }
         }
 
@@ -76,7 +72,6 @@ public abstract class BasicDetailActivity extends AppCompatActivity {
 
         queue.add(request);
     }
-
 
     public abstract URLBuilder getUrlBuilder();
 

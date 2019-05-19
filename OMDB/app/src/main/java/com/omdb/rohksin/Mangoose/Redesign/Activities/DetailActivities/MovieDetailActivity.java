@@ -69,9 +69,6 @@ public class MovieDetailActivity extends BasicDetailActivity {
     public void onCreate(Bundle saveBundleInstance)
     {
         super.onCreate(saveBundleInstance);
-        //Intent i = getIntent();
-        //final String movieId = i.getStringExtra(AppConstants.MOVIE_ID);
-
     }
 
     @Override
@@ -155,86 +152,89 @@ public class MovieDetailActivity extends BasicDetailActivity {
     }
 
 
-    public void hideTitle(final String title)
-        {
-            AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-            appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-                boolean isShow = false;
-                int scrollRange = -1;
+    private void hideTitle(final String title) {
 
-                @Override
-                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                    if (scrollRange == -1) {
-                        scrollRange = appBarLayout.getTotalScrollRange();
-                    }
-                    if (scrollRange + verticalOffset == 0) {
-                        layout.setTitle(title);
-                        isShow = true;
-                    } else if (isShow) {
-                        layout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
-                        isShow = false;
-                    }
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
                 }
-            });
+
+                if (scrollRange + verticalOffset == 0) {
+                    layout.setTitle(title);
+                    isShow = true;
+                } else if (isShow) {
+                    layout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
+                    isShow = false;
+                }
+            }
+        });
+    }
+
+
+    private void createOverViewSection() {
+
+        CardView overViewCard = (CardView)findViewById(R.id.overview);
+        TextView movieName = (TextView)overViewCard.findViewById(R.id.movie_name);
+        TextView OverViewText = (TextView)overViewCard.findViewById(R.id.OverViewText);
+        movieName.setText(movie.title);
+
+        if(!movie.overview.equalsIgnoreCase("null")) {
+            overViewCard.setVisibility(View.VISIBLE);
+            OverViewText.setText(movie.overview);
         }
 
+    }
 
-        public void createOverViewSection()
-        {
-            CardView overViewCard = (CardView)findViewById(R.id.overview);
-            TextView movieName = (TextView)overViewCard.findViewById(R.id.movie_name);
-            TextView OverViewText = (TextView)overViewCard.findViewById(R.id.OverViewText);
-            movieName.setText(movie.title);
-            if(!movie.overview.equalsIgnoreCase("null")) {
-                overViewCard.setVisibility(View.VISIBLE);
-                OverViewText.setText(movie.overview);
-            }
+    private void createImageSection() {
+
+        FrameLayout top3Images = (FrameLayout)findViewById(R.id.top3Images);
+        LinearLayout imageContainer = (LinearLayout)top3Images.findViewById(R.id.imageContainer);
+
+        List<Backdrop> backdrops = movie.images.backdrops;
+
+        ImageView image1 = (ImageView)imageContainer.findViewById(R.id.image1);
+        LinearLayout imageContainer1 = (LinearLayout)imageContainer.findViewById(R.id.imageContainer1);
+        ImageView image2 = (ImageView)imageContainer1.findViewById(R.id.image2);
+        ImageView image3 = (ImageView)imageContainer1.findViewById(R.id.image3);
 
 
+        if(backdrops.size()>2) {
+
+            String imgsrc1 = MovieUtils.imageHighURL(backdrops.get(0).file_path);
+            String imgsrc2 = MovieUtils.imageHighURL(backdrops.get(1).file_path);
+            String imgsrc3 = MovieUtils.imageHighURL(backdrops.get(2).file_path);
+
+            Picasso.with(this)
+                    .load(imgsrc1)
+                    .into(image1);
+            Picasso.with(this)
+                    .load(imgsrc2)
+                    .into(image2);
+
+            Picasso.with(this)
+                    .load(imgsrc3)
+                    .into(image3);
+        }
+        else {
+            top3Images.setVisibility(View.GONE);
         }
 
+        TextView viewMore = (TextView)top3Images.findViewById(R.id.viewMore);
 
-        public void createImageSection()
-        {
-
-            FrameLayout top3Images = (FrameLayout)findViewById(R.id.top3Images);
-            LinearLayout imageContainer = (LinearLayout)top3Images.findViewById(R.id.imageContainer);
-
-            List<Backdrop> backdrops = movie.images.backdrops;
-
-            ImageView image1 = (ImageView)imageContainer.findViewById(R.id.image1);
-            LinearLayout imageContainer1 = (LinearLayout)imageContainer.findViewById(R.id.imageContainer1);
-            ImageView image2 = (ImageView)imageContainer1.findViewById(R.id.image2);
-            ImageView image3 = (ImageView)imageContainer1.findViewById(R.id.image3);
-
-
-            if(backdrops.size()>2) {
-                String imgsrc1 = MovieUtils.imageHighURL(backdrops.get(0).file_path);
-                String imgsrc2 = MovieUtils.imageHighURL(backdrops.get(1).file_path);
-                String imgsrc3 = MovieUtils.imageHighURL(backdrops.get(2).file_path);
-
-                Picasso.with(this)
-                        .load(imgsrc1)
-                        .into(image1);
-                Picasso.with(this)
-                        .load(imgsrc2)
-                        .into(image2);
-
-                Picasso.with(this)
-                        .load(imgsrc3)
-                        .into(image3);
-            }
-            else {
-                top3Images.setVisibility(View.GONE);
-            }
-            TextView viewMore = (TextView)top3Images.findViewById(R.id.viewMore);
-            viewMore.setOnClickListener(new View.OnClickListener() {
+        viewMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-
                     Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllImageActivity.class);
                     i.putExtra(MOVIE_LIST, (Serializable)movie.images.backdrops);
+
                     if(Build.VERSION.SDK_INT>20)
                     {
                         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this);
@@ -243,20 +243,13 @@ public class MovieDetailActivity extends BasicDetailActivity {
                     else {
                         startActivity(i);
                     }
-
-
-
                 }
 
             });
 
-
-
         }
 
-        public void createActorsSection()
-        {
-
+        private void createActorsSection() {
 
             final List<Cast> actors = movie.casts.cast;
 
@@ -272,21 +265,17 @@ public class MovieDetailActivity extends BasicDetailActivity {
                 LinearLayout actorCard2 = (LinearLayout) layout1.findViewById(R.id.actor2);
                 LinearLayout actorCard3 = (LinearLayout) layout1.findViewById(R.id.actor3);
 
-                //LinearLayout actorHolder1 = (LinearLayout)actorCard1.findViewById(R.id.actorHolder);
                 final ImageView actorImage1 = (ImageView) actorCard1.findViewById(R.id.actorImage);
                 TextView actorName1 = (TextView) actorCard1.findViewById(R.id.actorName);
                 TextView charaterName1 = (TextView) actorCard1.findViewById(R.id.characterName);
 
-                //LinearLayout actorHolder2 = (LinearLayout)actorCard2.findViewById(R.id.actorHolder);
                 final ImageView actorImage2 = (ImageView) actorCard2.findViewById(R.id.actorImage);
                 TextView actorName2 = (TextView) actorCard2.findViewById(R.id.actorName);
                 TextView charaterName2 = (TextView) actorCard2.findViewById(R.id.characterName);
 
-                // LinearLayout actorHolder3 = (LinearLayout)actorCard3.findViewById(R.id.actorHolder);
                 final ImageView actorImage3 = (ImageView) actorCard3.findViewById(R.id.actorImage);
                 TextView actorName3 = (TextView) actorCard3.findViewById(R.id.actorName);
                 TextView charaterName3 = (TextView) actorCard3.findViewById(R.id.characterName);
-
 
                 final Cast actor1 = actors.get(0);
                 Picasso.with(this)
@@ -369,8 +358,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
 
         }
 
-        public void createCrewSection()
-        {
+        private void createCrewSection() {
 
             List<com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew> crews = movie.casts.crew;
 
@@ -420,8 +408,7 @@ public class MovieDetailActivity extends BasicDetailActivity {
 
                 TextView textView = (TextView) layout.findViewById(R.id.viewMoreText);
 
-                if(crews.size()<4)
-                {
+                if(crews.size()<4) {
                     textView.setVisibility(View.GONE);
                 }
                 else {
@@ -431,7 +418,6 @@ public class MovieDetailActivity extends BasicDetailActivity {
 
                         @Override
                         public void onClick(View v) {
-
 
                             Intent i = new Intent(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.this, AllCrewActivity.class);
                             i.putExtra(com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity.MOVIE_LIST, (Serializable) movie.casts.crew);
@@ -456,8 +442,8 @@ public class MovieDetailActivity extends BasicDetailActivity {
         }
 
 
-        public void createAboutSection()
-        {
+        private void createAboutSection() {
+
             CardView aboutSectionCard = (CardView)findViewById(R.id.aboutSection);
 
             aboutSectionCard.setVisibility(View.VISIBLE);
@@ -471,45 +457,13 @@ public class MovieDetailActivity extends BasicDetailActivity {
             TextView language = (TextView)aboutSectionCard.findViewById(R.id.original_language);
             language.setText(movie.original_language);
 
-            // TODO FILTER MOVIE ACTIVITY INTEGRATION
-
-            /*
-            language.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(MovieDetailActivity.this,FilterMovieActivity.class);
-                    if(Build.VERSION.SDK_INT>20)
-                    {
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MovieDetailActivity.this);
-                        startActivity(i,options.toBundle());
-                    }
-                    else {
-                        startActivity(i);
-                    }
-                }
-            });
-            */
-
-
             final TextView website = (TextView)aboutSectionCard.findViewById(R.id.website);
 
             LinearLayout genres = (LinearLayout)aboutSectionCard.findViewById(R.id.genres);
             buildGenre(genres);
 
-            /*
-             TODO Genres Integration IN TableLayout
-
-            List<Genre> genres = movie.getGenres();
-            String genall ="";
-            for(int i=0;i<genres.size();i++)
-            {
-                genall = genall+ genres.get(i).getName()+",";
-            }
-            //website.setText(movie.getHomePage());
-            website.setText(genall);
-            */
-
             if(movie.homepage!=null) {
+
                 if (!movie.homepage.equalsIgnoreCase("")) {
                     website.setText(movie.homepage);
                     website.setVisibility(View.VISIBLE);
@@ -524,11 +478,9 @@ public class MovieDetailActivity extends BasicDetailActivity {
                 }
             });
 
-
-
         }
 
-        public void buildGenre(View v)
+        private void buildGenre(View v)
         {
             TextView genre1 = (TextView)v.findViewById(R.id.genre1);
             TextView genre2 = (TextView)v.findViewById(R.id.genre2);
@@ -551,9 +503,5 @@ public class MovieDetailActivity extends BasicDetailActivity {
                 genre3.setVisibility(View.VISIBLE);
             }
         }
-
-
-
-
 
 }
