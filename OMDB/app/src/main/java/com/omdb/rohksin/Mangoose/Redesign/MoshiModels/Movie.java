@@ -1,7 +1,5 @@
 package com.omdb.rohksin.Mangoose.Redesign.MoshiModels;
 
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.URLBuilders.Impl.PeopleNameURLBuilder;
-
 import java.io.Serializable;
 import java.util.List;
 

@@ -22,11 +22,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.Receivers.SearchListReceiver;
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Impl.MovieSearch;
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Impl.PeopleSearch;
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Impl.TVShowSearch;
-import com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Search;
+import com.omdb.rohksin.Mangoose.Redesign.Search.Receivers.SearchListReceiver;
+import com.omdb.rohksin.Mangoose.Redesign.Search.SearchAlgo.Impl.MovieSearch;
+import com.omdb.rohksin.Mangoose.Redesign.Search.SearchAlgo.Impl.PeopleSearch;
+import com.omdb.rohksin.Mangoose.Redesign.Search.SearchAlgo.Impl.TVShowSearch;
+import com.omdb.rohksin.Mangoose.Redesign.Search.SearchAlgo.Search;
 import com.omdb.rohksin.Mangoose.R;
 
 /**
@@ -131,7 +131,7 @@ public class SearchActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(seachEditText.getWindowToken(),
                             InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
-                    com.omdb.rohksin.Mangoose.ObjectOrientedSearch.SearchAlgo.Search search ;
+                    com.omdb.rohksin.Mangoose.Redesign.Search.SearchAlgo.Search search ;
                     if(SearchType==PEOPLE_SEARCH) {
                         search = new PeopleSearch(seachEditText.getText() + "");
                         startLoadingAnimation();
