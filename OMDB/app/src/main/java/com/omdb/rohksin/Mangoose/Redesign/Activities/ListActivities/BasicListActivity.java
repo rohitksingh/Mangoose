@@ -24,15 +24,20 @@ public abstract class BasicListActivity extends AppCompatActivity{
         configure();
     }
 
-
+    /****************************************************************************
+     *
+     *            Abstract methods. Each subclass must provide implementation
+     *
+     ****************************************************************************/
     public abstract RecyclerView.Adapter createAdapter();
     public abstract void createUI();
 
-    public RecyclerView.LayoutManager provideLayoutManager()
-    {
-        return layoutManager = new LinearLayoutManager(BasicListActivity.this);
-    }
 
+    /****************************************************************************
+     *
+     *            Protected methods are optional to override
+     *
+     ****************************************************************************/
 
     // Default Slide from left animation. Can be overriden for different animation
     protected void setAnimation()
@@ -47,12 +52,24 @@ public abstract class BasicListActivity extends AppCompatActivity{
         }
     }
 
+    // Default mainLayout
     protected void createMainLayout()
     {
         setContentView(R.layout.activity_list_basic);
         recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
     }
 
+    // Fefault layout manager Linear vertical
+    protected RecyclerView.LayoutManager provideLayoutManager() {
+        return layoutManager = new LinearLayoutManager(BasicListActivity.this);
+    }
+
+    /****************************************************************************
+     *
+     *            Private method to internal use of superclass.
+     *            Can not be overriden
+     *
+     ****************************************************************************/
     private void configure() {
         setAnimation();
         createMainLayout();
