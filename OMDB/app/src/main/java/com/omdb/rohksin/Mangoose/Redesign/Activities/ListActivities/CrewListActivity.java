@@ -30,9 +30,7 @@ public class CrewListActivity extends BasicListActivity {
 
     @Override
     public void createUI() {
-        setContentView(R.layout.activity_list_basic);
         getSupportActionBar().setTitle("Crew");
-        recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
     }
 
 }
