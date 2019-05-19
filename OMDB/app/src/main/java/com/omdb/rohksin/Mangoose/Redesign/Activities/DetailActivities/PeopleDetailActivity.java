@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.omdb.rohksin.Mangoose.ListActivity;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.RoleListActivity;
 import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Activities.BiographyActivity;
 import com.omdb.rohksin.Mangoose.Redesign.Models.MovieRole;
@@ -86,7 +86,7 @@ public class PeopleDetailActivity extends BasicDetailActivity {
 
     @Override
     public int getMainLayout() {
-        return R.layout.people_detail_activity;
+        return R.layout.activity_people_detail;
     }
 
     private void createMainContent() {
@@ -273,7 +273,7 @@ public class PeopleDetailActivity extends BasicDetailActivity {
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(PeopleDetailActivity.this, ListActivity.class);
+                            Intent i = new Intent(PeopleDetailActivity.this, RoleListActivity.class);
                             ArrayList<MovieRole> roles1 = (ArrayList) roles;
 
                             i.putExtra("allMoviesListActivity", roles1);

@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Illuminati on 6/20/2017.
  */
-public class AllImageActivity extends BasicListActivity {
+public class ImageListActivity extends BasicListActivity {
 
     @Override
     public void onCreate(Bundle savedInstaceState)
@@ -44,7 +44,7 @@ public class AllImageActivity extends BasicListActivity {
     @Override
     public void createUI() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.image_landing_layout);
+        setContentView(R.layout.activity_list_basic);
         recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
     }
 

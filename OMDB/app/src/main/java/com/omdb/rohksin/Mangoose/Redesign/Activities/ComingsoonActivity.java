@@ -1,17 +1,18 @@
-package com.omdb.rohksin.Mangoose;
+package com.omdb.rohksin.Mangoose.Redesign.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.omdb.rohksin.Mangoose.R;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.AppConstants;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 
 /**
  * Created by Illuminati on 7/9/2017.
  */
-public class ComingSoon extends AppCompatActivity {
+public class ComingsoonActivity extends AppCompatActivity {
 
     private Button share;
     private Button checkLatest;
@@ -20,7 +21,7 @@ public class ComingSoon extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.coming_soon);
+        setContentView(R.layout.activity_comingsoon);
         getSupportActionBar().setTitle("Coming Soon :)");
 
         share = (Button)findViewById(R.id.share);
@@ -29,14 +30,14 @@ public class ComingSoon extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MovieUtils.shareThisApp(ComingSoon.this);
+                MovieUtils.shareThisApp(ComingsoonActivity.this);
             }
         });
 
         checkLatest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MovieUtils.openInBrowser(ComingSoon.this, AppConstants.APPSTORE_LINK);
+                MovieUtils.openInBrowser(ComingsoonActivity.this, AppConstants.APPSTORE_LINK);
             }
         });
 

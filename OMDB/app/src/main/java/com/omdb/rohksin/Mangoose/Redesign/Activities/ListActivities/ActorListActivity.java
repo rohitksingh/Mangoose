@@ -4,16 +4,17 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Adapters.CrewListAdapter;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.ActorsListAdapter;
+
 import com.omdb.rohksin.Mangoose.R;
-import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Crew;
+import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Cast;
 
 import java.util.List;
 
 /**
  * Created by Illuminati on 6/21/2017.
  */
-public class AllCrewActivity extends BasicListActivity {
+public class ActorListActivity extends BasicListActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -24,14 +25,14 @@ public class AllCrewActivity extends BasicListActivity {
     @Override
     public RecyclerView.Adapter createAdapter() {
 
-        List<Crew> crews = (List<Crew>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
-        return new CrewListAdapter(crews,this);
+        List<Cast> casts = (List<Cast>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
+        return new ActorsListAdapter(casts,this);
     }
 
     @Override
     public void createUI() {
-        setContentView(R.layout.image_landing_layout);
-        getSupportActionBar().setTitle("Crew");
+        setContentView(R.layout.activity_list_basic);
+        getSupportActionBar().setTitle("Cast");
         recyclerView = (RecyclerView)findViewById(R.id.image_list_landing);
     }
 

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.omdb.rohksin.Mangoose.Redesign.Models.TvShow;
 import com.omdb.rohksin.Mangoose.Redesign.Utilities.MovieUtils;
 import com.omdb.rohksin.Mangoose.R;
-import com.omdb.rohksin.Mangoose.ComingSoon;
+import com.omdb.rohksin.Mangoose.Redesign.Activities.ComingsoonActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -67,7 +67,7 @@ public class TVShowListAdapter extends RecyclerView.Adapter<TVShowListAdapter.Tv
 
                 Toast.makeText(context,"FOFO",Toast.LENGTH_LONG).show();
                 //Intent i = new Intent(context, TVShowDetailActivity.class);     Integrate When layout is done
-                Intent i = new Intent(context, ComingSoon.class);
+                Intent i = new Intent(context, ComingsoonActivity.class);
                 i.putExtra("tvshowdetailactivity", movieId);
                 context.startActivity(i);
             }

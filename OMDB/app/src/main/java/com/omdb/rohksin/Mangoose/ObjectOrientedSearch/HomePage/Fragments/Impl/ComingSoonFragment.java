@@ -19,6 +19,6 @@ public class ComingSoonFragment extends BaseFragment {
 
     @Override
     public View provideYourFragmentView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.coming_soon,parent,false);
+        return inflater.inflate(R.layout.activity_comingsoon,parent,false);
     }
 }
