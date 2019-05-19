@@ -9,8 +9,7 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 
 import com.omdb.rohksin.Mangoose.Redesign.Activities.DetailActivities.MovieDetailActivity;
-import com.omdb.rohksin.Mangoose.Redesign.Adapters.ListAdaper;
-import com.omdb.rohksin.Mangoose.R;
+import com.omdb.rohksin.Mangoose.Redesign.Adapters.ImageListAdapter;
 import com.omdb.rohksin.Mangoose.Redesign.MoshiModels.Backdrop;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class ImageListActivity extends BasicListActivity {
 
         List<Backdrop> backdrops = (List<Backdrop>) getIntent().getSerializableExtra(MovieDetailActivity.MOVIE_LIST);
         List<String> moviesList = getMovieList(backdrops);
-        return new ListAdaper(moviesList,this);
+        return new ImageListAdapter(moviesList,this);
     }
 
     @Override

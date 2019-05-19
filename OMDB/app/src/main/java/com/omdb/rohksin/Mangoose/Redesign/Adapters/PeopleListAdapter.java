@@ -35,7 +35,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
     @Override
     public PeopleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.people_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_people, parent, false);
 
         PeopleViewHolder pvh = new PeopleViewHolder(view);
         return pvh;
@@ -43,16 +43,15 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
 
     @Override
     public void onBindViewHolder(final PeopleViewHolder holder, int position) {
-        // holder.personName.setText(list.get(position).getName());
+
         final String movieId = list.get(position).getId();
         holder.title.setText(list.get(position).getName());
 
         holder.knownFor.setText(list.get(position).getKnownForMovies());
 
         String thumb = list.get(position).getPeofileImage();
-        //thumb = "http://image.tmdb.org/t/p/w185"+thumb;
         thumb = MovieUtils.imageURL(thumb);
-        Log.d("Thumb", thumb);
+
         Picasso.with(context)
                 .load(thumb).error(R.drawable.placeholder)
                 .into(holder.posterThumbnail);
@@ -62,24 +61,9 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
             @Override
             public void onClick(View v) {
 
-                /*
-                Intent i = new Intent(context, PeopleDetailActivity.class);
-                i.putExtra(ActorsListAdapter.ACTOR_ID, movieId);
-
-                if(Build.VERSION.SDK_INT>20)
-                {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,holder.posterThumbnail,"ACTOR");
-                    context.startActivity(i,options.toBundle());
-                }
-                else {
-                    context.startActivity(i);
-                }
-                */
-
                 AppUtility.startPeopleDetailActivityWithAnim(context, movieId, holder.posterThumbnail);
             }
         });
-        // holder.posterThumbnail.setImageResource();
     }
 
     @Override
@@ -105,10 +89,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
             if(Build.VERSION.SDK_INT>20)
             posterThumbnail.setTransitionName("ACTOR");
 
-
         }
     }
 
-    {
-    }
 }

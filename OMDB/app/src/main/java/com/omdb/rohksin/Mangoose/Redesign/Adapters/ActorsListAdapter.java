@@ -38,7 +38,7 @@ public class ActorsListAdapter  extends RecyclerView.Adapter<ActorsListAdapter.A
 
 @Override
 public ActorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.actor_landing_single_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_actor, parent, false);
         ActorViewHolder actorViewHolder = new ActorViewHolder(view);
         return actorViewHolder;
         }

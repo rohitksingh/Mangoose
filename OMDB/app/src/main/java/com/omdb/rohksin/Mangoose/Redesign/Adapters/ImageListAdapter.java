@@ -18,13 +18,13 @@ import java.util.List;
 /**
  * Created by Illuminati on 4/22/2017.
  */
-public class ListAdaper extends RecyclerView.Adapter<ListAdaper.MediaViewHolder> {
+public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MediaViewHolder> {
 
 
     List<String> list;
     Context context;
 
-    public ListAdaper(List<String> list, Context context) {
+    public ImageListAdapter(List<String> list, Context context) {
         this.list = list;
         this.context = context;
 
@@ -33,7 +33,7 @@ public class ListAdaper extends RecyclerView.Adapter<ListAdaper.MediaViewHolder>
 
     @Override
     public MediaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.landing_image, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_image, parent, false);
         MediaViewHolder mediaHolder = new MediaViewHolder(view);
         return mediaHolder;
     }

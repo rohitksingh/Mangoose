@@ -35,7 +35,7 @@ public class CrewListAdapter  extends RecyclerView.Adapter<CrewListAdapter.CrewV
 
     @Override
     public CrewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.crew_landing_single_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_crew, parent, false);
         CrewViewHolder actorViewHolder = new CrewViewHolder(view);
         return actorViewHolder;
     }

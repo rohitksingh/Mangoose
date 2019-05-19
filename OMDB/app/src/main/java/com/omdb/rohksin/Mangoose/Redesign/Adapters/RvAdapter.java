@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.content.Context;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -26,9 +25,6 @@ import java.util.List;
  */
 public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
 
-
-
-
     private List<Movie> list;
     private Context context;
 
@@ -41,14 +37,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_movie,parent,false);
         MovieViewHolder pvh = new MovieViewHolder(view);
         return pvh;
     }
 
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
-       // holder.personName.setText(list.get(position).getName());
+
         final String movieId = list.get(position).getMovieId();
         holder.title.setText(list.get(position).getName());
         holder.releaseYear.setText(MovieUtils.getFormattedDate(list.get(position).getReleaseYear()));
@@ -56,30 +52,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
 
 
         String thumb = list.get(position).getPosterThumbnail();
-        //thumb = "http://image.tmdb.org/t/p/w185"+thumb;
         thumb = MovieUtils.imageURL(thumb);
-        Log.d("Thumb",thumb);
         Picasso.with(context)
                 .load(thumb).error(R.drawable.placeholder)
                 .into(holder.posterThumbnail);
 
-
         holder.mainCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*
-                Intent i = new Intent(context, MovieDetailActivity.class);
-                i.putExtra(AppConstants.MOVIE_ID, movieId);
-
-                if (Build.VERSION.SDK_INT > 20) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context, holder.posterThumbnail, "ImageView");
-
-                    context.startActivity(i, options.toBundle());
-                } else {
-                    context.startActivity(i);
-                }
-                */
 
                 AppUtility.startMovieDetailActiivtyWithAnim(context, movieId, holder.posterThumbnail);
 
@@ -99,7 +79,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
                     animator.setInterpolator(new AccelerateDecelerateInterpolator());
                     holder.moreInfoCard.setVisibility(View.VISIBLE);
 
-                    Log.d("GENRES", ((list.get(position)).getGenres().length) + "");
                     if(list.get(position).getGenres().length!=0)
                     {
                         holder.genres.setText(MovieUtils.getGenre(list.get(position).getGenres()));
@@ -222,8 +201,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MovieViewHolder> {
 
             genres = (TextView)moreInfoCard.findViewById(R.id.genres);
             originalLanguage = (TextView)moreInfoCard.findViewById(R.id.original_language);
-
-
 
             if(Build.VERSION.SDK_INT>20) {
                 posterThumbnail.setTransitionName("ImageView");

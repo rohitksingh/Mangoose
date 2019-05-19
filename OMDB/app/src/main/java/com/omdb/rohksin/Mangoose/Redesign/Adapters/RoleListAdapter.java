@@ -24,12 +24,12 @@ import java.util.List;
 /**
  * Created by Illuminati on 6/28/2017.
  */
-public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdapter.PosterHolder> {
+public class RoleListAdapter extends RecyclerView.Adapter<RoleListAdapter.PosterHolder> {
 
     private List<Role> list;
     private Context context;
 
-    public ViewAllMoviesAdapter(List<Role> list,Context context)
+    public RoleListAdapter(List<Role> list, Context context)
     {
         this.list = list;
         this.context = context;
@@ -38,7 +38,7 @@ public class ViewAllMoviesAdapter extends RecyclerView.Adapter<ViewAllMoviesAdap
     @Override
     public PosterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_poster_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_role, parent, false);
         PosterHolder pvh = new PosterHolder(view);
         return pvh;
     }
