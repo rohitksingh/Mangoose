@@ -1,40 +1,12 @@
 # Mangoose   
-Get information about your favorite movies, tv show and actors with an awesome material design based Android App.      
+Search information about your favorite movies, tv shows and actors with Mangoose. 
+Mangoose gets its content from TMDb REST API. 
 
 **Play Store Link**  
 [Mangoose][1] 
   
-Current Version 1.0.2  
+Current Version 1.0.4  
 [![en_badge_web_generic](https://user-images.githubusercontent.com/11274840/30340509-9cb20308-97a7-11e7-8352-d717be004b46.png)](https://play.google.com/store/apps/details?id=com.omdb.rohksin.omdb&hl=en)
-
-About Mangoose
-------
-> **Library used** 
-
-[Volley](https://github.com/google/volley) HTTP library for networking.       
-[Picasso](https://github.com/square/picasso)  For Async image loading and caching
-
-> **Views,ViewGroup, Widgets used**
-
-- Coordinator View
-- CardViews 
-- RecyclerView
-- Custom CircleView
-
-> **Mangoose uses** 
-
-- BroadcastReceiver
-- Implicit, Explicit Intents 
-- Android Transition API
-- Reveal Transition 
-- SharedTransition
-- Fragments
-
-HomePage Search is enriched with Object Oriented Design.
-
-
-
-                   
 
 Screenshots
 ------
@@ -49,7 +21,34 @@ Screenshots
 ![21462399_1445516718873326_4583998533592409064_n](https://user-images.githubusercontent.com/11274840/30293017-02ac51ba-96ed-11e7-83f5-b59ec4aa15cb.jpg)
 ![21463255_1445516725539992_8878549551036834264_n](https://user-images.githubusercontent.com/11274840/30293018-02d46902-96ed-11e7-965e-818ae8aafc8f.jpg)
 
+Implementations
+------
+- Coordinator View
+- CardViews 
+- RecyclerView
+- Custom CircleView
+- Coordinator View
+- CardViews 
+- RecyclerView
+- Custom CircleView
+- BroadcastReceiver
+- Implicit, Explicit Intents 
+- Android Transition API
+- Reveal Transition 
+- SharedTransition
+- Fragments
+- Object oriented architecture
+- [Volley](https://github.com/google/volley) HTTP library for networking.       
+- [Picasso](https://github.com/square/picasso)  For Async image loading and caching
 
+
+
+
+
+
+
+
+             
 
 </br></br>
 ## About author
