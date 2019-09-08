@@ -1,5 +1,5 @@
 # Mangoose   
-Search information about your favorite movies, tv shows and actors with Mangoose. 
+Search information about your favorite movies, tv shows and actors with Mangoose.           
 Mangoose gets its content from TMDb REST API. 
 
 Play Store Link
